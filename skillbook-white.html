@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>聯盟技能書 — 白帽 SEO 完全指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06060c;--bg2:#0c0d16;--card:#0f1018;
+  --accent:#4a7fd9;--accent2:#7ba8f0;--accent-bg:rgba(74,127,217,.07);--accent-line:rgba(74,127,217,.18);--accent-dim:rgba(74,127,217,.08);
+  --gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);
+  --text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;
+  --red:#b83a2e;--red2:#e05a4e;--green:#2d9d5e;--green2:#6bc992;
+  --border:rgba(255,255,255,.05);--border-h:rgba(74,127,217,.22);
+  --r:8px;--r-lg:14px;--tr:.22s ease;
+  --shadow:0 4px 24px rgba(0,0,0,.45);
+  --mono:'JetBrains Mono',monospace;--body:'Noto Sans TC',system-ui,sans-serif;--head:'Cinzel','Noto Sans TC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.82;font-size:14.5px;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(74,127,217,.03),transparent);pointer-events:none;z-index:0}
+h1,h2,h3{font-family:var(--head);color:var(--accent2);font-weight:700;letter-spacing:.03em}
+h4{color:var(--text-h);font-weight:600;font-size:.95rem;margin:1rem 0 .35rem}
+h1{font-size:clamp(1.5rem,3.5vw,2.4rem);text-align:center;margin-bottom:.6rem}
+h2{font-size:clamp(1.05rem,2.2vw,1.5rem);margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+h2::before{content:'';width:3px;height:1.2em;background:var(--accent);border-radius:2px;flex-shrink:0}
+h3{font-size:clamp(.92rem,1.8vw,1.15rem);margin:1.2rem 0 .5rem}
+a{color:var(--accent2);text-decoration:none;transition:var(--tr)}a:hover{text-decoration:underline}
+p{margin:.4rem 0}ul,ol{padding-left:1.15rem;margin:.3rem 0}li{margin:.2rem 0;font-size:.9rem}
+small{color:var(--text2);font-size:.78rem}
+code{font-family:var(--mono);font-size:.82rem;background:rgba(255,255,255,.03);padding:.1rem .4rem;border-radius:3px}
+::selection{background:rgba(74,127,217,.25);color:#fff}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+
+#pbar-wrap{position:fixed;top:0;left:0;right:0;height:2px;z-index:1001}
+#pbar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}
+
+.nav{position:fixed;top:2px;left:0;right:0;z-index:1000;padding:.5rem .6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
+.nav::before{content:'';position:absolute;inset:0;background:rgba(6,6,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:-1}
+.nb{padding:.38rem .9rem;border:1px solid rgba(255,255,255,.06);border-radius:5px;background:transparent;color:var(--text2);cursor:pointer;font-family:var(--body);font-size:.78rem;font-weight:500;transition:var(--tr)}
+.nb:hover{color:var(--text-h);border-color:rgba(255,255,255,.12)}
+.nb.on{color:var(--accent2);border-color:var(--accent-line);background:var(--accent-dim)}
+
+main{max-width:800px;margin:0 auto;padding:4rem 1.2rem 3rem;position:relative;z-index:1}
+.ch{display:none;animation:up .4s ease both}.ch.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.hero{text-align:center;padding:4rem 1.5rem 3.5rem;margin-bottom:2.5rem;border-radius:var(--r-lg);border:1px solid var(--border);position:relative;overflow:hidden;background:url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&q=70') center/cover}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(6,6,12,.85);z-index:1}
+.hero *{position:relative;z-index:2}
+.hero p{color:var(--text2);font-size:.9rem;max-width:480px;margin:.3rem auto 0}
+.hero .sub{color:var(--accent2);font-style:italic;font-size:.92rem;font-family:var(--head)}
+
+.acc{margin:.8rem 0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--card);transition:border-color var(--tr)}
+.acc:hover,.acc.o{border-color:rgba(255,255,255,.08)}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;cursor:pointer;transition:var(--tr);gap:.5rem;user-select:none}
+.acc-h:hover{background:rgba(255,255,255,.025)}
+.acc-h h3{margin:0;font-size:.92rem;flex:1}
+.acc-h .time{font-size:.7rem;color:var(--text2);background:var(--accent-dim);padding:.15rem .5rem;border-radius:3px;font-family:var(--mono);flex-shrink:0;margin-right:.5rem}
+.acc-t{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--tr)}
+.acc-t svg{width:12px;height:12px;stroke:var(--accent2);stroke-width:2;fill:none;transition:transform .3s}
+.acc.o .acc-t{background:var(--accent-dim);border-color:var(--accent-line)}
+.acc.o .acc-t svg{transform:rotate(45deg)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.acc.o .acc-b{max-height:12000px}
+.acc-c{padding:.3rem 1.1rem 1.3rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.5rem 0}
+.grid-sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem;margin:1.5rem 0}
+.sk{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;text-align:center;transition:var(--tr)}
+.sk:hover{border-color:var(--border-h);transform:translateY(-2px);box-shadow:var(--shadow)}
+.sk .si{width:38px;height:38px;border-radius:8px;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;font-family:var(--mono);background:var(--accent-dim);color:var(--accent2);border:1px solid var(--accent-line)}
+.sk h4{color:var(--accent2);margin:0 0 .3rem;font-size:.85rem}
+.sk p{font-size:.78rem;color:var(--text2);margin:0;line-height:1.45}
+
+.mt{margin:.6rem 0}.mt-top{display:flex;justify-content:space-between;margin-bottom:.2rem;font-size:.8rem}
+.mt-bar{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.mt-f{height:100%;border-radius:3px;transition:width 1s ease}
+.mt-f.b{background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.mt-f.g{background:linear-gradient(90deg,#1a6b3c,var(--green2))}
+.mt-f.r{background:linear-gradient(90deg,var(--red),var(--red2))}
+.mt-f.go{background:linear-gradient(90deg,#7a5c20,var(--gold2))}
+
+.cmp{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem;text-align:center;transition:var(--tr)}
+.cmp:hover{border-color:var(--border-h)}
+.cmp .ci{width:36px;height:36px;border-radius:50%;margin:0 auto .4rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;font-family:var(--mono);background:var(--accent-dim);color:var(--accent2)}
+.cmp h4{margin:.15rem 0;font-size:.85rem}.cmp p{font-size:.76rem;color:var(--text2)}
+
+.tw{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:480px}
+th,td{padding:.5rem .65rem;border:1px solid var(--border);text-align:left}
+th{background:var(--accent-dim);color:var(--accent2);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+tr:nth-child(even){background:rgba(255,255,255,.015)}
+
+.bx{border-radius:var(--r);padding:.9rem 1.1rem;margin:1rem 0;font-size:.87rem}
+.bx-t{background:var(--accent-bg);border:1px solid rgba(74,127,217,.15)}.bx-t strong{color:var(--accent2)}
+.bx-w{background:rgba(184,58,46,.07);border:1px solid rgba(184,58,46,.15)}.bx-w strong{color:var(--red2)}
+.bx-g{background:var(--gold-dim);border:1px solid rgba(201,168,76,.15)}.bx-g strong{color:var(--gold)}
+
+pre{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.8rem 1rem;overflow-x:auto;font-family:var(--mono);font-size:.8rem;line-height:1.6;color:var(--text);margin:.8rem 0}
+
+.qz{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin:2.5rem 0}
+.qz h3{margin-top:0;font-size:1rem}
+.q{margin:1.1rem 0;padding-top:.9rem;border-top:1px solid var(--border)}.q:first-of-type{border-top:none;padding-top:0}
+.q>p{font-weight:600;margin-bottom:.4rem;color:var(--text-h);font-size:.88rem}
+.opt{display:block;padding:.5rem .9rem;margin:.3rem 0;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:var(--tr);font-size:.84rem}
+.opt:hover{border-color:var(--border-h);background:rgba(74,127,217,.03)}
+.opt.ok{border-color:var(--green);background:rgba(45,157,94,.06);color:var(--green2)}
+.opt.no{border-color:var(--red2);background:rgba(184,58,46,.06);color:#f0a0a0}
+.opt.off{pointer-events:none;opacity:.6}
+.exp{display:none;padding:.6rem .9rem;margin-top:.4rem;background:var(--accent-dim);border-radius:5px;font-size:.8rem;border-left:2px solid var(--accent)}
+
+.cl label{display:flex;align-items:flex-start;gap:.55rem;padding:.4rem 0;cursor:pointer;font-size:.85rem}
+.cl input[type=checkbox]{accent-color:var(--accent);margin-top:.28rem;width:15px;height:15px;flex-shrink:0}
+
+.flow{display:flex;align-items:stretch;justify-content:center;gap:0;margin:2rem 0;flex-wrap:wrap}
+.flow-s{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem .8rem;text-align:center;flex:1;min-width:110px;max-width:170px;transition:var(--tr)}
+.flow-s:hover{border-color:var(--border-h);transform:translateY(-2px)}
+.flow-s .fi{width:32px;height:32px;border-radius:50%;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;font-family:var(--mono);background:var(--accent-dim);color:var(--accent2);border:1px solid var(--accent-line)}
+.flow-s b{display:block;font-size:.84rem;color:var(--text-h)}.flow-s span{display:block;font-size:.75rem;color:var(--text2);margin-top:.2rem}
+.flow-a{display:flex;align-items:center;padding:0 .1rem;color:var(--text2);font-size:.9rem}
+
+.ach{display:none;position:fixed;top:50px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--accent-line);border-radius:6px;padding:.65rem 1.5rem;z-index:2000;text-align:center;box-shadow:0 4px 24px rgba(74,127,217,.1)}
+.ach.show{display:block;animation:ai .35s}
+.ach h4{color:var(--accent2);margin:0 0 .1rem;font-size:.82rem;font-family:var(--head)}.ach p{color:var(--text2);font-size:.74rem;margin:0}
+@keyframes ai{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%)}}
+
+footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem;border-top:1px solid var(--border);margin-top:2rem}
+
+@media(max-width:768px){main{padding:3.8rem .9rem 2.5rem}.grid{grid-template-columns:1fr 1fr}.hero{padding:2.8rem 1rem 2.2rem}}
+@media(max-width:480px){.nav{gap:.25rem;padding:.35rem .3rem}.nb{padding:.3rem .55rem;font-size:.7rem}.flow{flex-direction:column;align-items:center}.flow-s{max-width:100%;width:100%}.flow-a{transform:rotate(90deg);padding:.15rem 0}.grid,.grid-sm{grid-template-columns:1fr 1fr}.acc-c{padding:.2rem .75rem 1rem}table{min-width:400px}}
+</style>
+</head>
+<body>
+<div id="pbar-wrap"><div id="pbar"></div></div>
+<nav class="nav">
+  <button class="nb on" onclick="go(0)">Overview</button>
+  <button class="nb" onclick="go(1)">Ch.1 Tech</button>
+  <button class="nb" onclick="go(2)">Ch.2 CWV</button>
+  <button class="nb" onclick="go(3)">Ch.3 Content</button>
+  <button class="nb" onclick="go(4)">Ch.4 Links</button>
+  <button class="nb" onclick="go(5)">Ch.5 Schema</button>
+  <button class="nb" onclick="go(6)">Ch.6 Advanced</button>
+</nav>
+
+<main>
+
+<!-- ====== OVERVIEW ====== -->
+<section class="ch on" id="c0">
+<div class="hero">
+  <h1>Alliance Skillbook</h1>
+  <p class="sub">聖光的道路：每一個技能都經得起時間考驗</p>
+  <p>白帽 SEO 完全指南 -- 6 大章節，從技術基礎到進階策略</p>
+</div>
+
+<h2>Skills Overview</h2>
+<div class="grid">
+  <div class="sk"><div class="si">T</div><h4>技術 SEO</h4><p>robots / sitemap / canonical / URL / redirect / hreflang</p></div>
+  <div class="sk"><div class="si">CWV</div><h4>Core Web Vitals</h4><p>LCP / INP / CLS 優化實戰與測試工具</p></div>
+  <div class="sk"><div class="si">C</div><h4>內容策略</h4><p>搜尋意圖 / Topic Cluster / E-E-A-T / 長尾關鍵字</p></div>
+  <div class="sk"><div class="si">L</div><h4>連結建設</h4><p>Linkable Asset / Guest Post / Digital PR / HARO</p></div>
+  <div class="sk"><div class="si">SD</div><h4>Schema</h4><p>JSON-LD / Rich Results / 巢狀 Schema / Speakable</p></div>
+  <div class="sk"><div class="si">A</div><h4>進階白帽</h4><p>PageRank 流動 / IA / Log Analysis / A/B Test</p></div>
+</div>
+
+<div class="bx bx-t"><strong>白帽的核心精神：</strong>不是「慢」，而是「穩」。初期 3-6 個月見效較慢，但一旦建立，排名極其穩固。March 2026 更新中 80% top-3 被洗牌，純白帽站受影響最小。</div>
+
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(1)" style="padding:.6rem 1.8rem">Ch.1 Tech SEO &rarr;</button></p>
+</section>
+
+<!-- ====== CH1: TECH SEO ====== -->
+<section class="ch" id="c1">
+<h2>Chapter 1 : 技術 SEO 深度指南</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>1.1 robots.txt 完整語法</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>robots.txt 是放在網站根目錄的純文字檔，告訴爬蟲哪些可以爬、哪些不行。</p>
+<pre>User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /search?
+Disallow: /tmp/
+
+User-agent: Googlebot-Image
+Disallow: /private-images/
+
+Sitemap: https://example.com/sitemap.xml</pre>
+<h4>常用指令</h4>
+<div class="tw"><table>
+  <tr><th>指令</th><th>說明</th><th>範例</th></tr>
+  <tr><td><code>User-agent</code></td><td>指定適用的爬蟲</td><td><code>User-agent: Googlebot</code></td></tr>
+  <tr><td><code>Disallow</code></td><td>禁止爬取的路徑</td><td><code>Disallow: /admin/</code></td></tr>
+  <tr><td><code>Allow</code></td><td>允許爬取（覆蓋 Disallow）</td><td><code>Allow: /admin/public/</code></td></tr>
+  <tr><td><code>Sitemap</code></td><td>指向 sitemap 位置</td><td><code>Sitemap: https://example.com/sitemap.xml</code></td></tr>
+  <tr><td><code>Crawl-delay</code></td><td>請求間隔（Google 忽略此指令）</td><td><code>Crawl-delay: 10</code></td></tr>
+</table></div>
+<div class="bx bx-w"><strong>常見錯誤：</strong>Disallow: / 會封鎖整個網站。測試前永遠先用 GSC 的 robots.txt 測試工具驗證。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>1.2 Sitemap 最佳實踐</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<pre>&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://example.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-05-10&lt;/lastmod&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</pre>
+<h4>實戰重點</h4>
+<ul>
+  <li><strong>lastmod：</strong>只在內容真的更新時才改日期。亂改日期 Google 會忽略整個 sitemap 的 lastmod</li>
+  <li><strong>priority：</strong>Google 官方已表示忽略此欄位。寫了無害但不要期待有效果</li>
+  <li><strong>上限：</strong>每個 sitemap 最多 50,000 個 URL 或 50MB。超過就用 sitemap index</li>
+  <li><strong>只放重要頁面：</strong>不要把 noindex 頁面、redirect 頁面、參數 URL 放進 sitemap</li>
+</ul>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>1.3 Canonical 進階用法</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="grid-sm">
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">1</div><h4>自參照 Canonical</h4><p>每頁都指向自己的正版 URL。防止參數變體分散權重</p></div>
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">2</div><h4>跨頁 Canonical</h4><p>內容重複的頁面指向主版本。例如印刷版指向原始版</p></div>
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">3</div><h4>跨域 Canonical</h4><p>同步發佈到多個網域時，指定哪個是正版</p></div>
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">4</div><h4>動態頁 Canonical</h4><p>有篩選/排序參數的頁面，canonical 指向無參數版本</p></div>
+</div>
+<div class="bx bx-t"><strong>注意：</strong>Canonical 是「建議」不是「指令」。如果 canonical 指向的頁面內容和當前頁差很多，Google 會忽略你的 canonical 自己決定。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>1.4 URL 結構與 Redirect</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<h4>URL 設計原則</h4>
+<div class="tw"><table>
+  <tr><th>好的</th><th>壞的</th><th>為什麼</th></tr>
+  <tr><td><code>/articles/tsmc-dividend/</code></td><td><code>/p?id=42</code></td><td>語意化 URL 讓人和 Google 都看得懂</td></tr>
+  <tr><td><code>/tools/calculator/</code></td><td><code>/tools/calculator/index.html</code></td><td>簡潔，避免多餘的檔名</td></tr>
+  <tr><td>3 層以內</td><td>5+ 層巢狀</td><td>扁平結構讓爬蟲更容易到達每頁</td></tr>
+  <tr><td>小寫 + 連字號</td><td>大小寫混用 + 底線</td><td>Google 把連字號當分隔，底線不是</td></tr>
+</table></div>
+<h4>301 vs 302 Redirect</h4>
+<div class="grid-sm">
+  <div class="cmp" style="border-top:2px solid var(--green)"><div class="ci">301</div><h4>永久轉址</h4><p>URL 永久搬家。權重會傳遞。網域遷移、URL 結構改變時用</p></div>
+  <div class="cmp" style="border-top:2px solid var(--gold)"><div class="ci">302</div><h4>暫時轉址</h4><p>URL 暫時搬家。權重不傳遞。A/B 測試、維護頁面時用</p></div>
+</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.1 Quiz</h3>
+  <div class="q"><p>robots.txt 的 Disallow: / 代表什麼？</p><div class="opt" onclick="ans(this,0)">A. 允許爬取所有頁面</div><div class="opt" onclick="ans(this,1)">B. 封鎖整個網站</div><div class="opt" onclick="ans(this,0)">C. 只封鎖首頁</div><div class="exp">Disallow: / 會封鎖根目錄下的所有路徑，等於封鎖整站。這是最常見的致命錯誤。</div></div>
+  <div class="q"><p>Google 會參考 sitemap 的哪個欄位？</p><div class="opt" onclick="ans(this,1)">A. loc 和 lastmod（如果日期準確）</div><div class="opt" onclick="ans(this,0)">B. priority 最重要</div><div class="opt" onclick="ans(this,0)">C. changefreq 決定爬取頻率</div><div class="exp">Google 只看 loc（URL）和 lastmod（最後更新日期），而且 lastmod 要準確才會被信任。priority 和 changefreq 已被忽略。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(2)" style="padding:.6rem 1.8rem">Ch.2 CWV &rarr;</button></p>
+</section>
+
+<!-- ====== CH2: CWV ====== -->
+<section class="ch" id="c2">
+<h2>Chapter 2 : Core Web Vitals 優化</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>2.1 三大指標深度解析</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+
+<div class="grid">
+  <div class="sk"><div class="si">LCP</div><h4>Largest Contentful Paint</h4><p>最大內容繪製時間<br>Good: &lt; 2.5s<br>Poor: &gt; 4.0s</p>
+    <div class="mt"><div class="mt-bar"><div class="mt-f g" style="width:62%"></div></div></div>
+  </div>
+  <div class="sk"><div class="si">INP</div><h4>Interaction to Next Paint</h4><p>互動反應延遲<br>Good: &lt; 200ms<br>Poor: &gt; 500ms</p>
+    <div class="mt"><div class="mt-bar"><div class="mt-f b" style="width:50%"></div></div></div>
+  </div>
+  <div class="sk"><div class="si">CLS</div><h4>Cumulative Layout Shift</h4><p>版面偏移量<br>Good: &lt; 0.1<br>Poor: &gt; 0.25</p>
+    <div class="mt"><div class="mt-bar"><div class="mt-f go" style="width:40%"></div></div></div>
+  </div>
+</div>
+
+<h4>LCP 優化清單</h4>
+<ul>
+  <li><strong>圖片壓縮：</strong>用 WebP/AVIF 格式，比 PNG 小 60-80%</li>
+  <li><strong>Preload 關鍵資源：</strong><code>&lt;link rel="preload" as="image" href="hero.webp"&gt;</code></li>
+  <li><strong>CDN：</strong>Cloudflare Pages 已自帶。確認圖片也走 CDN</li>
+  <li><strong>Lazy Loading：</strong>首屏以外的圖片加 <code>loading="lazy"</code></li>
+  <li><strong>減少 CSS blocking：</strong>Critical CSS inline，其餘 async 載入</li>
+</ul>
+
+<h4>INP 優化清單</h4>
+<ul>
+  <li><strong>拆分長任務：</strong>任何超過 50ms 的 JS 任務都要拆分</li>
+  <li><strong>Defer 非關鍵 JS：</strong>GA、ads 腳本加 <code>defer</code> 或 <code>async</code></li>
+  <li><strong>減少 DOM 大小：</strong>超過 1500 個節點就要注意</li>
+</ul>
+
+<h4>CLS 優化清單</h4>
+<ul>
+  <li><strong>圖片加 width/height：</strong>瀏覽器預留空間，載入時不跳動</li>
+  <li><strong>字體：</strong>用 <code>font-display: swap</code> + preload 字體檔</li>
+  <li><strong>廣告預留空間：</strong>AdSense 區塊用 CSS 設定固定最小高度</li>
+</ul>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>2.2 測試工具差異</h3><span class="time">2 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="tw"><table>
+  <tr><th>工具</th><th>數據來源</th><th>適合</th></tr>
+  <tr><td><strong>PageSpeed Insights</strong></td><td>CrUX 真實用戶 + Lighthouse 模擬</td><td>最權威。Google 排名用的就是 CrUX 數據</td></tr>
+  <tr><td><strong>Lighthouse (DevTools)</strong></td><td>本地模擬</td><td>開發時即時測試。注意：你的電腦性能影響結果</td></tr>
+  <tr><td><strong>GSC CWV Report</strong></td><td>CrUX 真實用戶</td><td>大盤趨勢。看整站有多少 URL Good/Poor</td></tr>
+  <tr><td><strong>Web Vitals Extension</strong></td><td>你自己的瀏覽器</td><td>即時看當前頁面的 CWV 數值</td></tr>
+</table></div>
+<div class="bx bx-t"><strong>重要：</strong>PageSpeed Insights 分數不是排名因子。Google 用的是 CrUX 數據中的 Good/Needs Improvement/Poor 分類。分數 80 和 95 在排名上沒有差別，只要在 Good 範圍內就行。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.2 Quiz</h3>
+  <div class="q"><p>LCP 的「Good」標準是？</p><div class="opt" onclick="ans(this,1)">A. 低於 2.5 秒</div><div class="opt" onclick="ans(this,0)">B. 低於 1.0 秒</div><div class="opt" onclick="ans(this,0)">C. 低於 5.0 秒</div><div class="exp">LCP Good 標準是 2.5 秒以內。超過 4 秒是 Poor。</div></div>
+  <div class="q"><p>CLS 最常見的原因是？</p><div class="opt" onclick="ans(this,0)">A. JavaScript 太多</div><div class="opt" onclick="ans(this,1)">B. 圖片/廣告沒有預留空間</div><div class="opt" onclick="ans(this,0)">C. 伺服器太慢</div><div class="exp">CLS 主要是因為圖片、廣告、字體載入時把其他內容擠開。給圖片加 width/height、廣告區塊預留高度就能解決大部分問題。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(3)" style="padding:.6rem 1.8rem">Ch.3 Content &rarr;</button></p>
+</section>
+
+<!-- ====== CH3: CONTENT ====== -->
+<section class="ch" id="c3">
+<h2>Chapter 3 : 內容策略精通</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>3.1 搜尋意圖四分類</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="grid-sm">
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">I</div><h4>Informational</h4><p>想知道答案<br>「殖利率是什麼」<br>給教學文章</p></div>
+  <div class="cmp" style="border-top:2px solid var(--green)"><div class="ci">N</div><h4>Navigational</h4><p>找特定網站<br>「Yahoo 股市」<br>你搶不到這種詞</p></div>
+  <div class="cmp" style="border-top:2px solid var(--gold)"><div class="ci">C</div><h4>Commercial</h4><p>比較研究中<br>「0056 vs 00878」<br>給比較文章</p></div>
+  <div class="cmp" style="border-top:2px solid var(--red)"><div class="ci">T</div><h4>Transactional</h4><p>想採取行動<br>「股利計算器」<br>給工具/產品頁</p></div>
+</div>
+<div class="bx bx-t"><strong>怎麼判斷意圖：</strong>直接搜那個關鍵字，看 SERP 前 10 名是什麼類型的頁面。如果前 10 都是教學文，你就寫教學文；都是工具，你就做工具。不要硬用錯的內容類型去打。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>3.2 Topic Cluster 完整建構</h3><span class="time">5 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+
+<div class="flow">
+  <div class="flow-s" style="border-color:var(--accent-line)"><div class="fi">P</div><b>Pillar Page</b><span>核心主題頁<br>廣度覆蓋</span></div>
+  <span class="flow-a">&larr;&rarr;</span>
+  <div class="flow-s"><div class="fi">C1</div><b>Cluster 1</b><span>子主題深度<br>內部連結回 Pillar</span></div>
+  <span class="flow-a">&larr;&rarr;</span>
+  <div class="flow-s"><div class="fi">C2</div><b>Cluster 2</b><span>另一子主題<br>也連回 Pillar</span></div>
+</div>
+
+<p>以你的股利計算器為例：</p>
+<div class="tw"><table>
+  <tr><th>角色</th><th>頁面</th><th>關鍵字</th></tr>
+  <tr><td><strong>Pillar</strong></td><td>首頁（股利計算器）</td><td>股利計算器、殖利率計算</td></tr>
+  <tr><td>Cluster</td><td>台積電配息計算</td><td>台積電股利、2330 配息</td></tr>
+  <tr><td>Cluster</td><td>0056 配息計算</td><td>0056 股利、0056 殖利率</td></tr>
+  <tr><td>Cluster</td><td>股利怎麼算教學</td><td>股利計算公式</td></tr>
+  <tr><td>Cluster</td><td>除息日攻略</td><td>除息日、除權息</td></tr>
+  <tr><td>Cluster</td><td>股息稅務計算</td><td>股利所得稅、股利課稅</td></tr>
+</table></div>
+<p>每篇 Cluster 文章在內文中連回 Pillar（首頁計算器），Pillar 也連到各 Cluster。這樣 Google 理解你對「台股股利」這整個主題有完整覆蓋。</p>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>3.3 E-E-A-T 建立方法</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="tw"><table>
+  <tr><th>屬性</th><th>怎麼建立</th><th>實際做法</th></tr>
+  <tr><td><strong>Experience</strong></td><td>展示第一手經驗</td><td>文章中加入「我實測用這個計算器算出...」「我自己存股 3 年的經驗是...」</td></tr>
+  <tr><td><strong>Expertise</strong></td><td>展示專業知識</td><td>作者頁面寫背景、文章引用可靠數據來源（證交所、公司財報）</td></tr>
+  <tr><td><strong>Authority</strong></td><td>被外部認可</td><td>被其他投資網站引用、社群討論中被推薦。需要時間累積</td></tr>
+  <tr><td><strong>Trust</strong></td><td>讓人信任你</td><td>HTTPS / 清楚的聯絡頁面 / 隱私政策 / 計算結果準確 / 數據有來源</td></tr>
+</table></div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>3.4 長尾關鍵字挖掘</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="grid">
+  <div class="sk"><div class="si">PAA</div><h4>People Also Ask</h4><p>Google 搜尋結果中的「其他人也問了」區塊。每一題都是一篇文章的素材</p></div>
+  <div class="sk"><div class="si">GS</div><h4>Google Suggest</h4><p>搜尋框輸入關鍵字時的自動完成建議。這就是真實用戶在搜的詞</p></div>
+  <div class="sk"><div class="si">GSC</div><h4>GSC 查詢報告</h4><p>你已經有曝光的關鍵字。找到曝光高但點擊低的 = 優化 title 的機會</p></div>
+  <div class="sk"><div class="si">RS</div><h4>Related Searches</h4><p>搜尋結果頁底部的「相關搜尋」。挖掘使用者的延伸需求</p></div>
+</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.3 Quiz</h3>
+  <div class="q"><p>搜「股利計算器」的搜尋意圖是？</p><div class="opt" onclick="ans(this,0)">A. Informational</div><div class="opt" onclick="ans(this,0)">B. Commercial</div><div class="opt" onclick="ans(this,1)">C. Transactional</div><div class="exp">使用者想找工具來用 = Transactional。所以你應該提供計算器工具頁，不是寫一篇「什麼是股利計算器」的文章。</div></div>
+  <div class="q"><p>Topic Cluster 的 Pillar Page 應該？</p><div class="opt" onclick="ans(this,1)">A. 廣度覆蓋核心主題，連結到各子頁</div><div class="opt" onclick="ans(this,0)">B. 深度寫一個子主題就好</div><div class="opt" onclick="ans(this,0)">C. 不需要和子頁面有連結</div><div class="exp">Pillar 是核心樞紐，廣度覆蓋主題並連結到所有子頁。子頁深度專注一個面向並連回 Pillar。這樣形成完整的主題權威。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(4)" style="padding:.6rem 1.8rem">Ch.4 Links &rarr;</button></p>
+</section>
+
+<!-- ====== CH4: LINKS ====== -->
+<section class="ch" id="c4">
+<h2>Chapter 4 : 連結建設</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>4.1 Linkable Asset 策略</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>Linkable Asset = 別人會主動想連結到的內容。你不用求人連結，他們自己會做。</p>
+<div class="grid">
+  <div class="sk"><div class="si">TOOL</div><h4>免費工具</h4><p>你的股利計算器就是最好的例子。投資部落客寫文時會自然引用「你可以用這個工具算」</p></div>
+  <div class="sk"><div class="si">DATA</div><h4>原創數據報告</h4><p>「2026 台股高殖利率排行榜」「金融股 10 年配息趨勢分析」。獨家數據人人想引用</p></div>
+  <div class="sk"><div class="si">INFO</div><h4>資訊圖表</h4><p>把複雜概念做成視覺化圖表。容易被轉貼分享</p></div>
+  <div class="sk"><div class="si">GUIDE</div><h4>終極指南</h4><p>一篇 3000+ 字的完整指南。成為某主題的首選參考資料</p></div>
+</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>4.2 Guest Post 與 Digital PR</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<h4>正確的 Guest Post vs 垃圾 Guest Post</h4>
+<div class="tw"><table>
+  <tr><th></th><th>正確做法</th><th>垃圾做法</th></tr>
+  <tr><td>目標網站</td><td>主題相關、有真實讀者</td><td>任何願意收文的站</td></tr>
+  <tr><td>內容品質</td><td>你會放在自己網站上的水準</td><td>隨便湊字數</td></tr>
+  <tr><td>連結數量</td><td>1-2 個自然的上下文連結</td><td>塞滿連結</td></tr>
+  <tr><td>Anchor Text</td><td>自然的品牌名或描述性文字</td><td>精準匹配關鍵字</td></tr>
+  <tr><td>頻率</td><td>每月 2-3 篇</td><td>一天發 10 個站</td></tr>
+</table></div>
+
+<h4>Broken Link Building</h4>
+<p>找到相關網站上壞掉的連結（404），通知站長，建議用你的內容替代。步驟：</p>
+<ol>
+  <li>用 Ahrefs 找目標網站的 broken outbound links</li>
+  <li>確認你有對應主題的內容（沒有就寫一篇）</li>
+  <li>寫一封友善的 email 通知站長，附上你的替代連結</li>
+  <li>成功率約 5-15%，但得到的連結品質很高</li>
+</ol>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>4.3 社群推廣策略</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="flow">
+  <div class="flow-s"><div class="fi">1</div><b>潛水觀察</b><span>先了解社群文化<br>不要一來就貼連結</span></div>
+  <span class="flow-a">&rarr;</span>
+  <div class="flow-s"><div class="fi">2</div><b>有價值參與</b><span>回答問題、分享知識<br>建立可信度</span></div>
+  <span class="flow-a">&rarr;</span>
+  <div class="flow-s"><div class="fi">3</div><b>自然帶入</b><span>「我之前算過，結果是...」<br>附工具連結</span></div>
+  <span class="flow-a">&rarr;</span>
+  <div class="flow-s"><div class="fi">4</div><b>持續經營</b><span>每週 2-3 篇回覆<br>不要做完就消失</span></div>
+</div>
+<div class="bx bx-w"><strong>避免：</strong>不要發純推廣文（會被刪 + 封號）、不要用多帳號（那是灰帽）、不要在不相關的討論串硬塞連結。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.4 Quiz</h3>
+  <div class="q"><p>以下哪個是最好的 Linkable Asset？</p><div class="opt" onclick="ans(this,1)">A. 免費的股利計算工具</div><div class="opt" onclick="ans(this,0)">B. 一篇 500 字的普通文章</div><div class="opt" onclick="ans(this,0)">C. 一個純文字的 About 頁面</div><div class="exp">免費工具是最強的 Linkable Asset。人們寫投資文章時會自然引用「你可以用這個計算器試算」。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(5)" style="padding:.6rem 1.8rem">Ch.5 Schema &rarr;</button></p>
+</section>
+
+<!-- ====== CH5: SCHEMA ====== -->
+<section class="ch" id="c5">
+<h2>Chapter 5 : Schema 結構化資料</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>5.1 JSON-LD 基礎與常用類型</h3><span class="time">5 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+
+<pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": "股利怎麼算？",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "總股利 = 持有股數 x 每股股利"
+    }
+  }]
+}
+&lt;/script&gt;</pre>
+
+<h4>常用 Schema 類型</h4>
+<div class="tw"><table>
+  <tr><th>類型</th><th>用途</th><th>Rich Result</th></tr>
+  <tr><td><strong>FAQPage</strong></td><td>常見問題頁面</td><td>搜尋結果展開 FAQ</td></tr>
+  <tr><td><strong>HowTo</strong></td><td>步驟教學</td><td>搜尋結果顯示步驟</td></tr>
+  <tr><td><strong>Article</strong></td><td>文章/部落格</td><td>新聞輪播、AMP</td></tr>
+  <tr><td><strong>WebApplication</strong></td><td>線上工具</td><td>應用程式資訊卡</td></tr>
+  <tr><td><strong>Product</strong></td><td>產品頁</td><td>價格、評分星星</td></tr>
+  <tr><td><strong>LocalBusiness</strong></td><td>在地商家</td><td>地圖、營業時間</td></tr>
+  <tr><td><strong>BreadcrumbList</strong></td><td>麵包屑導航</td><td>搜尋結果顯示路徑</td></tr>
+  <tr><td><strong>Speakable</strong></td><td>語音搜尋</td><td>告訴 AI 哪段適合朗讀</td></tr>
+</table></div>
+
+<div class="bx bx-g"><strong>AEO 關鍵數據：</strong>82.5% 被 Google AI Overview 引用的頁面都有 Schema 結構化資料。有 Schema 被引用的機率是沒有的 2.5-3 倍。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>5.2 巢狀 Schema 與測試</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>一頁可以放多個 Schema。你的首頁就是好例子：同時有 WebApplication + FAQPage + HowTo。</p>
+<p>寫法：用 JSON 陣列包起來：</p>
+<pre>&lt;script type="application/ld+json"&gt;
+[{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "股利計算器"
+},
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [...]
+}]
+&lt;/script&gt;</pre>
+
+<h4>測試工具</h4>
+<div class="grid-sm">
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">RRT</div><h4>Rich Results Test</h4><p>Google 官方工具。測試你的 Schema 能不能觸發 Rich Results</p></div>
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">SMV</div><h4>Schema Markup Validator</h4><p>schema.org 官方。檢查語法是否正確</p></div>
+</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.5 Quiz</h3>
+  <div class="q"><p>Schema 對 AEO 最重要的原因是？</p><div class="opt" onclick="ans(this,0)">A. 讓網頁載入更快</div><div class="opt" onclick="ans(this,1)">B. 幫助 AI 精確理解並引用你的內容</div><div class="opt" onclick="ans(this,0)">C. 直接提升排名分數</div><div class="exp">Schema 讓 AI 系統更容易理解你的內容結構。82.5% 被 AI Overview 引用的頁面有 Schema，因為結構化資料讓 AI 的 RAG pipeline 更容易提取你的內容。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(6)" style="padding:.6rem 1.8rem">Ch.6 Advanced &rarr;</button></p>
+</section>
+
+<!-- ====== CH6: ADVANCED ====== -->
+<section class="ch" id="c6">
+<h2>Chapter 6 : 進階白帽技術</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>6.1 Internal Linking 與 PageRank 流動</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>內部連結不只是「讓使用者找到相關頁面」。它決定了 PageRank（權重）在你的網站內如何分配。</p>
+<ul>
+  <li><strong>首頁權重最高：</strong>因為首頁收到最多外部連結。從首頁連出去的頁面分到最多權重</li>
+  <li><strong>Orphan Pages：</strong>沒有任何內部連結指向的頁面 = 權重孤島。Google 很難發現和排名它</li>
+  <li><strong>Link Equity 分配：</strong>一頁連出去的連結越多，每條連結分到的權重越少。不要在頁尾塞 100 個連結</li>
+  <li><strong>Contextual Link > Nav Link：</strong>文章內文中的連結比導航列的連結傳遞更多權重</li>
+</ul>
+<div class="bx bx-t"><strong>實戰：</strong>這就是為什麼我們幫你在文章「內文中」加了連結，不只是底部的延伸閱讀。內文中自然出現的連結 Google 給予更高的權重傳遞。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>6.2 Content Pruning 與 SEO A/B Testing</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<h4>Content Pruning（內容修剪）</h4>
+<p>100 頁品質好 > 500 頁平庸。Helpful Content System 是 site-wide signal，低品質頁面會拖累好頁面。</p>
+<div class="tw"><table>
+  <tr><th>頁面狀況</th><th>處理方式</th></tr>
+  <tr><td>有流量但內容過時</td><td>更新內容、保留 URL</td></tr>
+  <tr><td>主題重複的多頁</td><td>合併成一頁完整版、舊 URL 301 redirect</td></tr>
+  <tr><td>零流量 + 零連結 + 低品質</td><td>noindex 或直接刪除</td></tr>
+  <tr><td>零流量但有外部連結</td><td>改善內容或 301 到相關頁面</td></tr>
+</table></div>
+
+<h4>SEO A/B Testing</h4>
+<p>不要猜，用數據驗證。最簡單的 A/B 測試：</p>
+<ol>
+  <li>選一批低 CTR 的頁面（GSC 看曝光高但點擊低的）</li>
+  <li>改寫 title tag（更吸引人、更清楚回答搜尋意圖）</li>
+  <li>等 2-4 週，比較 CTR 變化</li>
+  <li>有效就推廣到其他頁面，無效就繼續測試</li>
+</ol>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>6.3 Featured Snippet 優化</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>Featured Snippet = 搜尋結果頂端的特殊區塊（Position 0）。三種類型：</p>
+<div class="grid">
+  <div class="sk"><div class="si">P</div><h4>段落型</h4><p>直接回答問題。在問題下方寫 40-60 字的簡潔答案</p></div>
+  <div class="sk"><div class="si">L</div><h4>列表型</h4><p>步驟或清單。用 H2/H3 + ol/ul 結構</p></div>
+  <div class="sk"><div class="si">T</div><h4>表格型</h4><p>比較數據。用 HTML table 呈現</p></div>
+</div>
+<div class="bx bx-t"><strong>搶 Snippet 的技巧：</strong>在 H2 用問句（「股利怎麼算？」），緊接著在下一段用 40-60 字直接回答。Google 很容易提取這種格式。你的 FAQ 段落就是完美的候選。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.6 Quiz</h3>
+  <div class="q"><p>內文中的連結 vs 導航列的連結，哪個傳遞更多 PageRank？</p><div class="opt" onclick="ans(this,1)">A. 內文中的連結（Contextual Link）</div><div class="opt" onclick="ans(this,0)">B. 導航列的連結</div><div class="opt" onclick="ans(this,0)">C. 兩者相同</div><div class="exp">Google 給內文中自然出現的連結更高的權重傳遞。導航列連結每頁都有，權重被稀釋。這就是在文章內文加連結比只放底部延伸閱讀更有效的原因。</div></div>
+  <div class="q"><p>Content Pruning 的核心原則是？</p><div class="opt" onclick="ans(this,0)">A. 刪除所有舊文章</div><div class="opt" onclick="ans(this,1)">B. 低品質頁面會拖累好頁面，質 > 量</div><div class="opt" onclick="ans(this,0)">C. 頁面越多排名越好</div><div class="exp">Helpful Content System 是 site-wide signal。整站有太多低品質頁面，好的頁面也會被拖下去。刪除或改善低品質頁面可以提升整站表現。</div></div>
+</div>
+
+<!-- Final Checklist -->
+<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin-top:2rem">
+  <h3 style="margin-top:0;font-size:1rem;color:var(--accent2)">Action Checklist</h3>
+  <div class="cl">
+    <label><input type="checkbox" onchange="saveCl()"><span>用 GSC robots.txt 測試工具驗證你的 robots.txt</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>檢查 sitemap 中每個 URL 的 lastmod 是否準確</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>確認每頁都有自參照 canonical</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>PageSpeed Insights 測試，確認 CWV 在 Good 範圍</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>圖片全部轉 WebP + 加 width/height</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>AdSense 區塊加 CSS min-height 防止 CLS</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>畫出你的 Topic Cluster 地圖</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>找 3 個 People Also Ask 問題寫新文章</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>About 頁面加入個人投資經驗（E-E-A-T）</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>找 1 個 Broken Link Building 機會</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>用 Rich Results Test 驗證所有 Schema</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>找出 GSC 中曝光高但 CTR 低的頁面，改寫 title</span></label>
+  </div>
+</div>
+
+</section>
+</main>
+
+<footer>
+  <p>Alliance Skillbook -- White Hat SEO Complete Guide</p>
+  <p><a href="seo-masterclass.html">Back to Masterclass</a> | <a href="skillbook-grey.html">Grey Hat</a></p>
+</footer>
+
+<div class="ach" id="ach"><h4>Achievement Unlocked</h4><p id="at"></p></div>
+
+<script>
+function go(n){document.querySelectorAll('.ch').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nb').forEach(t=>t.classList.remove('on'));document.getElementById('c'+n).classList.add('on');document.querySelectorAll('.nb')[n].classList.add('on');scrollTo({top:0,behavior:'smooth'});localStorage.setItem('sw_ch',n)}
+function tog(el){el.parentElement.classList.toggle('o')}
+function ans(el,ok){const q=el.closest('.q');if(q.dataset.done)return;q.dataset.done=1;q.querySelectorAll('.opt').forEach(o=>o.classList.add('off'));el.classList.add(ok?'ok':'no');q.querySelector('.exp').style.display='block';show(ok?'Correct -- Knowledge +1':'Check explanation')}
+function show(t){const a=document.getElementById('ach');document.getElementById('at').textContent=t;a.classList.add('show');setTimeout(()=>a.classList.remove('show'),2e3)}
+function saveCl(){const c=[...document.querySelectorAll('.cl input')];localStorage.setItem('sw_cl',JSON.stringify(c.map(x=>x.checked)));if(c.every(x=>x.checked))show('All quests complete')}
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('pbar').style.width=h>0?(scrollY/h*100)+'%':'0%'});
+(()=>{try{const s=localStorage.getItem('sw_cl');if(s){const d=JSON.parse(s);document.querySelectorAll('.cl input').forEach((c,i)=>{if(d[i])c.checked=!0})}const ch=localStorage.getItem('sw_ch');if(ch)go(+ch)}catch(e){}})()
+</script>
+</body>
+</html>

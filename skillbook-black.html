@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>部落技能書 — 黑帽 SEO 技術解析</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06060c;--bg2:#0c0d16;--card:#0f1018;
+  --accent:#b83a2e;--accent2:#e05a4e;--accent-bg:rgba(184,58,46,.07);--accent-line:rgba(184,58,46,.18);--accent-dim:rgba(184,58,46,.08);
+  --gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);
+  --text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;
+  --blue:#4a7fd9;--green:#2d9d5e;--green2:#6bc992;
+  --border:rgba(255,255,255,.05);--border-h:rgba(184,58,46,.22);
+  --r:8px;--r-lg:14px;--tr:.22s ease;--shadow:0 4px 24px rgba(0,0,0,.45);
+  --mono:'JetBrains Mono',monospace;--body:'Noto Sans TC',system-ui,sans-serif;--head:'Cinzel','Noto Sans TC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.82;font-size:14.5px;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(184,58,46,.03),transparent);pointer-events:none;z-index:0}
+h1,h2,h3{font-family:var(--head);color:var(--accent2);font-weight:700;letter-spacing:.03em}
+h4{color:var(--text-h);font-weight:600;font-size:.95rem;margin:1rem 0 .35rem}
+h1{font-size:clamp(1.5rem,3.5vw,2.4rem);text-align:center;margin-bottom:.6rem}
+h2{font-size:clamp(1.05rem,2.2vw,1.5rem);margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+h2::before{content:'';width:3px;height:1.2em;background:var(--accent);border-radius:2px;flex-shrink:0}
+h3{font-size:clamp(.92rem,1.8vw,1.15rem);margin:1.2rem 0 .5rem}
+a{color:var(--accent2);text-decoration:none;transition:var(--tr)}a:hover{text-decoration:underline}
+p{margin:.4rem 0}ul,ol{padding-left:1.15rem;margin:.3rem 0}li{margin:.2rem 0;font-size:.9rem}
+small{color:var(--text2);font-size:.78rem}code{font-family:var(--mono);font-size:.82rem;background:rgba(255,255,255,.03);padding:.1rem .4rem;border-radius:3px}
+::selection{background:rgba(184,58,46,.25);color:#fff}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+
+#pbar-wrap{position:fixed;top:0;left:0;right:0;height:2px;z-index:1001}
+#pbar{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .25s}
+
+.nav{position:fixed;top:2px;left:0;right:0;z-index:1000;padding:.5rem .6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
+.nav::before{content:'';position:absolute;inset:0;background:rgba(6,6,12,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:-1}
+.nb{padding:.38rem .9rem;border:1px solid rgba(255,255,255,.06);border-radius:5px;background:transparent;color:var(--text2);cursor:pointer;font-family:var(--body);font-size:.78rem;font-weight:500;transition:var(--tr)}
+.nb:hover{color:var(--text-h);border-color:rgba(255,255,255,.12)}
+.nb.on{color:var(--accent2);border-color:var(--accent-line);background:var(--accent-dim)}
+
+main{max-width:800px;margin:0 auto;padding:4rem 1.2rem 3rem;position:relative;z-index:1}
+.ch{display:none;animation:up .4s ease both}.ch.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.hero{text-align:center;padding:4rem 1.5rem 3.5rem;margin-bottom:2.5rem;border-radius:var(--r-lg);border:1px solid var(--border);position:relative;overflow:hidden;background:url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&q=70') center/cover}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(6,6,12,.87);z-index:1}
+.hero *{position:relative;z-index:2}
+.hero p{color:var(--text2);font-size:.9rem;max-width:480px;margin:.3rem auto 0}
+.hero .sub{color:var(--accent2);font-style:italic;font-size:.92rem;font-family:var(--head)}
+
+.acc{margin:.8rem 0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--card);transition:border-color var(--tr)}
+.acc:hover,.acc.o{border-color:rgba(255,255,255,.08)}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;cursor:pointer;transition:var(--tr);gap:.5rem;user-select:none}
+.acc-h:hover{background:rgba(255,255,255,.025)}
+.acc-h h3{margin:0;font-size:.92rem;flex:1}
+.acc-h .time{font-size:.7rem;color:var(--text2);background:var(--accent-dim);padding:.15rem .5rem;border-radius:3px;font-family:var(--mono);flex-shrink:0;margin-right:.5rem}
+.acc-t{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--tr)}
+.acc-t svg{width:12px;height:12px;stroke:var(--accent2);stroke-width:2;fill:none;transition:transform .3s}
+.acc.o .acc-t{background:var(--accent-dim);border-color:var(--accent-line)}
+.acc.o .acc-t svg{transform:rotate(45deg)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+.acc.o .acc-b{max-height:12000px}
+.acc-c{padding:.3rem 1.1rem 1.3rem}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.5rem 0}
+.grid-sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem;margin:1.5rem 0}
+.sk{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;text-align:center;transition:var(--tr)}
+.sk:hover{border-color:var(--border-h);transform:translateY(-2px);box-shadow:var(--shadow)}
+.sk .si{width:38px;height:38px;border-radius:8px;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;font-family:var(--mono);background:var(--accent-dim);color:var(--accent2);border:1px solid var(--accent-line)}
+.sk h4{color:var(--accent2);margin:0 0 .3rem;font-size:.85rem}
+.sk p{font-size:.78rem;color:var(--text2);margin:0;line-height:1.45}
+
+.ga{display:flex;align-items:center;gap:.45rem;margin:.35rem auto;justify-content:center}
+.ga-d{display:flex;gap:2px}.ga-d i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.06);display:block}
+.ga-d i.r{background:var(--accent2)}.ga-d i.y{background:var(--gold)}
+.ga small{font-size:.68rem;color:var(--text2);min-width:35px}
+
+.cmp{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem;text-align:center;transition:var(--tr)}
+.cmp:hover{border-color:var(--border-h)}
+.cmp .ci{width:36px;height:36px;border-radius:50%;margin:0 auto .4rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;font-family:var(--mono);background:var(--accent-dim);color:var(--accent2)}
+.cmp h4{margin:.15rem 0;font-size:.85rem}.cmp p{font-size:.76rem;color:var(--text2)}
+
+.tw{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:480px}
+th,td{padding:.5rem .65rem;border:1px solid var(--border);text-align:left}
+th{background:var(--accent-dim);color:var(--accent2);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+tr:nth-child(even){background:rgba(255,255,255,.015)}
+
+.bx{border-radius:var(--r);padding:.9rem 1.1rem;margin:1rem 0;font-size:.87rem}
+.bx-w{background:var(--accent-bg);border:1px solid rgba(184,58,46,.15)}.bx-w strong{color:var(--accent2)}
+.bx-t{background:rgba(74,127,217,.07);border:1px solid rgba(74,127,217,.15)}.bx-t strong{color:var(--blue)}
+.bx-g{background:var(--gold-dim);border:1px solid rgba(201,168,76,.15)}.bx-g strong{color:var(--gold)}
+
+.qz{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin:2.5rem 0}
+.qz h3{margin-top:0;font-size:1rem}
+.q{margin:1.1rem 0;padding-top:.9rem;border-top:1px solid var(--border)}.q:first-of-type{border-top:none;padding-top:0}
+.q>p{font-weight:600;margin-bottom:.4rem;color:var(--text-h);font-size:.88rem}
+.opt{display:block;padding:.5rem .9rem;margin:.3rem 0;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:var(--tr);font-size:.84rem}
+.opt:hover{border-color:var(--border-h);background:rgba(184,58,46,.03)}
+.opt.ok{border-color:var(--green);background:rgba(45,157,94,.06);color:var(--green2)}
+.opt.no{border-color:var(--accent2);background:rgba(184,58,46,.06);color:#f0a0a0}
+.opt.off{pointer-events:none;opacity:.6}
+.exp{display:none;padding:.6rem .9rem;margin-top:.4rem;background:var(--accent-dim);border-radius:5px;font-size:.8rem;border-left:2px solid var(--accent)}
+
+.cl label{display:flex;align-items:flex-start;gap:.55rem;padding:.4rem 0;cursor:pointer;font-size:.85rem}
+.cl input[type=checkbox]{accent-color:var(--accent);margin-top:.28rem;width:15px;height:15px;flex-shrink:0}
+
+.ach{display:none;position:fixed;top:50px;left:50%;transform:translateX(-50%);background:var(--card);border:1px solid var(--accent-line);border-radius:6px;padding:.65rem 1.5rem;z-index:2000;text-align:center;box-shadow:0 4px 24px rgba(184,58,46,.1)}
+.ach.show{display:block;animation:ai .35s}
+.ach h4{color:var(--accent2);margin:0 0 .1rem;font-size:.82rem;font-family:var(--head)}.ach p{color:var(--text2);font-size:.74rem;margin:0}
+@keyframes ai{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%)}}
+
+footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem;border-top:1px solid var(--border);margin-top:2rem}
+
+@media(max-width:768px){main{padding:3.8rem .9rem 2.5rem}.grid{grid-template-columns:1fr 1fr}.hero{padding:2.8rem 1rem 2.2rem}}
+@media(max-width:480px){.nav{gap:.25rem;padding:.35rem .3rem}.nb{padding:.3rem .55rem;font-size:.7rem}.grid,.grid-sm{grid-template-columns:1fr 1fr}.acc-c{padding:.2rem .75rem 1rem}table{min-width:400px}}
+</style>
+</head>
+<body>
+<div id="pbar-wrap"><div id="pbar"></div></div>
+<nav class="nav">
+  <button class="nb on" onclick="go(0)">Overview</button>
+  <button class="nb" onclick="go(1)">Ch.1 History</button>
+  <button class="nb" onclick="go(2)">Ch.2 PBN</button>
+  <button class="nb" onclick="go(3)">Ch.3 Cloaking</button>
+  <button class="nb" onclick="go(4)">Ch.4 Links</button>
+  <button class="nb" onclick="go(5)">Ch.5 Content</button>
+  <button class="nb" onclick="go(6)">Ch.6 Defense</button>
+</nav>
+<main>
+
+<!-- OVERVIEW -->
+<section class="ch on" id="c0">
+<div class="hero">
+  <h1>Horde Skillbook</h1>
+  <p class="sub">知己知彼：了解暗影是為了對抗暗影</p>
+  <p>黑帽 SEO 技術解析 -- 教育與防禦用途</p>
+</div>
+
+<div class="bx bx-w"><strong>WARNING --</strong> 本技能書所有內容僅供教育和防禦用途。了解黑帽技術是為了辨識競爭對手的手法、保護自己的網站、以及在被攻擊時知道如何應對。不建議在任何你在乎的網站上使用這些技術。</div>
+
+<div class="grid">
+  <div class="sk"><div class="si">HIS</div><h4>歷史與偵測</h4><p>黑帽演進史、SpamBrain 運作原理、偵測速度</p></div>
+  <div class="sk"><div class="si">PBN</div><h4>PBN 網路</h4><p>架構、偵測方式、成本分析、如何辨識</p></div>
+  <div class="sk"><div class="si">CLK</div><h4>Cloaking</h4><p>偽裝原理、變體、Google 反制、被駭偵測</p></div>
+  <div class="sk"><div class="si">LNK</div><h4>連結操控</h4><p>Link Farm、Negative SEO、Comment Spam</p></div>
+  <div class="sk"><div class="si">CNT</div><h4>內容操控</h4><p>Doorway、Scrape、Spinner、AI 垃圾大軍</p></div>
+  <div class="sk"><div class="si">DEF</div><h4>防禦總結</h4><p>Backlink audit、安全強化、被懲罰 SOP</p></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(1)" style="padding:.6rem 1.8rem">Ch.1 &rarr;</button></p>
+</section>
+
+<!-- CH1: HISTORY -->
+<section class="ch" id="c1">
+<h2>Chapter 1 : 黑帽歷史與 SpamBrain</h2>
+<div class="bx bx-w"><strong>WARNING --</strong> 教育用途。了解是為了防禦。</div>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>1.1 黑帽演進史</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="tw"><table>
+  <tr><th>年代</th><th>主流黑帽技術</th><th>Google 的回應</th></tr>
+  <tr><td>2000-2005</td><td>Keyword stuffing、隱藏文字、Meta tag 堆砌</td><td>Florida Update (2003) 開始打擊</td></tr>
+  <tr><td>2005-2011</td><td>Link Farms、大量目錄提交、Blog Comment Spam</td><td>Penguin (2012) 連結懲罰</td></tr>
+  <tr><td>2011-2015</td><td>PBN、Spinning 文章、Exact Match Domain</td><td>Panda (內容) + Penguin (連結) 雙殺</td></tr>
+  <tr><td>2015-2020</td><td>進階 PBN、Parasite SEO、Link Insertion</td><td>RankBrain AI 理解、手動審核團隊擴大</td></tr>
+  <tr><td>2020-2024</td><td>AI 大量生成、進階 Cloaking、Tiered PBN</td><td>SpamBrain AI、Helpful Content System</td></tr>
+  <tr><td>2025-2026</td><td>AI 垃圾大軍、深度偽裝、自動化規模化</td><td>SpamBrain 近乎即時偵測（天級）</td></tr>
+</table></div>
+<div class="bx bx-g"><strong>核心趨勢：</strong>黑帽技術越來越複雜，但 Google 的偵測也越來越快。過去可以安全使用幾個月甚至幾年的技術，現在幾天到幾週就會被抓。</div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>1.2 SpamBrain 運作原理</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>SpamBrain 是 Google 的 AI 反垃圾系統，2022 年推出，2026 年已經是第四代。</p>
+<div class="grid">
+  <div class="sk"><div class="si">PAT</div><h4>Pattern Recognition</h4><p>辨識異常模式：連結突然暴增、內容風格突變、anchor text 分佈不自然</p></div>
+  <div class="sk"><div class="si">LGA</div><h4>Link Graph Analysis</h4><p>分析整個連結網路拓撲。發現互相連結的群組（PBN fingerprint）</p></div>
+  <div class="sk"><div class="si">CFP</div><h4>Content Fingerprinting</h4><p>辨識大量生成、spinning、scraping 的內容特徵</p></div>
+  <div class="sk"><div class="si">BEH</div><h4>Behavior Analysis</h4><p>使用者行為異常：高曝光低停留、pogo-sticking 模式</p></div>
+</div>
+<div class="bx bx-w"><strong>2026 偵測速度：</strong>過去 SpamBrain 需要幾次 Core Update 才會生效（月級），現在是持續更新模式（天級）。你今天建的 PBN，可能這週就被標記。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.1 Quiz</h3>
+  <div class="q"><p>SpamBrain 在 2026 年的偵測速度大約是？</p><div class="opt" onclick="ans(this,0)">A. 幾個月後的 Core Update</div><div class="opt" onclick="ans(this,1)">B. 幾天到幾週</div><div class="opt" onclick="ans(this,0)">C. 即時（秒級）</div><div class="exp">2026 的 SpamBrain 是持續更新模式，偵測速度從月級縮短到天級。不是即時（秒級），但比過去快非常多。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(2)" style="padding:.6rem 1.8rem">Ch.2 PBN &rarr;</button></p>
+</section>
+
+<!-- CH2: PBN -->
+<section class="ch" id="c2">
+<h2>Chapter 2 : PBN 私人部落格網路</h2>
+<div class="bx bx-w"><strong>WARNING --</strong> 教育用途。了解是為了辨識競爭對手的手法。</div>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>2.1 PBN 架構與運作</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>PBN 的核心邏輯：買過期的高 DA 域名 → 建一個看起來正常的網站 → 在文章中放連結指向你的主站 → 重複 N 次。</p>
+<div class="tw"><table>
+  <tr><th>步驟</th><th>做法</th><th>成本</th></tr>
+  <tr><td>1. 買過期域名</td><td>在 ExpiredDomains.net 找 DA 20+ 的域名</td><td>$10-500/個</td></tr>
+  <tr><td>2. 分散 Hosting</td><td>每個站用不同的 hosting provider + IP</td><td>$5-20/月/站</td></tr>
+  <tr><td>3. 建站</td><td>裝 WordPress + 隨機主題 + 5-10 篇文章</td><td>$50-200/站（外包）</td></tr>
+  <tr><td>4. 放連結</td><td>在文章中自然地加入指向主站的連結</td><td>持續維護時間</td></tr>
+</table></div>
+<p>一個 20 站的 PBN 網路，初始成本約 $2,000-8,000，每月維護 $100-400。</p>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>2.2 Google 如何偵測 PBN</h3><span class="time">5 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="grid">
+  <div class="sk"><div class="si">IP</div><h4>Hosting Footprint</h4><p>多站同 IP、同 C 段、同 hosting provider。SpamBrain 分析整個 IP 鄰居</p></div>
+  <div class="sk"><div class="si">WHO</div><h4>WHOIS Footprint</h4><p>同一註冊人、同一天註冊、同一 registrar。即使用隱私保護也有模式</p></div>
+  <div class="sk"><div class="si">CNT</div><h4>Content Pattern</h4><p>低更新頻率、模板化內容、文章品質低、沒有真實讀者互動</p></div>
+  <div class="sk"><div class="si">LNK</div><h4>Link Pattern</h4><p>只有出站連結沒有入站、所有連結指向同一站、anchor text 不自然</p></div>
+  <div class="sk"><div class="si">TRK</div><h4>Tracking Footprint</h4><p>共用 GA 追蹤碼、AdSense ID、Search Console 帳號</p></div>
+  <div class="sk"><div class="si">CMS</div><h4>CMS Footprint</h4><p>同一 WordPress 主題、同一插件組合、同一 CSS/JS fingerprint</p></div>
+</div>
+<div class="bx bx-t"><strong>防禦視角 -- 如何判斷競爭對手在用 PBN：</strong>用 Ahrefs 看他們的 backlink profile。如果很多連結來自 DA 20-40、流量幾乎為零、文章主題雜亂的站，大概率是 PBN。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.2 Quiz</h3>
+  <div class="q"><p>PBN 最容易被偵測的 footprint 是？</p><div class="opt" onclick="ans(this,0)">A. 文章寫得太好</div><div class="opt" onclick="ans(this,1)">B. 多站共用同一 hosting / IP / tracking code</div><div class="opt" onclick="ans(this,0)">C. 域名太貴</div><div class="exp">Hosting、IP、追蹤碼的共用是最容易被自動化偵測的 footprint。SpamBrain 的 Link Graph Analysis 專門找這種模式。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(3)" style="padding:.6rem 1.8rem">Ch.3 Cloaking &rarr;</button></p>
+</section>
+
+<!-- CH3: CLOAKING -->
+<section class="ch" id="c3">
+<h2>Chapter 3 : Cloaking 偽裝術</h2>
+<div class="bx bx-w"><strong>WARNING --</strong> Cloaking 是 Google 特別痛恨的技術，被抓 = 直接手動懲罰。</div>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>3.1 Cloaking 原理與變體</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="tw"><table>
+  <tr><th>類型</th><th>原理</th><th>偵測難度</th></tr>
+  <tr><td><strong>User-Agent Cloaking</strong></td><td>偵測 Googlebot UA，給不同內容</td><td>低 -- Google 會用隨機 UA 驗證</td></tr>
+  <tr><td><strong>IP-based Cloaking</strong></td><td>偵測 Google 爬蟲 IP 範圍</td><td>中 -- Google 不斷新增 IP</td></tr>
+  <tr><td><strong>JavaScript Cloaking</strong></td><td>用 JS 動態替換內容</td><td>低 -- Google 會執行 JS</td></tr>
+  <tr><td><strong>CSS Hidden Text</strong></td><td>文字顏色=背景色、font-size:0、display:none</td><td>極低 -- 最基礎的偵測</td></tr>
+  <tr><td><strong>Sneaky Redirect</strong></td><td>用 JS/meta refresh 延遲轉址</td><td>中 -- Google 會等待轉址完成</td></tr>
+</table></div>
+
+<h4>Japanese Keyword Hack（被駭 Cloaking）</h4>
+<p>你的網站可能在不知情的情況下被注入 cloaking。Japanese Keyword Hack 是最常見的：駭客入侵你的 WordPress，注入大量日文垃圾頁面，只對 Googlebot 顯示，你自己瀏覽看不到。</p>
+<div class="bx bx-t"><strong>如何檢查：</strong>在 Google 搜尋 <code>site:你的網域</code>，看有沒有你不認識的日文或中文垃圾頁面。定期做這個檢查。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.3 Quiz</h3>
+  <div class="q"><p>Cloaking 被抓到的後果是？</p><div class="opt" onclick="ans(this,0)">A. 排名稍微下降</div><div class="opt" onclick="ans(this,0)">B. 算法自動降級，等下次更新恢復</div><div class="opt" onclick="ans(this,1)">C. 直接手動懲罰（Manual Action）</div><div class="exp">Cloaking 是 Google 最痛恨的黑帽技術之一，因為它直接欺騙搜尋引擎。被抓到通常是 Manual Action，需要提交 reconsideration request，恢復時間 6-12 個月。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(4)" style="padding:.6rem 1.8rem">Ch.4 Links &rarr;</button></p>
+</section>
+
+<!-- CH4: LINK MANIPULATION -->
+<section class="ch" id="c4">
+<h2>Chapter 4 : 連結操控的黑暗面</h2>
+<div class="bx bx-w"><strong>WARNING --</strong> 教育用途。重點在「防禦視角」。</div>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>4.1 Link Farm 與 Negative SEO</h3><span class="time">5 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+
+<h4>Link Farms / Link Wheels</h4>
+<p>大量低品質站互相連結形成網路。2026 年 Google 直接忽略這類連結（不計分），嚴重的會連帶懲罰。</p>
+
+<h4>Negative SEO</h4>
+<p>故意對競爭對手建大量有毒連結（色情站、賭博站連結），試圖讓 Google 懲罰對手。</p>
+<ul>
+  <li><strong>Google 官方立場：</strong>「我們的系統能辨識並忽略這類攻擊」</li>
+  <li><strong>現實：</strong>大部分情況 Google 確實會忽略。但如果你的網站本身就有一些灰帽行為，加上 Negative SEO 可能觸發更嚴格的審查</li>
+</ul>
+
+<div class="bx bx-t"><strong>防禦方法：</strong></div>
+<ul>
+  <li>每月用 GSC 或 Ahrefs 檢查新的 backlinks</li>
+  <li>發現大量可疑連結（色情/賭博站）立即用 Google Disavow Tool 否認</li>
+  <li>設定 Ahrefs/Semrush 的新連結通知 alert</li>
+  <li>保持你自己的白帽行為乾淨，降低被誤判的風險</li>
+</ul>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>4.2 Comment Spam 與自動化工具</h3><span class="time">3 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<p>Blog Comment Spam 是最古老的黑帽連結技術：用自動化工具（ScrapeBox、GSA Search Engine Ranker）在數千個部落格留言中塞連結。</p>
+<div class="tw"><table>
+  <tr><th>工具</th><th>用途</th><th>2026 效果</th></tr>
+  <tr><td>ScrapeBox</td><td>大量留言、URL 抓取</td><td>幾乎無效。大部分留言被 nofollow/spam filter 擋掉</td></tr>
+  <tr><td>GSA SER</td><td>自動化建立各種低品質連結</td><td>可能觸發 SpamBrain 懲罰</td></tr>
+  <tr><td>RankerX</td><td>Tiered link building 自動化</td><td>風險極高，模式容易被偵測</td></tr>
+</table></div>
+<div class="bx bx-t"><strong>防禦：</strong>如果你的 WordPress 收到大量垃圾留言，安裝 Akismet + 關閉舊文章留言 + 啟用 reCAPTCHA。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.4 Quiz</h3>
+  <div class="q"><p>面對 Negative SEO（對手建有毒連結攻擊你），最正確的做法是？</p><div class="opt" onclick="ans(this,0)">A. 恐慌，立刻改網域</div><div class="opt" onclick="ans(this,1)">B. 監控 + Disavow 有毒連結 + 保持自身乾淨</div><div class="opt" onclick="ans(this,0)">C. 反擊，也對他們建有毒連結</div><div class="exp">保持冷靜。Google 大部分情況會自動忽略有毒連結。Disavow 是額外保險。絕對不要反擊 -- 那只會讓你也變成黑帽。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(5)" style="padding:.6rem 1.8rem">Ch.5 Content &rarr;</button></p>
+</section>
+
+<!-- CH5: CONTENT MANIPULATION -->
+<section class="ch" id="c5">
+<h2>Chapter 5 : 內容操控</h2>
+<div class="bx bx-w"><strong>WARNING --</strong> 教育用途。了解這些手法是為了辨識低品質內容。</div>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>5.1 各種內容操控手法</h3><span class="time">5 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="grid">
+  <div class="sk"><div class="si">KS</div><h4>Keyword Stuffing</h4><p>把關鍵字塞滿頁面。從 hidden text 演變到「語意 stuffing」（同義詞過度堆砌）</p>
+    <div class="ga"><div class="ga-d"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i></div><small>偵測</small></div></div>
+  <div class="sk"><div class="si">DW</div><h4>Doorway Pages</h4><p>大量低品質頁面，唯一目的是導流到主站。Programmatic SEO 做不好就是這個</p>
+    <div class="ga"><div class="ga-d"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i></div><small>偵測</small></div></div>
+  <div class="sk"><div class="si">SC</div><h4>Scraped Content</h4><p>偷別人的內容改幾個字重發。Copyscape 可以偵測</p>
+    <div class="ga"><div class="ga-d"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i></div><small>偵測</small></div></div>
+  <div class="sk"><div class="si">AI</div><h4>AI 垃圾大軍</h4><p>無審核 AI 大量生成。Helpful Content 整站降級</p>
+    <div class="ga"><div class="ga-d"><i class="r"></i><i class="r"></i><i class="r"></i><i class="r"></i><i></i></div><small>偵測</small></div></div>
+</div>
+
+<div class="bx bx-t"><strong>防禦 -- 你的內容被抄襲怎麼辦：</strong></div>
+<ol>
+  <li>用 <code>site:抄襲者網域 + 你的獨特句子</code> 確認抄襲</li>
+  <li>截圖保留證據（含時間戳記）</li>
+  <li>聯繫對方要求移除</li>
+  <li>如果不回應，向 Google 提交 DMCA Takedown</li>
+  <li>嚴重案例可以聯繫對方的 hosting provider</li>
+</ol>
+</div></div></div>
+
+<div class="qz"><h3>Ch.5 Quiz</h3>
+  <div class="q"><p>發現你的內容被別人抄襲，第一步應該？</p><div class="opt" onclick="ans(this,0)">A. 直接向 Google 提交 DMCA</div><div class="opt" onclick="ans(this,1)">B. 先截圖保留證據，再聯繫對方要求移除</div><div class="opt" onclick="ans(this,0)">C. 忽略它，Google 會自動判斷誰是原創</div><div class="exp">先保留證據（截圖含日期），然後友善聯繫要求移除。大部分情況對方會配合。如果不回應再走 DMCA。Google 不一定能自動判斷原創者，特別是對方的網站 DA 比你高時。</div></div>
+</div>
+<p style="text-align:center;margin-top:2rem"><button class="nb" onclick="go(6)" style="padding:.6rem 1.8rem">Ch.6 Defense &rarr;</button></p>
+</section>
+
+<!-- CH6: DEFENSE -->
+<section class="ch" id="c6">
+<h2>Chapter 6 : 防禦總結 -- 保護你的網站</h2>
+
+<div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>6.1 定期安全檢查清單</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<div class="tw"><table>
+  <tr><th>頻率</th><th>檢查項目</th><th>工具</th></tr>
+  <tr><td>每週</td><td>GSC 是否有安全問題通知</td><td>Google Search Console</td></tr>
+  <tr><td>每月</td><td>檢查新的 backlinks，否認有毒連結</td><td>Ahrefs / GSC Links</td></tr>
+  <tr><td>每月</td><td><code>site:你的網域</code> 搜尋，看有沒有異常頁面</td><td>Google Search</td></tr>
+  <tr><td>每季</td><td>WordPress 核心 + 插件 + 主題全部更新</td><td>WP Dashboard</td></tr>
+  <tr><td>每季</td><td>檢查是否有不認識的 admin 帳號</td><td>WP Users</td></tr>
+  <tr><td>持續</td><td>強密碼 + 2FA + 限制登入嘗試</td><td>Wordfence / Sucuri</td></tr>
+</table></div>
+</div></div></div>
+
+<div class="acc"><div class="acc-h" onclick="tog(this)"><h3>6.2 被懲罰時的 SOP</h3><span class="time">4 min</span><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
+<h4>判斷懲罰類型</h4>
+<div class="grid-sm">
+  <div class="cmp" style="border-top:2px solid var(--gold)"><div class="ci">A</div><h4>算法降級</h4><p>排名逐漸下降但 GSC 沒有通知。等下次 Core Update 可能恢復</p></div>
+  <div class="cmp" style="border-top:2px solid var(--accent)"><div class="ci">M</div><h4>手動懲罰</h4><p>GSC 收到 Manual Action 通知。必須修正問題後提交 reconsideration</p></div>
+</div>
+
+<h4>恢復步驟</h4>
+<ol>
+  <li><strong>診斷：</strong>檢查 GSC Manual Actions 頁面。如果沒有通知 = 算法降級</li>
+  <li><strong>修正：</strong>移除或否認有毒連結、刪除低品質內容、修復技術問題</li>
+  <li><strong>提交：</strong>手動懲罰需提交 Reconsideration Request，詳細說明你做了什麼修正</li>
+  <li><strong>等待：</strong>手動懲罰審核約 2-4 週。算法降級需等下次 Core Update（數月）</li>
+  <li><strong>重建：</strong>恢復後持續白帽建設，重新累積信任</li>
+</ol>
+
+<div class="bx bx-w"><strong>現實：</strong>被懲罰的網站只有 30% 能在一年內恢復排名。如果懲罰嚴重（整站移除索引），通常買新網域重新開始比救舊的更有效率。</div>
+</div></div></div>
+
+<div class="qz"><h3>Ch.6 Final Quiz</h3>
+  <div class="q"><p>你在 GSC 收到 Manual Action 通知，第一步應該？</p><div class="opt" onclick="ans(this,1)">A. 仔細閱讀通知內容，了解具體違規項目</div><div class="opt" onclick="ans(this,0)">B. 立刻刪除整個網站重建</div><div class="opt" onclick="ans(this,0)">C. 忽略它，等它自動恢復</div><div class="exp">Manual Action 通知會明確告訴你違規項目（不自然連結、垃圾內容等）。先搞清楚問題，針對性修正，再提交 reconsideration。不要恐慌刪站，也不能忽略。</div></div>
+  <div class="q"><p>以下哪個是最有效的網站安全防護？</p><div class="opt" onclick="ans(this,0)">A. 用複雜的網站名稱</div><div class="opt" onclick="ans(this,0)">B. 只在白天開放網站</div><div class="opt" onclick="ans(this,1)">C. 強密碼 + 2FA + 定期更新 + 限制登入嘗試</div><div class="exp">基礎安全措施（強密碼、雙因素認證、保持更新、限制登入嘗試）能防止絕大多數的網站入侵。大部分被駭的 WordPress 站都是因為弱密碼或過期插件。</div></div>
+</div>
+
+<!-- Defense Checklist -->
+<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin-top:2rem">
+  <h3 style="margin-top:0;font-size:1rem;color:var(--accent2)">Defense Checklist</h3>
+  <div class="cl">
+    <label><input type="checkbox" onchange="saveCl()"><span>GSC 檢查 Manual Actions 頁面</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>用 site: 搜尋你的網域，確認沒有異常頁面</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>檢查 GSC Links 報告，識別可疑外部連結</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>WordPress 核心 + 插件 + 主題更新到最新</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>啟用 2FA + 強密碼</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>安裝安全插件（Wordfence 或 Sucuri）</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>設定 Ahrefs 新連結通知 alert</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>學會使用 Google Disavow Tool</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>了解 DMCA Takedown 流程</span></label>
+    <label><input type="checkbox" onchange="saveCl()"><span>備份你的網站（每週自動備份）</span></label>
+  </div>
+</div>
+
+</section>
+</main>
+
+<footer>
+  <p>Horde Skillbook -- Black Hat SEO Technical Analysis (Education / Defense Only)</p>
+  <p><a href="seo-masterclass.html">Back to Masterclass</a> | <a href="skillbook-white.html">White Hat</a> | <a href="skillbook-grey.html">Grey Hat</a></p>
+</footer>
+
+<div class="ach" id="ach"><h4>Achievement Unlocked</h4><p id="at"></p></div>
+
+<script>
+function go(n){document.querySelectorAll('.ch').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nb').forEach(t=>t.classList.remove('on'));document.getElementById('c'+n).classList.add('on');document.querySelectorAll('.nb')[n].classList.add('on');scrollTo({top:0,behavior:'smooth'});localStorage.setItem('sb_ch',n)}
+function tog(el){el.parentElement.classList.toggle('o')}
+function ans(el,ok){const q=el.closest('.q');if(q.dataset.done)return;q.dataset.done=1;q.querySelectorAll('.opt').forEach(o=>o.classList.add('off'));el.classList.add(ok?'ok':'no');q.querySelector('.exp').style.display='block';show(ok?'Correct -- Defense +1':'Check explanation')}
+function show(t){const a=document.getElementById('ach');document.getElementById('at').textContent=t;a.classList.add('show');setTimeout(()=>a.classList.remove('show'),2e3)}
+function saveCl(){const c=[...document.querySelectorAll('.cl input')];localStorage.setItem('sb_cl',JSON.stringify(c.map(x=>x.checked)));if(c.every(x=>x.checked))show('All defense quests complete')}
+addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('pbar').style.width=h>0?(scrollY/h*100)+'%':'0%'});
+(()=>{try{const s=localStorage.getItem('sb_cl');if(s){const d=JSON.parse(s);document.querySelectorAll('.cl input').forEach((c,i)=>{if(d[i])c.checked=!0})}const ch=localStorage.getItem('sb_ch');if(ch)go(+ch)}catch(e){}})()
+</script>
+</body>
+</html>
