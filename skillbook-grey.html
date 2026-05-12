@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>中立技能書 — 灰帽 SEO 完全指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06060c;--bg2:#0c0d16;--bg3:#13141f;--card:#0f1018;--card2:#14151f;
+  --surface:rgba(255,255,255,.025);--surface-h:rgba(255,255,255,.045);
+  --gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);--gold-line:rgba(201,168,76,.15);
+  --text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;
+  --blue:#4a7fd9;--blue2:#7ba8f0;--blue-bg:rgba(74,127,217,.07);
+  --red:#b83a2e;--red2:#e05a4e;--red-bg:rgba(184,58,46,.07);
+  --purple:#7856b8;--purple2:#a889e0;--purple-bg:rgba(120,86,184,.07);
+  --purple-line:rgba(120,86,184,.18);--purple-dim:rgba(120,86,184,.09);
+  --green:#2d9d5e;--green2:#6bc992;
+  --teal:#3aa89a;
+  --border:rgba(255,255,255,.05);--border-h:rgba(120,86,184,.25);
+  --r:8px;--r-lg:14px;--tr:.22s ease;
+  --shadow-sm:0 1px 8px rgba(0,0,0,.3);--shadow:0 4px 24px rgba(0,0,0,.45);
+  --mono:'JetBrains Mono',monospace;
+  --body:'Noto Sans TC',system-ui,-apple-system,sans-serif;
+  --head:'Cinzel','Noto Sans TC',serif;
+  --head-d:'Cinzel Decorative','Cinzel',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.82;font-size:14.5px;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -20%,rgba(120,86,184,.04),transparent);pointer-events:none;z-index:0}
+
+h1,h2,h3{font-family:var(--head);color:var(--purple2);font-weight:700;letter-spacing:.03em}
+h4{color:var(--text-h);font-weight:600;font-size:.95rem;margin:1rem 0 .35rem;letter-spacing:.01em}
+h1{font-size:clamp(1.5rem,3.5vw,2.4rem);text-align:center;margin-bottom:.6rem}
+h2{font-size:clamp(1.05rem,2.2vw,1.5rem);margin:2.8rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.6rem}
+h2::before{content:'';width:3px;height:1.2em;background:var(--purple);border-radius:2px;flex-shrink:0}
+h3{font-size:clamp(.92rem,1.8vw,1.15rem);margin:1.2rem 0 .5rem;color:var(--purple2)}
+a{color:var(--purple2);text-decoration:none;transition:var(--tr)}
+a:hover{color:var(--purple2);text-decoration:underline;opacity:.8}
+p{margin:.4rem 0}
+ul,ol{padding-left:1.15rem;margin:.3rem 0}
+li{margin:.2rem 0;font-size:.9rem}
+small{color:var(--text2);font-size:.78rem}
+code{font-family:var(--mono);font-size:.82rem;background:var(--surface);padding:.1rem .4rem;border-radius:3px}
+::selection{background:rgba(120,86,184,.25);color:#fff}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.15)}
+
+/* PROGRESS */
+#pbar-wrap{position:fixed;top:0;left:0;right:0;height:2px;z-index:1001;background:transparent}
+#pbar{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--purple2));transition:width .25s}
+
+/* NAV */
+.nav{position:fixed;top:2px;left:0;right:0;z-index:1000;padding:.5rem .6rem;display:flex;justify-content:center;gap:.4rem;flex-wrap:wrap}
+.nav::before{content:'';position:absolute;inset:0;background:rgba(6,6,12,.88);backdrop-filter:blur(20px) saturate(1.5);border-bottom:1px solid var(--border);z-index:-1}
+.nav-btn{padding:.38rem .9rem;border:1px solid rgba(255,255,255,.06);border-radius:5px;background:transparent;color:var(--text2);cursor:pointer;font-family:var(--body);font-size:.78rem;font-weight:500;transition:var(--tr);letter-spacing:.04em}
+.nav-btn:hover{color:var(--text-h);border-color:rgba(255,255,255,.12);background:var(--surface)}
+.nav-btn.on{color:var(--purple2);border-color:var(--purple-line);background:var(--purple-dim)}
+
+/* LAYOUT */
+main{max-width:800px;margin:0 auto;padding:4rem 1.2rem 3rem;position:relative;z-index:1}
+.ch{display:none;animation:up .4s ease both}
+.ch.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* HERO */
+.hero{text-align:center;padding:4.5rem 1.5rem 4rem;margin-bottom:2.5rem;border-radius:var(--r-lg);position:relative;overflow:hidden;border:1px solid rgba(120,86,184,.15)}
+.hero{background:linear-gradient(180deg,rgba(120,86,184,.06),var(--bg) 80%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(120,86,184,.08),transparent 55%),radial-gradient(circle at 70% 60%,rgba(168,137,224,.05),transparent 55%);z-index:1}
+.hero *{position:relative;z-index:2}
+.hero p{color:var(--text2);font-size:.9rem;max-width:480px;margin:.3rem auto 0}
+.hero .sub{color:var(--purple2);font-style:italic;font-size:.92rem;letter-spacing:.05em;margin-bottom:.3rem;font-family:var(--head)}
+.hero h1{text-shadow:0 2px 20px rgba(120,86,184,.2);color:var(--purple2)}
+.hero .faction-badge{display:inline-block;padding:.25rem .9rem;border:1px solid var(--purple-line);border-radius:20px;background:var(--purple-dim);color:var(--purple2);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;margin-bottom:1rem}
+
+/* FLOW */
+.flow{display:flex;align-items:stretch;justify-content:center;gap:0;margin:2rem 0;flex-wrap:wrap}
+.flow-s{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem .8rem;text-align:center;flex:1;min-width:110px;max-width:170px;transition:var(--tr)}
+.flow-s:hover{border-color:var(--border-h);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.flow-s .fi{width:32px;height:32px;border-radius:50%;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;font-family:var(--mono);background:var(--purple-dim);color:var(--purple2);border:1px solid var(--purple-line)}
+.flow-s b{display:block;font-size:.84rem;color:var(--text-h)}
+.flow-s span{display:block;font-size:.75rem;color:var(--text2);margin-top:.2rem;line-height:1.4}
+.flow-a{display:flex;align-items:center;padding:0 .1rem;color:var(--text2);font-size:.9rem;flex-shrink:0}
+
+/* GRID */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.5rem 0}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin:1.5rem 0}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.5rem 0}
+.grid-auto-sm{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem;margin:1.5rem 0}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin:1.5rem 0}
+.st{text-align:center;padding:1rem .5rem;background:var(--card);border-radius:var(--r);border:1px solid var(--border);transition:var(--tr)}
+.st:hover{border-color:var(--border-h)}
+.st .n{font-size:1.5rem;font-weight:800;color:var(--purple2);font-family:var(--head);line-height:1.1}
+.st .l{font-size:.68rem;color:var(--text2);margin-top:.25rem;line-height:1.25}
+
+/* SKILL NODE */
+.sk{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem;text-align:center;transition:var(--tr)}
+.sk:hover{border-color:var(--border-h);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.sk .si{width:38px;height:38px;border-radius:8px;margin:0 auto .5rem;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;font-family:var(--mono);background:var(--purple-dim);color:var(--purple2);border:1px solid var(--purple-line)}
+.sk h4{color:var(--purple2);margin:0 0 .3rem;font-size:.85rem;line-height:1.25}
+.sk p{font-size:.78rem;color:var(--text2);margin:0;line-height:1.45}
+
+/* METER */
+.mt{margin:.6rem 0}
+.mt-top{display:flex;justify-content:space-between;margin-bottom:.2rem;font-size:.8rem}
+.mt-top span:last-child{color:var(--text2)}
+.mt-bar{height:6px;background:var(--bg2);border-radius:3px;overflow:hidden}
+.mt-f{height:100%;border-radius:3px;transition:width 1s ease}
+.mt-f.p{background:linear-gradient(90deg,var(--purple),var(--purple2))}
+.mt-f.r{background:linear-gradient(90deg,var(--red),var(--red2))}
+.mt-f.go{background:linear-gradient(90deg,#7a5c20,var(--gold))}
+.mt-f.gr{background:linear-gradient(90deg,#1a6b3c,var(--green2))}
+.mt-f.b{background:linear-gradient(90deg,var(--blue),var(--blue2))}
+
+/* ACCORDION */
+.acc{margin:.8rem 0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--card);transition:border-color var(--tr)}
+.acc:hover,.acc.o{border-color:rgba(120,86,184,.12)}
+.acc-h{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.1rem;cursor:pointer;transition:var(--tr);gap:.5rem;user-select:none}
+.acc-h:hover{background:var(--surface)}
+.acc-h h3{margin:0;font-size:.92rem;flex:1}
+.acc-t{width:24px;height:24px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--tr);background:transparent}
+.acc-t svg{width:12px;height:12px;stroke:var(--purple2);stroke-width:2;fill:none;transition:transform .3s}
+.acc.o .acc-t{background:var(--purple-dim);border-color:var(--purple-line)}
+.acc.o .acc-t svg{transform:rotate(45deg)}
+.acc-b{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc.o .acc-b{max-height:12000px}
+.acc-c{padding:.3rem 1.1rem 1.3rem}
+
+/* TABLE */
+.tw{overflow-x:auto;margin:1rem 0;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:480px}
+th,td{padding:.5rem .65rem;border:1px solid var(--border);text-align:left}
+th{background:var(--purple-dim);color:var(--purple2);font-weight:600;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+tr:nth-child(even){background:var(--surface)}
+
+/* QUIZ */
+.qz{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin:2.5rem 0}
+.qz h3{margin-top:0;font-size:1rem;color:var(--purple2)}
+.q{margin:1.1rem 0;padding-top:.9rem;border-top:1px solid var(--border)}
+.q:first-of-type{border-top:none;padding-top:0}
+.q>p{font-weight:600;margin-bottom:.4rem;color:var(--text-h);font-size:.88rem}
+.opt{display:block;padding:.5rem .9rem;margin:.3rem 0;border:1px solid var(--border);border-radius:5px;cursor:pointer;transition:var(--tr);background:transparent;font-size:.84rem;width:100%;text-align:left}
+.opt:hover{border-color:var(--purple-line);background:var(--purple-dim)}
+.opt.ok{border-color:var(--green);background:rgba(45,157,94,.06);color:var(--green2)}
+.opt.no{border-color:var(--red2);background:rgba(184,58,46,.06);color:#f0a0a0}
+.opt.off{pointer-events:none;opacity:.6}
+.exp{display:none;padding:.6rem .9rem;margin-top:.4rem;background:var(--purple-dim);border-radius:5px;font-size:.8rem;border-left:2px solid var(--purple)}
+
+/* INFO BOXES */
+.bx{border-radius:var(--r);padding:.9rem 1.1rem;margin:1rem 0;font-size:.87rem}
+.bx-w{background:var(--red-bg);border:1px solid rgba(184,58,46,.15)}.bx-w strong{color:var(--red2)}
+.bx-t{background:var(--blue-bg);border:1px solid rgba(74,127,217,.15)}.bx-t strong{color:var(--blue2)}
+.bx-g{background:var(--gold-dim);border:1px solid var(--gold-line)}.bx-g strong{color:var(--gold)}
+.bx-p{background:var(--purple-dim);border:1px solid var(--purple-line)}.bx-p strong{color:var(--purple2)}
+
+/* CHECKLIST */
+.cl label{display:flex;align-items:flex-start;gap:.55rem;padding:.4rem 0;cursor:pointer;font-size:.85rem;transition:var(--tr)}
+.cl label:hover{color:var(--text-h)}
+.cl input[type=checkbox]{accent-color:var(--purple2);margin-top:.28rem;width:15px;height:15px;flex-shrink:0}
+
+/* BADGES */
+.bg{display:inline-block;padding:.12rem .5rem;border-radius:3px;font-size:.7rem;font-weight:600;letter-spacing:.02em;font-family:var(--mono)}
+.bg-p{background:var(--purple-dim);color:var(--purple2);border:1px solid var(--purple-line)}
+.bg-r{background:var(--red-bg);color:var(--red2);border:1px solid rgba(184,58,46,.15)}
+.bg-go{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-line)}
+.bg-g{background:rgba(45,157,94,.07);color:var(--green2);border:1px solid rgba(45,157,94,.15)}
+
+/* MATRIX */
+.matrix{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:1.2rem 0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.mx-hd{background:var(--purple-dim);color:var(--purple2);padding:.5rem;font-size:.72rem;font-weight:700;text-align:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.mx-c{padding:.55rem .4rem;font-size:.74rem;text-align:center;border-top:1px solid var(--border);color:var(--text)}
+.mx-c.low{background:rgba(45,157,94,.05);color:var(--green2)}
+.mx-c.med{background:rgba(201,168,76,.05);color:var(--gold)}
+.mx-c.high{background:rgba(184,58,46,.05);color:var(--red2)}
+
+/* SECTION DIVIDER */
+.divider{text-align:center;margin:3rem 0 2rem;position:relative}
+.divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)}
+.divider span{position:relative;background:var(--bg);padding:0 1rem;font-family:var(--head);color:var(--text2);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+
+/* ACHIEVEMENT */
+.ach{display:none;position:fixed;top:50px;left:50%;transform:translateX(-50%);background:var(--card2);border:1px solid var(--purple-line);border-radius:6px;padding:.65rem 1.5rem;z-index:2000;text-align:center;box-shadow:0 4px 24px rgba(120,86,184,.15);animation:ai .35s}
+.ach.show{display:block}
+.ach h4{color:var(--purple2);margin:0 0 .1rem;font-size:.82rem;font-family:var(--head)}
+.ach p{color:var(--text2);font-size:.74rem;margin:0}
+@keyframes ai{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%)}}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem;border-top:1px solid var(--border);margin-top:2rem}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  main{padding:3.8rem .9rem 2.5rem}
+  .grid-3{grid-template-columns:1fr}
+  .grid-auto{grid-template-columns:repeat(2,1fr)}
+  .grid-auto-sm{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:2.8rem 1rem 2.2rem}
+  .flow-s{min-width:95px;max-width:130px;padding:.7rem .5rem}
+}
+@media(max-width:480px){
+  .nav{gap:.25rem;padding:.35rem .3rem}
+  .nav-btn{padding:.3rem .55rem;font-size:.7rem}
+  .flow{flex-direction:column;align-items:center}
+  .flow-s{max-width:100%;width:100%}
+  .flow-a{transform:rotate(90deg);padding:.15rem 0}
+  .grid-auto,.grid-auto-sm,.stats,.grid-2{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:1fr}
+  .acc-c{padding:.2rem .75rem 1rem}
+  table{min-width:400px}
+  .matrix{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="pbar-wrap"><div id="pbar"></div></div>
+
+<nav class="nav">
+  <button class="nav-btn on" onclick="go(0)">概覽</button>
+  <button class="nav-btn" onclick="go(1)">Ch.1 心法</button>
+  <button class="nav-btn" onclick="go(2)">Ch.2 連結</button>
+  <button class="nav-btn" onclick="go(3)">Ch.3 AI 內容</button>
+  <button class="nav-btn" onclick="go(4)">Ch.4 程式化</button>
+  <button class="nav-btn" onclick="go(5)">Ch.5 社群</button>
+  <button class="nav-btn" onclick="go(6)">Ch.6 事件</button>
+  <button class="nav-btn" onclick="go(7)">Ch.7 生存</button>
+</nav>
+
+<div id="ach" class="ach"><h4 id="ach-t">章節解鎖</h4><p id="ach-d">繼續前進</p></div>
+
+<main>
+
+<!-- ====== 概覽 ====== -->
+<section class="ch on" id="c0">
+<div class="hero">
+  <div class="faction-badge">NEUTRAL FACTION — GREY HAT</div>
+  <h1>中立技能書</h1>
+  <p class="sub">灰帽 SEO 完全指南</p>
+  <p>光暗之間：懂得計算風險的人才能活得最久</p>
+</div>
+
+<h2>什麼是灰帽 SEO</h2>
+<p>灰帽不是白帽的放鬆版，也不是黑帽的謹慎版。它是一套獨立的風險管理哲學——你清楚知道自己在做什麼，為什麼做，以及何時該停手。</p>
+
+<div class="grid-3">
+  <div class="sk">
+    <div class="si">W</div>
+    <h4>白帽</h4>
+    <p>完全符合 Google 規範。慢但穩，適合主品牌。</p>
+  </div>
+  <div class="sk" style="border-color:var(--purple-line)">
+    <div class="si">G</div>
+    <h4>灰帽</h4>
+    <p>不違反明文規則，但違反 Google 精神。需要風險管理。</p>
+  </div>
+  <div class="sk" style="border-color:rgba(184,58,46,.2)">
+    <div class="si" style="background:var(--red-bg);color:var(--red2);border-color:rgba(184,58,46,.2)">B</div>
+    <h4>黑帽</h4>
+    <p>直接違反規範。高收益、高懲罰，通常不可恢復。</p>
+  </div>
+</div>
+
+<h2>本書地圖</h2>
+<div class="stats">
+  <div class="st"><div class="n">7</div><div class="l">核心章節</div></div>
+  <div class="st"><div class="n">18</div><div class="l">Quiz 題目</div></div>
+  <div class="st"><div class="n">30+</div><div class="l">實戰技巧</div></div>
+  <div class="st"><div class="n">1</div><div class="l">行動清單</div></div>
+</div>
+
+<div class="grid-auto">
+  <div class="sk"><div class="si">1</div><h4>灰帽心法</h4><p>風險管理框架、品牌隔離、退場策略</p></div>
+  <div class="sk"><div class="si">2</div><h4>連結操控術</h4><p>Niche Edit、301 Redirect、Tiered Links</p></div>
+  <div class="sk"><div class="si">3</div><h4>AI 內容工廠</h4><p>Pipeline、品管、Helpful Content 陷阱</p></div>
+  <div class="sk"><div class="si">4</div><h4>Programmatic SEO</h4><p>資料庫驅動大量頁面，成功與失敗案例</p></div>
+  <div class="sk"><div class="si">5</div><h4>社群與品牌操控</h4><p>多帳號策略、口碑行銷灰色地帶</p></div>
+  <div class="sk"><div class="si">6</div><h4>季節性事件驅動</h4><p>快攻策略、收割退場時機</p></div>
+  <div class="sk"><div class="si">7</div><h4>灰帽生存指南</h4><p>懲罰徵兆、恢復策略、何時放棄</p></div>
+</div>
+
+<div class="bx bx-p">
+  <strong>免責聲明</strong> — 本書用於教育目的。灰帽技術帶有真實風險，包括 Google 手動懲罰與演算法降權。讀者需自行承擔使用後果。
+</div>
+</section>
+
+<!-- ====== Chapter 1: 心法 ====== -->
+<section class="ch" id="c1">
+<div class="hero">
+  <h1>Chapter 1</h1>
+  <p class="sub">灰帽心法 — 風險管理框架</p>
+  <p>不懂風險管理的灰帽，是在燒自己的網域</p>
+</div>
+
+<h2>1.1 定義：灰帽的本質</h2>
+<p>Google 的規範有兩層：<strong>明文規定</strong>（Webmaster Guidelines）和<strong>精神意圖</strong>（intent behind the rules）。白帽兩者都遵守；黑帽兩者都違反；灰帽遵守明文、違反精神。</p>
+
+<div class="bx bx-t">
+  <strong>核心公式</strong> — 偵測機率 x 懲罰嚴重度 = 風險等級。灰帽玩家的工作是讓這個乘積保持在可接受範圍內。
+</div>
+
+<h2>1.2 風險評估矩陣</h2>
+<div class="tw">
+<table>
+  <tr><th>技術</th><th>偵測機率</th><th>懲罰嚴重度</th><th>風險等級</th><th>建議</th></tr>
+  <tr><td>Niche Edit (小量)</td><td>低</td><td>中</td><td class="bg bg-g">低</td><td>可操作</td></tr>
+  <tr><td>Guest Post (付費)</td><td>中</td><td>中</td><td class="bg bg-go">中</td><td>謹慎</td></tr>
+  <tr><td>Tiered Links T2/T3</td><td>低</td><td>低</td><td class="bg bg-g">低</td><td>常規操作</td></tr>
+  <tr><td>大量 AI 內容無審核</td><td>高</td><td>高</td><td class="bg bg-r">高</td><td>避免</td></tr>
+  <tr><td>301 過期網域</td><td>中</td><td>中-高</td><td class="bg bg-go">中</td><td>需主題對齊</td></tr>
+  <tr><td>PBN 直接指向主站</td><td>高</td><td>極高</td><td class="bg bg-r">極高</td><td>黑帽領域</td></tr>
+</table>
+</div>
+
+<h2>1.3 品牌隔離原則</h2>
+<p>這是灰帽最重要的一條鐵律：<strong>永遠不要讓灰帽站和你在乎的品牌有任何關聯</strong>。</p>
+
+<div class="grid-2">
+  <div class="sk">
+    <div class="si">DO</div>
+    <h4>必須隔離的項目</h4>
+    <ul>
+      <li>網域 — 不同 Registrar，不同付款方式</li>
+      <li>主機 — 不同 IP 段，不同 hosting provider</li>
+      <li>Analytics — 獨立 GA4 property，獨立 GSC</li>
+      <li>WHOIS — Privacy protection 全開</li>
+      <li>Email — 獨立信箱，不綁定真實姓名</li>
+      <li>付款 — 獨立信用卡或虛擬卡</li>
+    </ul>
+  </div>
+  <div class="sk">
+    <div class="si">WHY</div>
+    <h4>為什麼要隔離</h4>
+    <p style="font-size:.82rem;color:var(--text2)">Google 的 Quality Raters 和演算法會建立網站關係圖。同一個人運營的網站群被關聯後，灰帽站的懲罰可能蔓延到白帽主站。這種「交叉污染」是灰帽玩家最怕的情境。</p>
+  </div>
+</div>
+
+<h2>1.4 退場策略</h2>
+<p>懂得何時停手，比懂得何時進場更重要。以下是應該立即停手的信號：</p>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>停手信號 — 演算法層面</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>7 天內排名波動超過 30 個位次（非 Core Update 期間）</li>
+      <li>索引頁面數量突然減少 15% 以上</li>
+      <li>Organic traffic 連續 3 週下降且無季節性解釋</li>
+      <li>多個目標關鍵字同時消失（群組性掉落）</li>
+      <li>Core Web Vitals 正常，但 Click-through rate 驟降</li>
+    </ul>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>停手信號 — GSC 通知層面</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>GSC 收到「手動操作」（Manual Action）通知，任何類型</li>
+      <li>「違反垃圾連結政策」通知</li>
+      <li>「低品質內容」通知</li>
+      <li>Coverage 報告顯示大量頁面被標為 Soft 404</li>
+    </ul>
+    <div class="bx bx-w" style="margin-top:.8rem">
+      <strong>重要</strong> — 收到 GSC 手動操作通知後，繼續推進灰帽策略幾乎必死。立即停止並進入恢復模式。
+    </div>
+  </div></div>
+</div>
+
+<h2>1.5 資金管理</h2>
+<p>灰帽是投資，不是賭博。設定明確的停損點：</p>
+<div class="mt"><div class="mt-top"><span>停損線：投入成本</span><span>回收 &lt; 30% 即停</span></div><div class="mt-bar"><div class="mt-f r" style="width:30%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>目標 ROI</span><span>最低 3x 才值得冒險</span></div><div class="mt-bar"><div class="mt-f gr" style="width:75%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>風險資金佔比</span><span>不超過總 SEO 預算 40%</span></div><div class="mt-bar"><div class="mt-f p" style="width:40%"></div></div></div>
+
+<div class="qz">
+  <h3>Chapter 1 Quiz</h3>
+  <div class="q">
+    <p>1. 灰帽 SEO 的核心定義是什麼？</p>
+    <button class="opt" onclick="ans(this,false)">A. 使用任何能提升排名的方法，不管是否違反規定</button>
+    <button class="opt" onclick="ans(this,true)">B. 不違反 Google 明文規則，但違反其精神意圖</button>
+    <button class="opt" onclick="ans(this,false)">C. 白帽技術的加速版，只是執行更積極</button>
+    <div class="exp">灰帽的關鍵在於「精神 vs 明文」的區分。Google 無法在明文規則中禁止所有灰帽操作，但演算法更新的目標就是消滅這個灰色地帶。</div>
+  </div>
+  <div class="q">
+    <p>2. 品牌隔離最關鍵的項目是哪個？</p>
+    <button class="opt" onclick="ans(this,false)">A. 網站主題不同就夠了</button>
+    <button class="opt" onclick="ans(this,false)">B. 只要用不同域名就安全</button>
+    <button class="opt" onclick="ans(this,true)">C. IP、Analytics、付款資訊、WHOIS 全部獨立</button>
+    <div class="exp">Google 可以通過多種信號關聯網站：相同的 GA tracking ID、相同的 IP 段、相同的 WHOIS 聯絡資料。任一洩漏都可能導致關聯。</div>
+  </div>
+  <div class="q">
+    <p>3. 收到 GSC 手動操作通知後，正確反應是？</p>
+    <button class="opt" onclick="ans(this,false)">A. 加快連結建設速度，在被完全懲罰前搶排名</button>
+    <button class="opt" onclick="ans(this,true)">B. 立即停止所有灰帽操作，進入恢復模式</button>
+    <button class="opt" onclick="ans(this,false)">C. 等待看看，有時通知是誤報</button>
+    <div class="exp">手動操作通知代表真人審查員已確認違規。繼續操作只會加深懲罰，且會讓重新審核申請更難通過。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 2: 連結操控術 ====== -->
+<section class="ch" id="c2">
+<div class="hero">
+  <h1>Chapter 2</h1>
+  <p class="sub">連結操控術</p>
+  <p>連結是 PageRank 的貨幣，灰帽玩家是這個市場的交易員</p>
+</div>
+
+<h2>2.1 Niche Edit 完整指南</h2>
+<p>Niche Edit（又稱 Link Insertion）是在既有高排名文章中插入連結。相比 Guest Post，它的 context signal 更強，因為周圍內容已累積排名信任。</p>
+
+<h3>如何評估一個 Niche Edit 值不值得買</h3>
+<div class="tw">
+<table>
+  <tr><th>評估維度</th><th>最低門檻</th><th>理想標準</th><th>權重</th></tr>
+  <tr><td>Domain Rating (Ahrefs DR)</td><td>DR 30+</td><td>DR 50+</td><td>高</td></tr>
+  <tr><td>Organic Traffic (Ahrefs)</td><td>500+/月</td><td>2,000+/月</td><td>極高</td></tr>
+  <tr><td>主題相關性</td><td>同大類</td><td>同細分市場</td><td>極高</td></tr>
+  <tr><td>Link Profile</td><td>無明顯 Spam</td><td>自然多元</td><td>高</td></tr>
+  <tr><td>Referring Domains</td><td>50+</td><td>200+</td><td>中</td></tr>
+  <tr><td>頁面更新頻率</td><td>有索引</td><td>近6個月有更新</td><td>中</td></tr>
+</table>
+</div>
+
+<div class="bx bx-w">
+  <strong>紅旗警告</strong> — 如果一個網站 DA 高但 traffic 極低（例如 DA 50，月流量 100），這通常是 Domain Authority manipulation，連結價值接近零，且可能有反效果。
+</div>
+
+<h3>Anchor Text 分佈策略</h3>
+<div class="mt"><div class="mt-top"><span>Branded (品牌名)</span><span>40-50%</span></div><div class="mt-bar"><div class="mt-f p" style="width:45%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>Naked URL</span><span>20-25%</span></div><div class="mt-bar"><div class="mt-f b" style="width:22%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>Generic (點此、了解更多)</span><span>15-20%</span></div><div class="mt-bar"><div class="mt-f go" style="width:17%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>Partial Match (含關鍵字)</span><span>10-15%</span></div><div class="mt-bar"><div class="mt-f gr" style="width:12%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>Exact Match (完整關鍵字)</span><span>&lt;5%</span></div><div class="mt-bar"><div class="mt-f r" style="width:5%"></div></div></div>
+
+<h3>Velocity Control — 購買速度控制</h3>
+<p>連結增長速度的突然變化是 Google 偵測的主要信號之一。</p>
+<div class="grid-2">
+  <div class="sk"><div class="si">新站</div><h4>新站 (0-6個月)</h4><p>每月 2-5 條，先從低 DR 開始，模擬自然增長曲線</p></div>
+  <div class="sk"><div class="si">成熟</div><h4>成熟站 (1年+)</h4><p>每月 5-15 條，可適度提速，但避免同週大量集中</p></div>
+</div>
+
+<h2>2.2 301 Redirect 攻略</h2>
+<p>購買與目標站主題相關的過期網域，將其 301 重定向至目標站，傳遞累積的 PageRank。</p>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>過期網域選購標準</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>Wayback Machine 確認歷史內容與目標站主題一致</li>
+      <li>Ahrefs 確認 referring domains 品質（非 spam farm）</li>
+      <li>Google Search Console 歷史無手動懲罰記錄（需間接確認）</li>
+      <li>Domain age 至少 3 年，中間無明顯 ownership 斷層</li>
+      <li>Majestic Trust Flow > Citation Flow（TF/CF > 0.5）</li>
+    </ul>
+    <div class="bx bx-p" style="margin-top:.8rem">
+      <strong>主題相關性要求</strong> — 娛樂城站指向娛樂城站的過期新聞網域；金融站指向金融類。主題不符的 301 在 2022 年後效果大幅下降。
+    </div>
+  </div></div>
+</div>
+
+<h2>2.3 Tiered Link Building 分層架構</h2>
+<p>不直接對主站建立低品質連結，而是用分層結構傳遞權重同時稀釋風險。</p>
+
+<div class="flow">
+  <div class="flow-s"><div class="fi">T1</div><b>Tier 1</b><span>高品質 Guest Post、Niche Edit、真實媒體</span></div>
+  <div class="flow-a">&#8592;</div>
+  <div class="flow-s"><div class="fi">T2</div><b>Tier 2</b><span>Web 2.0、論壇 Profile、中品質文章站</span></div>
+  <div class="flow-a">&#8592;</div>
+  <div class="flow-s"><div class="fi">T3</div><b>Tier 3</b><span>社群書籤、Directory、大量低品質連結</span></div>
+  <div class="flow-a">&#8592;</div>
+  <div class="flow-s" style="border-color:var(--purple-line)"><div class="fi" style="background:rgba(120,86,184,.15)">主站</div><b>目標站</b><span>只收到 T1 連結，風險隔離</span></div>
+</div>
+
+<div class="bx bx-t">
+  <strong>邏輯</strong> — 主站只直接連接 Tier 1（高品質）。Tier 2 強化 Tier 1 的權威性。Tier 3 再強化 Tier 2。Google 難以追溯完整鏈條，且主站的 backlink profile 看起來完全乾淨。
+</div>
+
+<h2>2.4 Guest Post 的灰色地帶</h2>
+<div class="grid-2">
+  <div class="sk"><div class="si">付費</div><h4>付費 Guest Post 風險</h4><p>Google 明確表示付費連結（含付費 GP）違反規定。差別在於「是否能被識別」。使用 <code>rel="sponsored"</code> 合規但無效；不標記高效但有被抓風險。</p></div>
+  <div class="sk"><div class="si">代筆</div><h4>Ghost-Written 文章</h4><p>由你撰稿以站主名義發佈。風險較低，但需確保文章品質足以通過網站的審核標準，否則發出去的低質內容反而傷 T1 站的 authority。</p></div>
+</div>
+
+<div class="qz">
+  <h3>Chapter 2 Quiz</h3>
+  <div class="q">
+    <p>1. 評估 Niche Edit 時，哪個指標最重要？</p>
+    <button class="opt" onclick="ans(this,false)">A. Domain Authority (Moz DA)</button>
+    <button class="opt" onclick="ans(this,true)">B. Organic Traffic（真實搜尋流量）</button>
+    <button class="opt" onclick="ans(this,false)">C. 網站設計美觀度</button>
+    <div class="exp">Organic traffic 反映 Google 對這個站的真實信任程度。DA 可以被操控，但 traffic 難以造假。高 DA、低 traffic 是明顯的 manipulation 信號。</div>
+  </div>
+  <div class="q">
+    <p>2. Exact Match Anchor Text 的安全佔比是？</p>
+    <button class="opt" onclick="ans(this,false)">A. 30-40%，越多越好</button>
+    <button class="opt" onclick="ans(this,false)">B. 10-15%，適度使用</button>
+    <button class="opt" onclick="ans(this,true)">C. 低於 5%，謹慎使用</button>
+    <div class="exp">Exact Match Anchor 是 Google Penguin 主要偵測目標。自然的連結 anchor 分佈中，exact match 比例極低。超過 10% 就會觸發偵測。</div>
+  </div>
+  <div class="q">
+    <p>3. Tiered Link Building 的核心目的是？</p>
+    <button class="opt" onclick="ans(this,true)">A. 讓主站只收高品質連結，同時用低品質連結強化這些高品質來源</button>
+    <button class="opt" onclick="ans(this,false)">B. 用大量連結直接轟炸主站以快速提升排名</button>
+    <button class="opt" onclick="ans(this,false)">C. 建立連結交換網絡以節省費用</button>
+    <div class="exp">Tiered Links 的本質是風險隔離與 authority 傳遞的組合。主站 backlink profile 保持乾淨，而通過間接鏈路獲得低品質連結的 PageRank 效益。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 3: AI 內容工廠 ====== -->
+<section class="ch" id="c3">
+<div class="hero">
+  <h1>Chapter 3</h1>
+  <p class="sub">AI 內容工廠</p>
+  <p>AI 是加速器，不是替代品 — 忘記這句話的人最終都被懲罰</p>
+</div>
+
+<h2>3.1 AI + 人審完整 Pipeline</h2>
+
+<div class="flow">
+  <div class="flow-s"><div class="fi">1</div><b>關鍵字</b><span>研究意圖、競品分析</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">2</div><b>AI 大綱</b><span>結構生成、H2/H3 規劃</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">3</div><b>AI 初稿</b><span>段落生成、資料填充</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">4</div><b>人工審核</b><span>12 項清單逐一確認</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">5</div><b>加入價值</b><span>個人觀點、獨家數據</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s" style="border-color:var(--purple-line)"><div class="fi">6</div><b>發佈</b><span>Internal Link、Schema</span></div>
+</div>
+
+<h2>3.2 人工審核清單（12 項）</h2>
+<div class="cl">
+  <label><input type="checkbox"> 事實查核：文章中所有數據、日期、統計有原始來源</label>
+  <label><input type="checkbox"> 數據時效：統計數字是否過時（超過 2 年的數據需更新或標注）</label>
+  <label><input type="checkbox"> 個人觀點：加入至少 1 個人工的獨特觀點或評論</label>
+  <label><input type="checkbox"> 圖片：原創截圖、圖表或授權圖片，非 AI 生成裝飾圖</label>
+  <label><input type="checkbox"> 內部連結：至少 2-3 條指向站內相關深度頁面</label>
+  <label><input type="checkbox"> E-E-A-T 信號：作者資訊、發佈日期、最後更新日期</label>
+  <label><input type="checkbox"> 可讀性：段落不超過 4 句，適當使用 H3 分段</label>
+  <label><input type="checkbox"> 重複內容：與站內其他頁面無明顯內容重疊</label>
+  <label><input type="checkbox"> AI 味道：去除明顯的 AI 套話（"In conclusion", "It's worth noting"）</label>
+  <label><input type="checkbox"> 用戶問題：文章是否真正回答了用戶的核心搜尋意圖</label>
+  <label><input type="checkbox"> 操作性：讀者看完後有明確的 next step 或行動</label>
+  <label><input type="checkbox"> Schema Markup：Article schema 或對應 FAQ/HowTo schema 已添加</label>
+</div>
+
+<h2>3.3 品質管理：審核滑坡陷阱</h2>
+<p>「審核滑坡」是 AI 內容工廠最常見的死亡模式。初期認真審核，隨著產量壓力增大，審核標準逐漸下滑，最終流入 Google 的是一堆半生不熟的 AI 垃圾。</p>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>如何防止審核滑坡</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>設定每篇文章的最低審核時間（建議 15-20 分鐘）</li>
+      <li>建立審核 checklist 系統，每項必須打勾才能發佈</li>
+      <li>每月隨機抽樣 10% 已發文章進行二次評分</li>
+      <li>如果抽樣平均分低於 7/10，停止當月所有發佈並找問題</li>
+      <li>分離「生成者」和「審核者」角色，避免自己審自己</li>
+    </ul>
+  </div></div>
+</div>
+
+<h2>3.4 產出量的安全線</h2>
+<div class="grid-2">
+  <div class="sk"><div class="si">小站</div><h4>小站（DA 30 以下）</h4><p>每天最多 1-2 篇，過快的內容增速對小站反而是負面信號</p></div>
+  <div class="sk"><div class="si">大站</div><h4>大站（DA 50+）</h4><p>每天 3-5 篇可接受，但需有歷史內容積累做基礎，突然爆發不自然</p></div>
+</div>
+<div class="bx bx-p">
+  <strong>關鍵原則</strong> — 內容速度需與網站歷史模式一致。一個過去每週發 1 篇的站突然每天發 5 篇，無論品質多高，這個速度本身就是信號。
+</div>
+
+<h2>3.5 AI 內容偵測工具的現實</h2>
+<div class="tw">
+<table>
+  <tr><th>工具</th><th>準確率</th><th>Google 是否使用</th><th>結論</th></tr>
+  <tr><td>GPTZero</td><td>60-70%</td><td>否</td><td>可參考，非決定性</td></tr>
+  <tr><td>Originality.ai</td><td>70-80%</td><td>否</td><td>目前最可靠，仍有誤判</td></tr>
+  <tr><td>Google 內部系統</td><td>未公開</td><td>是（Helpful Content）</td><td>行為模式偵測，非文本偵測</td></tr>
+</table>
+</div>
+<p>Google 不使用這些工具。Google 偵測的是<strong>用戶行為信號</strong>：跳出率、停留時間、重複訪問率。爛 AI 內容因為無法解決用戶問題，行為信號差，這才是被懲罰的真正原因。</p>
+
+<h2>3.6 Helpful Content System 的 Site-Wide Signal</h2>
+<div class="bx bx-w">
+  <strong>核心機制</strong> — Helpful Content System 評估的是整個網站，不是單篇文章。10 篇優質深度內容 + 90 篇 AI 垃圾 = 整站被標記為低品質，全部文章排名受損。這是 2023 年以來最多 SEO 被打的原因。
+</div>
+<p>Site-wide signal 的含義：你必須對整站的內容品質負責。無法「用好文章補救壞文章」。</p>
+
+<div class="qz">
+  <h3>Chapter 3 Quiz</h3>
+  <div class="q">
+    <p>1. Google 主要如何偵測低品質 AI 內容？</p>
+    <button class="opt" onclick="ans(this,false)">A. 使用 GPTZero 等 AI 偵測工具</button>
+    <button class="opt" onclick="ans(this,true)">B. 通過用戶行為信號（跳出率、停留時間等）</button>
+    <button class="opt" onclick="ans(this,false)">C. 直接比對 AI 模型的訓練資料</button>
+    <div class="exp">Google 偵測的是內容是否有用，而非是否由 AI 生成。爛 AI 內容的問題是用戶看了沒收穫，這反映在行為數據上。優質 AI 內容不會被懲罰。</div>
+  </div>
+  <div class="q">
+    <p>2. Helpful Content System 的 site-wide signal 意味著什麼？</p>
+    <button class="opt" onclick="ans(this,false)">A. 只有被直接標記的文章排名會下降</button>
+    <button class="opt" onclick="ans(this,true)">B. 站內大量低品質頁面會拖累整站所有頁面的排名</button>
+    <button class="opt" onclick="ans(this,false)">C. 每篇文章的評分完全獨立，互不影響</button>
+    <div class="exp">這是 2023 Helpful Content Update 最重要的機制。整站有大量無用內容會讓 Google 降低對整個 domain 的信任，即使好文章也受牽連。</div>
+  </div>
+  <div class="q">
+    <p>3. 「審核滑坡」最有效的預防方式是？</p>
+    <button class="opt" onclick="ans(this,true)">A. 設定每篇最低審核時間 + 強制 checklist，並隨機抽樣複查</button>
+    <button class="opt" onclick="ans(this,false)">B. 提高 AI 生成的 prompt 品質，讓初稿更好</button>
+    <button class="opt" onclick="ans(this,false)">C. 減少文章數量，只發高關鍵字難度的主題</button>
+    <div class="exp">審核滑坡是流程問題，不是技術問題。即使有最好的 AI，沒有強制審核流程的工廠最終都會降標。結構性的 checklist 和抽樣機制是唯一有效的預防。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 4: Programmatic SEO ====== -->
+<section class="ch" id="c4">
+<div class="hero">
+  <h1>Chapter 4</h1>
+  <p class="sub">Programmatic SEO</p>
+  <p>資料庫 + 模板 = 大量頁面 — 但魔鬼在細節裡</p>
+</div>
+
+<h2>4.1 什麼是 Programmatic SEO</h2>
+<p>利用結構化資料源自動生成大量相似但差異化的頁面，每頁針對一個特定長尾關鍵字。核心等式：</p>
+<div class="bx bx-p">
+  <strong>資料源（Database）</strong> + <strong>頁面模板（Template）</strong> + <strong>差異化內容邏輯</strong> = 大量有排名潛力的頁面
+</div>
+
+<h2>4.2 成功案例分析</h2>
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Zapier — Integration 頁面（20 萬+ 頁）</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <p>每個「App A + App B integration」都有獨立頁面。成功原因：</p>
+    <ul>
+      <li>每頁的核心內容（實際 integration workflow）是真實可用的</li>
+      <li>頁面之間差異化程度高（不同 app 的實際 trigger/action 不同）</li>
+      <li>User-generated content（用戶分享的 Zap 模板）增加獨特性</li>
+      <li>功能本身就是用戶搜尋的答案，不是單純的 SEO 內容</li>
+    </ul>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Wise — Currency Conversion 頁面</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <p>每個貨幣對都有一個轉換頁面（如「USD to TWD」）。成功原因：</p>
+    <ul>
+      <li>即時匯率數據是真實有用的動態內容，非靜態模板</li>
+      <li>歷史匯率圖表提供附加價值</li>
+      <li>轉換計算器是互動功能，滿足搜尋意圖</li>
+      <li>品牌本身就是金融工具，E-E-A-T 完整</li>
+    </ul>
+  </div></div>
+</div>
+
+<h2>4.3 失敗案例：Doorway Pages vs Programmatic SEO 的界線</h2>
+<div class="tw">
+<table>
+  <tr><th>特徵</th><th>有價值的程式化頁面</th><th>Doorway Page（垃圾門頁）</th></tr>
+  <tr><td>頁面差異化</td><td>核心內容真正不同</td><td>只換一兩個詞，結構完全相同</td></tr>
+  <tr><td>用戶停留時間</td><td>用戶完成任務後離開</td><td>用戶立即跳出</td></tr>
+  <tr><td>內容目的</td><td>解決用戶問題</td><td>排名後引導至真正目的頁</td></tr>
+  <tr><td>索引行為</td><td>Google 積極索引</td><td>Google 逐漸去索引</td></tr>
+  <tr><td>典型結果</td><td>長期穩定排名</td><td>短期出現，Core Update 後消失</td></tr>
+</table>
+</div>
+
+<h2>4.4 實作步驟</h2>
+<div class="flow">
+  <div class="flow-s"><div class="fi">1</div><b>選資料源</b><span>CSV、API、公開數據庫</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">2</div><b>設計模板</b><span>確保差異化邏輯充分</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">3</div><b>獨特價值</b><span>每頁至少 1 個差異化元素</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s"><div class="fi">4</div><b>Internal Link</b><span>Hub-Spoke 或 Cluster 結構</span></div>
+  <div class="flow-a">&#8594;</div>
+  <div class="flow-s" style="border-color:var(--purple-line)"><div class="fi">5</div><b>監控索引</b><span>GSC Coverage 每週檢查</span></div>
+</div>
+
+<h2>4.5 娛樂城實戰應用</h2>
+<p>競爭最激烈的灰帽戰場之一。常見的 programmatic 打法：</p>
+<div class="grid-2">
+  <div class="sk"><div class="si">評價</div><h4>「XX 娛樂城評價」頁面群</h4><p>資料源：各平台用戶評分、遊戲種類、出金速度、客服評分。每頁差異化：真實評分數據 + 優缺點分析 + 實測截圖</p></div>
+  <div class="sk"><div class="si">優惠</div><h4>「XX 優惠碼」頁面群</h4><p>資料源：各平台優惠碼資料庫，定期更新。差異化挑戰最高，因為優惠碼過期後頁面立即失去價值</p></div>
+</div>
+<div class="bx bx-w">
+  <strong>風險提示</strong> — 娛樂城 programmatic 頁面在台灣法律層面本身就是灰色地帶。Google 對此類頁面的審查標準更嚴，YMYL（Your Money Your Life）分類適用。
+</div>
+
+<div class="qz">
+  <h3>Chapter 4 Quiz</h3>
+  <div class="q">
+    <p>1. Zapier integration 頁面成功的核心原因是？</p>
+    <button class="opt" onclick="ans(this,false)">A. 頁面數量多，域名權威性高</button>
+    <button class="opt" onclick="ans(this,true)">B. 每頁的核心功能內容（workflow）是真實可用的</button>
+    <button class="opt" onclick="ans(this,false)">C. 他們有大量的 backlink 支撐</button>
+    <div class="exp">Zapier 的成功是因為每個 integration 頁面本身就是用戶需要的工具，不是單純的 SEO 文章。用戶到達後真的可以設置 integration，滿足了搜尋意圖。</div>
+  </div>
+  <div class="q">
+    <p>2. 以下哪個特徵代表一個 programmatic 頁面是 doorway page？</p>
+    <button class="opt" onclick="ans(this,false)">A. 使用資料庫自動生成</button>
+    <button class="opt" onclick="ans(this,true)">B. 頁面只換關鍵字，核心內容完全相同，用戶立即跳出</button>
+    <button class="opt" onclick="ans(this,false)">C. 頁面數量超過 1 萬頁</button>
+    <div class="exp">Doorway page 的本質是對 Google 顯示一套、對用戶顯示另一套，或者用大量相同內容的頁面佔據排名但不提供真實價值。判斷標準是用戶是否真的從這個頁面獲益。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 5: 社群與品牌操控 ====== -->
+<section class="ch" id="c5">
+<div class="hero">
+  <h1>Chapter 5</h1>
+  <p class="sub">社群與品牌操控</p>
+  <p>口碑可以建立，也可以建立得很假 — 差別在於能否被偵測</p>
+</div>
+
+<h2>5.1 多帳號社群推廣策略</h2>
+<p>在 Dcard、PTT、Facebook 社團等平台建立品牌曝光，使用多帳號製造討論熱度。</p>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Dcard 灰帽推廣操作框架</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>使用 3-5 個帳號輪流：1 個主推帳號 + 2-4 個互動帳號</li>
+      <li>互動帳號需有歷史發文記錄（至少 30 天 warming period）</li>
+      <li>主推帳號發文後，互動帳號在 2-6 小時後自然留言</li>
+      <li>每個帳號使用獨立 IP（家庭 IP 或手機 4G，避免機房 IP）</li>
+      <li>帳號個人資料需有完整的年齡、系所設定，符合 Dcard 規則</li>
+    </ul>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>PTT 推廣風險管理</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <p>PTT 社群有高度的自我審查文化，廣告味強的文章會被迅速檢舉。</p>
+    <ul>
+      <li>帳號需有 PTT 歷史（karma 積累，非新帳號）</li>
+      <li>文章以「分享體驗」為主，非廣告口吻</li>
+      <li>設置 FAQ 留言時間與 IP 錯開，避免明顯自問自答</li>
+      <li>在推文中埋入品牌名，不需要直接放連結</li>
+    </ul>
+  </div></div>
+</div>
+
+<h2>5.2 假帳號管理：關鍵技術細節</h2>
+<div class="tw">
+<table>
+  <tr><th>管理維度</th><th>低風險做法</th><th>高風險錯誤</th></tr>
+  <tr><td>IP 管理</td><td>家庭 IP、4G 輪換</td><td>數據中心 IP、代理商共享 IP</td></tr>
+  <tr><td>Profile 設計</td><td>完整個人資料、真實照片（CC授權）</td><td>空帳號、機器人頭貼</td></tr>
+  <tr><td>發文頻率</td><td>每週 1-3 次，多樣化主題</td><td>每天多次，全部相關主題</td></tr>
+  <tr><td>語言風格</td><td>自然口語、有個人特色</td><td>所有帳號相同語調</td></tr>
+  <tr><td>互動模式</td><td>對其他帖子也有互動</td><td>只互動目標帖子</td></tr>
+</table>
+</div>
+
+<h2>5.3 Google Reviews 操控</h2>
+<div class="bx bx-w">
+  <strong>高風險警告</strong> — Google 對 Google Business Profile 的假評論偵測越來越強。2023 年後 Google 開始批量刪除疑似假評，且有向帳號綁定設備和 IP 追溯的能力。被偵測後整個 GBP 可能被暫停。
+</div>
+<div class="grid-2">
+  <div class="sk"><div class="si">風險</div><h4>操控 Google Reviews 的風險</h4><p>違反 Google 服務條款。被偵測後可能影響 Local SEO 排名，GBP 被暫停影響範圍遠大於連結操控。</p></div>
+  <div class="sk"><div class="si">偵測</div><h4>Google 的偵測機制</h4><p>同 IP 批量評論、同時期大量新帳號評論、評論者與被評論地點的地理距離異常、帳號行為模式聚類分析。</p></div>
+</div>
+
+<h2>5.4 Reddit / Quora 灰帽推廣</h2>
+<p>英文市場主力戰場。兩個平台都有高 DA，被提及的連結具有 SEO 和品牌曝光雙重價值。</p>
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Reddit 灰帽策略</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>帳號 karma 需達到 100+ 才能在大多數 subreddit 發文</li>
+      <li>Subreddit 選擇：優先非行銷類、垂直領域的討論板</li>
+      <li>提供真實有用的答案，品牌連結作為附加資源而非主角</li>
+      <li>避免連續從同一帳號推廣同一品牌（會被 shadowban）</li>
+      <li>高效策略：在相關帖子的 comment 中自然提及，不自己開新帖</li>
+    </ul>
+  </div></div>
+</div>
+
+<div class="qz">
+  <h3>Chapter 5 Quiz</h3>
+  <div class="q">
+    <p>1. 多帳號社群推廣最重要的技術要求是？</p>
+    <button class="opt" onclick="ans(this,false)">A. 所有帳號使用相同 IP 以節省成本</button>
+    <button class="opt" onclick="ans(this,true)">B. 每個帳號使用獨立 IP，且帳號需有歷史預熱期</button>
+    <button class="opt" onclick="ans(this,false)">C. 帳號越多越好，數量決定效果</button>
+    <div class="exp">平台的帳號關聯偵測主要依靠 IP 和行為模式。相同 IP 的多個帳號是最明顯的關聯信號。新帳號沒有預熱期直接推廣，行為模式異常，容易觸發審查。</div>
+  </div>
+  <div class="q">
+    <p>2. 為什麼操控 Google Reviews 風險高於操控 Backlinks？</p>
+    <button class="opt" onclick="ans(this,false)">A. 假評論技術更難實施</button>
+    <button class="opt" onclick="ans(this,true)">B. 被懲罰時影響 GBP，對本地業務損傷比純 SEO 更廣泛且難恢復</button>
+    <button class="opt" onclick="ans(this,false)">C. Google Reviews 沒有影響力，不值得冒險</button>
+    <div class="exp">Backlink 懲罰通常只影響排名，且可以通過 Disavow 處理。GBP 被暫停則直接影響品牌在 Google 上的所有呈現：Local Pack、Knowledge Panel、地圖顯示，且恢復難度更高。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 6: 季節性事件驅動 ====== -->
+<section class="ch" id="c6">
+<div class="hero">
+  <h1>Chapter 6</h1>
+  <p class="sub">季節性與事件驅動灰帽</p>
+  <p>機會有時限，速度決定能否吃到這口肉</p>
+</div>
+
+<h2>6.1 事件驅動的灰帽機會窗口</h2>
+<p>週期性事件（世界盃、選舉、大型節日）會創造搜尋量暴增但競爭尚未飽和的短暫窗口。灰帽的速度優勢在這種場景最明顯。</p>
+
+<div class="stats">
+  <div class="st"><div class="n">6個月</div><div class="l">世界盃前的準備期</div></div>
+  <div class="st"><div class="n">2-3個月</div><div class="l">選舉前的黃金期</div></div>
+  <div class="st"><div class="n">30天</div><div class="l">節日前的快攻視窗</div></div>
+  <div class="st"><div class="n">7天</div><div class="l">突發事件的緊急窗口</div></div>
+</div>
+
+<h2>6.2 快攻策略組合</h2>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>過期網域 + 即時內容的組合拳</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <p>適合有時間準備的週期性事件（世界盃、奧運）：</p>
+    <ol>
+      <li>提前 3-6 個月找到相關主題的過期網域（例如上屆世界盃的球迷站）</li>
+      <li>購買並恢復部分歷史內容，讓域名重新被索引</li>
+      <li>事件前 2 個月開始發布預測性內容、球隊分析、賠率比較</li>
+      <li>事件期間爆量發布即時賽事內容，利用既有域名的 authority 快速排名</li>
+      <li>事件結束後進入撤退模式</li>
+    </ol>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>突發事件快攻（7 天內）</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <p>需要預先準備的基礎設施：</p>
+    <ul>
+      <li>維護一批「sleeping domains」——有 authority 但暫時沉寂的站</li>
+      <li>事件發生後 24 小時內發布第一批相關內容</li>
+      <li>同步啟動社群推廣（PTT/Dcard）製造討論熱度</li>
+      <li>快速獲取幾條主題相關的 T1 連結（預備好合作的連結販商）</li>
+    </ul>
+    <div class="bx bx-p" style="margin-top:.8rem">
+      <strong>前提</strong> — 突發事件快攻需要預先準備好所有基礎設施。臨時建站在突發事件窗口內根本來不及排名。
+    </div>
+  </div></div>
+</div>
+
+<h2>6.3 何時值得用灰帽快攻，何時不值得</h2>
+<div class="tw">
+<table>
+  <tr><th>情境</th><th>值得？</th><th>理由</th></tr>
+  <tr><td>世界盃博弈關鍵字，事件期間 CPC 高</td><td class="bg bg-g">值得</td><td>收益窗口明確，風險時限短</td></tr>
+  <tr><td>選舉相關內容，廣告收益</td><td class="bg bg-go">謹慎</td><td>Google 對選舉內容審查更嚴</td></tr>
+  <tr><td>節日購物關鍵字（雙 11、黑五）</td><td class="bg bg-g">值得</td><td>每年重複，ROI 可預測</td></tr>
+  <tr><td>災難或敏感事件流量</td><td class="bg bg-r">不值得</td><td>品牌風險極高，用戶反感</td></tr>
+  <tr><td>競爭對手品牌危機</td><td class="bg bg-go">謹慎</td><td>窗口短暫，需快速執行</td></tr>
+</table>
+</div>
+
+<h2>6.4 收割後退場：安全撤退方案</h2>
+<p>事件結束是最容易被忽視的階段。不處理的死站會成為 link profile 的污點。</p>
+<div class="grid-2">
+  <div class="sk"><div class="si">硬退</div><h4>硬退場（丟棄網域）</h4><p>停止續費，讓網域自然過期。缺點：網域可能被他人買走並用於惡意指向你的連結。建議先做 Disavow 處理。</p></div>
+  <div class="sk"><div class="si">軟退</div><h4>軟退場（轉為存檔站）</h4><p>保留網域但停止更新。繼續付最低成本的主機費，避免 404 大量出現，保護既有 backlink 的傳遞價值。</p></div>
+</div>
+<div class="bx bx-t">
+  <strong>退場前必做</strong> — 移除所有與主品牌的關聯（Analytics、GSC account、共用 plugin 授權）。即使你不在乎這個灰帽站，要確保它無法再關聯回你的主站。
+</div>
+
+<div class="qz">
+  <h3>Chapter 6 Quiz</h3>
+  <div class="q">
+    <p>1. 突發事件快攻的核心前提是？</p>
+    <button class="opt" onclick="ans(this,true)">A. 事前準備好「sleeping domains」和連結供應鏈，才能在窗口內行動</button>
+    <button class="opt" onclick="ans(this,false)">B. 事件發生後立即建新站，速度決定一切</button>
+    <button class="opt" onclick="ans(this,false)">C. 只需要優質內容，不需要特別準備</button>
+    <div class="exp">突發事件的窗口期很短（7-14 天）。新建的網域無法在這個時間內獲得足夠的 authority 排名。事前準備好有歷史的域名是唯一可行的快攻路徑。</div>
+  </div>
+  <div class="q">
+    <p>2. 為什麼不值得對災難事件做灰帽快攻？</p>
+    <button class="opt" onclick="ans(this,false)">A. 搜尋量不夠大，ROI 不划算</button>
+    <button class="opt" onclick="ans(this,true)">B. 品牌風險極高，用戶反感消費傷亡事件，且 Google 會加強審查</button>
+    <button class="opt" onclick="ans(this,false)">C. 技術上太難實施</button>
+    <div class="exp">某些主題不是 ROI 計算的問題，而是品牌聲譽的底線問題。即使是灰帽玩家，操作災難事件流量被發現後，對品牌的長期傷害遠超任何短期流量收益。</div>
+  </div>
+</div>
+</section>
+
+<!-- ====== Chapter 7: 生存指南 ====== -->
+<section class="ch" id="c7">
+<div class="hero">
+  <h1>Chapter 7</h1>
+  <p class="sub">灰帽生存指南</p>
+  <p>30% 恢復率是殘酷的現實 — 懂得何時放棄也是一種技能</p>
+</div>
+
+<h2>7.1 被懲罰的徵兆</h2>
+<div class="grid-2">
+  <div class="sk"><div class="si">演算</div><h4>演算法懲罰徵兆</h4>
+    <ul style="font-size:.8rem;color:var(--text2)">
+      <li>排名在 Core Update 後集體下降 20+ 位</li>
+      <li>流量呈階梯式下跌，非漸進式</li>
+      <li>主要關鍵字消失，長尾依然存在</li>
+      <li>GSC 顯示 impressions 急降但 CTR 無變化</li>
+      <li>同競爭對手相比，跌幅明顯更大</li>
+    </ul>
+  </div>
+  <div class="sk"><div class="si">手動</div><h4>手動操作徵兆</h4>
+    <ul style="font-size:.8rem;color:var(--text2)">
+      <li>GSC 「手動操作」報告有新通知</li>
+      <li>排名在非 Core Update 期間突然消失</li>
+      <li>索引頁面數量在幾天內急劇減少</li>
+      <li>Brand 關鍵字排名消失（嚴重信號）</li>
+      <li>Search Appearance 功能被移除</li>
+    </ul>
+  </div>
+</div>
+
+<h2>7.2 恢復策略</h2>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Step 1 — 診斷懲罰類型</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ul>
+      <li>檢查 GSC 手動操作報告：有通知 = 手動；無通知 = 演算法</li>
+      <li>對照 Google Core Update 日期（Semrush Sensor / Google 公告）</li>
+      <li>使用 Ahrefs 或 SEMrush 查看 backlink profile 的 toxic score 變化</li>
+      <li>排查最近 3 個月的技術 SEO 變更（頁面速度、Core Web Vitals）</li>
+    </ul>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Step 2 — 針對連結懲罰的 Disavow 流程</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ol>
+      <li>導出 GSC 完整 backlink 列表</li>
+      <li>使用 Ahrefs / Semrush 標記 toxic domains</li>
+      <li>嘗試手動聯繫移除（成功率 &lt;10%，但需有記錄）</li>
+      <li>建立 Disavow 文件（<code>domain:example.com</code> 格式）</li>
+      <li>通過 GSC Disavow Tool 提交</li>
+      <li>等待 Google 重新爬取（4-8 週）</li>
+    </ol>
+    <div class="bx bx-w" style="margin-top:.8rem">
+      <strong>注意</strong> — Disavow 是告訴 Google「請忽略這些連結」，不是刪除它們。過度 Disavow 也可能傷害本來有用的連結。對 Disavow 要謹慎，只標記明確有害的域名。
+    </div>
+  </div></div>
+</div>
+
+<div class="acc">
+  <div class="acc-h" onclick="tog(this)"><h3>Step 3 — 針對內容懲罰的恢復流程</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div>
+  <div class="acc-b"><div class="acc-c">
+    <ol>
+      <li>審查所有頁面，識別低品質 AI 內容（停留時間 &lt;30 秒的頁面）</li>
+      <li>對低品質頁面：刪除（noindex + 301 至最近相關頁面） 或 大幅改寫升級</li>
+      <li>不要讓被刪除的頁面返回 404，影響 crawl budget</li>
+      <li>提升剩餘頁面的 E-E-A-T：作者信息、外部引用、更新日期</li>
+      <li>提交重新審核（如有手動操作），或等待下次 Core Update</li>
+    </ol>
+  </div></div>
+</div>
+
+<h2>7.3 30% 恢復率的現實</h2>
+<div class="bx bx-p">
+  <strong>殘酷數據</strong> — 根據業界觀察，遭受嚴重懲罰（手動操作或演算法全站降級）的網站中，能夠完全恢復到懲罰前排名的比例低於 30%。大多數被懲罰的站即使提交重新審核，也只能部分恢復，且時間超過 6-12 個月。
+</div>
+<div class="mt"><div class="mt-top"><span>完全恢復的站</span><span>~15-20%</span></div><div class="mt-bar"><div class="mt-f gr" style="width:17%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>部分恢復（50%+ 流量回來）</span><span>~10-15%</span></div><div class="mt-bar"><div class="mt-f go" style="width:12%"></div></div></div>
+<div class="mt"><div class="mt-top"><span>無法恢復（或恢復 &lt;50%）</span><span>~70%</span></div><div class="mt-bar"><div class="mt-f r" style="width:70%"></div></div></div>
+
+<h2>7.4 何時該放棄網域重新開始</h2>
+<p>這是灰帽玩家最難做的決定，但拖著一個無法恢復的網域是最大的資源浪費。</p>
+<div class="grid-2">
+  <div class="sk"><div class="si">放棄</div><h4>應該放棄的徵兆</h4>
+    <ul style="font-size:.8rem;color:var(--text2)">
+      <li>手動操作超過 12 個月無法移除</li>
+      <li>提交重新審核 3 次以上均被拒</li>
+      <li>Brand 關鍵字依然無排名</li>
+      <li>流量恢復低於懲罰前 30%，且停滯超過 6 個月</li>
+      <li>恢復所需成本高於重建新站</li>
+    </ul>
+  </div>
+  <div class="sk"><div class="si">新站</div><h4>重新開始的準備</h4>
+    <ul style="font-size:.8rem;color:var(--text2)">
+      <li>分析舊站失敗原因，確保不重蹈覆轍</li>
+      <li>選擇全新域名，完全隔離</li>
+      <li>保留舊站最優質的內容（大幅改寫後遷移）</li>
+      <li>建立更嚴格的品質管理 SOP</li>
+      <li>設定更保守的灰帽策略邊界</li>
+    </ul>
+  </div>
+</div>
+
+<div class="divider"><span>最終行動清單</span></div>
+
+<h2>灰帽 SEO 啟動清單</h2>
+<div class="cl">
+  <label><input type="checkbox"> 建立獨立域名、主機、Analytics、GSC 帳號，完成品牌隔離</label>
+  <label><input type="checkbox"> 設定風險評估矩陣，為每個計畫中的灰帽技術評分</label>
+  <label><input type="checkbox"> 設定停損條件：哪些指標觸發立即停手</label>
+  <label><input type="checkbox"> 設定資金管理規則：灰帽預算上限與最低 ROI 門檻</label>
+  <label><input type="checkbox"> 建立 Niche Edit 供應商名單，逐一評估 traffic 和相關性</label>
+  <label><input type="checkbox"> 設計 Anchor Text 分佈計畫，確保 Exact Match &lt; 5%</label>
+  <label><input type="checkbox"> 建立連結 Velocity 追蹤表格，每月檢視增長速度</label>
+  <label><input type="checkbox"> 建立 AI 內容 Pipeline 和 12 項審核 Checklist</label>
+  <label><input type="checkbox"> 設定每篇文章最低審核時間（15-20 分鐘），並強制執行</label>
+  <label><input type="checkbox"> 每月隨機抽樣 10% 已發文章進行品質二次評分</label>
+  <label><input type="checkbox"> 如有 Programmatic SEO 計畫，確保每頁有差異化的核心內容</label>
+  <label><input type="checkbox"> 多帳號社群方案：準備帳號預熱期（至少 30 天），獨立 IP</label>
+  <label><input type="checkbox"> 建立事件日曆，提前 3-6 個月規劃季節性快攻</label>
+  <label><input type="checkbox"> 準備 Disavow 流程文件，以備緊急使用</label>
+  <label><input type="checkbox"> 設定退場條件：何種情況下放棄網域，轉向新站</label>
+</div>
+
+<div class="qz">
+  <h3>Chapter 7 Quiz</h3>
+  <div class="q">
+    <p>1. 遭受嚴重懲罰後，提交重新審核前最重要的步驟是？</p>
+    <button class="opt" onclick="ans(this,false)">A. 立即提交重新審核，越早越好</button>
+    <button class="opt" onclick="ans(this,true)">B. 先移除或改善所有引發懲罰的問題，再提交審核</button>
+    <button class="opt" onclick="ans(this,false)">C. 購買更多高品質連結抵消負面影響</button>
+    <div class="exp">在問題未解決前提交重新審核是最常見的錯誤。Google 審查員會看整站是否真的改善，而不是是否提交了申請。反覆提交未改善的申請只會增加被標記為「屢犯者」的風險。</div>
+  </div>
+  <div class="q">
+    <p>2. 什麼情況下應該放棄網域重新開始？</p>
+    <button class="opt" onclick="ans(this,false)">A. 一旦收到手動操作通知就應該放棄</button>
+    <button class="opt" onclick="ans(this,false)">B. 流量下降超過 50% 就應該放棄</button>
+    <button class="opt" onclick="ans(this,true)">C. 恢復成本超過重建成本，且超過 12 個月無實質改善時</button>
+    <div class="exp">放棄網域是商業決策，不是情緒決策。計算繼續投入 vs 重新開始的 ROI，當恢復無望且成本持續累積時，放棄是正確選擇。很多灰帽玩家因為捨不得放棄而拖延了更長時間。</div>
+  </div>
+  <div class="q">
+    <p>3. 為什麼說 Disavow Tool 需要謹慎使用？</p>
+    <button class="opt" onclick="ans(this,false)">A. Disavow 不起作用，Google 會忽略這個工具</button>
+    <button class="opt" onclick="ans(this,true)">B. 過度 Disavow 可能讓 Google 忽略本來有益的連結，造成額外排名損失</button>
+    <button class="opt" onclick="ans(this,false)">C. Disavow 會直接刪除連結，不可逆轉</button>
+    <div class="exp">Disavow 告訴 Google 「請忽略這些連結在計算 PageRank 時的影響」。如果你把本來是好的連結也 Disavow 了，就等於主動放棄這些排名資本。應只 Disavow 明確有害（Spam farm、被識別為操控）的來源。</div>
+  </div>
+</div>
+
+<div class="bx bx-p" style="margin-top:2rem">
+  <strong>結語</strong> — 灰帽 SEO 的本質是一套持續的風險管理實踐，不是一次性的技術操作。光暗之間最難的不是知道哪些技術可用，而是在每個當下判斷「這次值不值得冒這個風險」。活得最久的灰帽玩家，往往是最懂得說「不」的人。
+</div>
+</section>
+
+</main>
+
+<footer>
+  <p style="font-family:var(--head);font-size:.82rem;color:var(--purple2);margin-bottom:.3rem">中立技能書 — 灰帽 SEO 完全指南</p>
+  <p>本書內容僅供教育研究用途。所有技術操作的風險由操作者自行承擔。</p>
+</footer>
+
+<script>
+// Chapter navigation
+const chapters=document.querySelectorAll('.ch');
+const navBtns=document.querySelectorAll('.nav-btn');
+function go(i){
+  chapters.forEach((c,j)=>{c.classList.toggle('on',j===i)});
+  navBtns.forEach((b,j)=>{b.classList.toggle('on',j===i)});
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(i>0) showAch(['','Chapter 1 解鎖 — 灰帽心法','Chapter 2 解鎖 — 連結操控術','Chapter 3 解鎖 — AI 內容工廠','Chapter 4 解鎖 — Programmatic SEO','Chapter 5 解鎖 — 社群操控術','Chapter 6 解鎖 — 事件驅動灰帽','Chapter 7 解鎖 — 灰帽生存指南'][i],['','風險框架已就緒','連結武器庫已開啟','內容工廠已啟動','程式化矩陣已載入','社群情報已激活','時機感知已校準','生存手冊已解鎖'][i]);
+}
+
+// Accordion
+function tog(el){
+  const acc=el.closest('.acc');
+  acc.classList.toggle('o');
+}
+
+// Quiz
+function ans(btn,correct){
+  const q=btn.closest('.q');
+  if(q.querySelector('.ok')) return;
+  btn.classList.add(correct?'ok':'no');
+  q.querySelectorAll('.opt').forEach(o=>{if(o!==btn)o.classList.add('off')});
+  const exp=q.querySelector('.exp');
+  if(exp) exp.style.display='block';
+}
+
+// Achievement toast
+let achT;
+function showAch(title,desc){
+  const el=document.getElementById('ach');
+  document.getElementById('ach-t').textContent=title;
+  document.getElementById('ach-d').textContent=desc;
+  el.classList.add('show');
+  clearTimeout(achT);
+  achT=setTimeout(()=>el.classList.remove('show'),2800);
+}
+
+// Progress bar
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const pct=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;
+  document.getElementById('pbar').style.width=pct+'%';
+});
+
+// Animate meters on chapter load
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const bars=e.target.querySelectorAll('.mt-f');
+      bars.forEach(b=>{const w=b.style.width;b.style.width='0';setTimeout(()=>b.style.width=w,50)});
+    }
+  });
+},{threshold:.1});
+document.querySelectorAll('.ch').forEach(c=>observer.observe(c));
+</script>
+</body>
+</html>
