@@ -284,12 +284,60 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
   .acc-c{padding:.2rem .75rem 1rem}
   .layers{max-width:100%}
   table{min-width:400px}
+  .xp-wrap{display:none}
 }
+
+/* ========== XP SYSTEM ========== */
+.xp-wrap{position:fixed;top:52px;right:12px;z-index:999;display:flex;align-items:center;gap:.6rem;background:rgba(6,6,12,.9);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:10px;padding:.5rem .8rem .5rem .5rem}
+.xp-ring{width:44px;height:44px;position:relative}
+.xp-ring svg{width:44px;height:44px;transform:rotate(-90deg)}
+.xp-ring circle{fill:none;stroke-width:3}
+.xp-ring .ring-bg{stroke:rgba(255,255,255,.06)}
+.xp-ring .ring-fg{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+.xp-lv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:.8rem;font-weight:700;color:var(--gold)}
+.xp-info{display:flex;flex-direction:column;gap:.05rem}
+.xp-info .xp-label{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:.06em}
+.xp-info .xp-val{font-size:.82rem;font-weight:600;color:var(--text-h);font-family:var(--mono)}
+
+/* XP Float Text */
+.xp-float{position:fixed;right:70px;top:65px;font-family:var(--mono);font-size:.85rem;font-weight:700;color:var(--gold);pointer-events:none;opacity:0;z-index:1001}
+.xp-float.pop{animation:xpPop .9s ease-out forwards}
+@keyframes xpPop{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-40px)}}
+
+/* ========== SCROLL REVEAL ========== */
+.sr{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.sr.vis{opacity:1;transform:none}
+
+/* ========== TILT GLOW ========== */
+.tilt-glow{transition:box-shadow .3s ease}
+.tilt-glow:hover{box-shadow:0 8px 30px rgba(201,168,76,.08)}
+
+/* ========== AMBIENT ORBS ========== */
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.035}
+.orb-1{width:400px;height:400px;background:var(--gold);top:-100px;left:-100px;animation:orbFloat 20s ease-in-out infinite}
+.orb-2{width:300px;height:300px;background:var(--blue);bottom:-50px;right:-50px;animation:orbFloat 25s ease-in-out infinite reverse}
+.orb-3{width:250px;height:250px;background:var(--red);top:50%;left:50%;animation:orbFloat 18s ease-in-out infinite 5s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(30px,-20px)}50%{transform:translate(-20px,30px)}75%{transform:translate(20px,20px)}}
+
+/* ========== KEY TAKEAWAY ========== */
+.takeaway{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border:1px solid var(--gold-line);border-radius:var(--r-lg);padding:1.2rem 1.3rem;margin:2rem 0}
+.takeaway h4{color:var(--gold);margin:0 0 .6rem;font-family:var(--head);font-size:.95rem;letter-spacing:.03em}
+.takeaway ul{list-style:none;padding:0;margin:0}
+.takeaway li{padding:.3rem 0 .3rem 1.2rem;position:relative;font-size:.88rem;color:var(--text-h)}
+.takeaway li::before{content:'';position:absolute;left:0;top:.65rem;width:6px;height:6px;border-radius:50%;background:var(--gold)}
 </style>
 </head>
 <body>
 
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
 <div id="pbar-wrap"><div id="pbar"></div></div>
+
+<!-- XP System -->
+<div class="xp-wrap" id="xpWrap">
+  <div class="xp-ring"><svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="18"/><circle class="ring-fg" id="xpRing" cx="22" cy="22" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"/></svg><div class="xp-lv" id="xpLv">1</div></div>
+  <div class="xp-info"><span class="xp-label">Experience</span><span class="xp-val" id="xpVal">0 / 50 XP</span></div>
+</div>
+<div class="xp-float" id="xpFloat"></div>
 
 <nav class="nav">
   <button class="nav-btn on" onclick="go(0)">Prologue</button>
@@ -412,6 +460,11 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
   <div class="q"><p>E-E-A-T 中哪個最核心？</p><div class="opt" onclick="ans(this,1)">A. Trust</div><div class="opt" onclick="ans(this,0)">B. Experience</div><div class="opt" onclick="ans(this,0)">C. Expertise</div><div class="exp">Google 明確表示 Trust 是核心，其他三個都是建立 Trust 的方式。</div></div>
 </div>
 
+<div class="takeaway"><h4>Day 1 Key Takeaway</h4><ul>
+  <li>Google 看的是語意和意圖，不是關鍵字密度</li>
+  <li>E-E-A-T 中 Trust 是最核心的屬性</li>
+  <li>2026 品牌權威比以往任何時候都重要</li>
+</ul></div>
 <p style="text-align:center;margin-top:2rem"><button class="nav-btn" onclick="go(2)" style="padding:.6rem 1.8rem">Day 2 &rarr;</button></p>
 </section>
 
@@ -465,6 +518,11 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 </table></div>
 </div></div></div>
 
+<div class="takeaway"><h4>Day 2 Key Takeaway</h4><ul>
+  <li>長期品牌站用純白帽，不冒不必要的風險</li>
+  <li>灰帽的風險在於界線會移動 -- 今天安全明天可能違規</li>
+  <li>黑帽偵測速度從月級縮短到天級，存活期越來越短</li>
+</ul></div>
 <p style="text-align:center;margin-top:2rem"><button class="nav-btn" onclick="go(3)" style="padding:.6rem 1.8rem">Day 3 &rarr;</button></p>
 </section>
 
@@ -513,6 +571,11 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 </div>
 </div></div></div>
 
+<div class="takeaway"><h4>Day 3 Key Takeaway</h4><ul>
+  <li>SEO 是基礎層 -- 沒有它，AI 也找不到你的內容</li>
+  <li>82.5% 被 AI Overview 引用的頁面都有 Schema 結構化資料</li>
+  <li>為機器和人類同時寫作，不是二選一</li>
+</ul></div>
 <p style="text-align:center;margin-top:2rem"><button class="nav-btn" onclick="go(4)" style="padding:.6rem 1.8rem">Day 4 &rarr;</button></p>
 </section>
 
@@ -682,6 +745,12 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
   <div class="q"><p>UI/UX 如何直接影響 SEO？</p><div class="opt" onclick="ans(this,0)">A. 設計好看 Google 會給額外加分</div><div class="opt" onclick="ans(this,0)">B. 完全不影響，只是使用者體驗</div><div class="opt" onclick="ans(this,1)">C. Core Web Vitals 是排名因子，差的 UX 導致 pogo-sticking 負面信號</div><div class="exp">CWV 是正式排名因子。差的 UX 導致使用者秒退 = pogo-sticking = Google 降你的排名。</div></div>
 </div>
 
+<div class="takeaway"><h4>Day 4 Key Takeaway</h4><ul>
+  <li>灰色產業永遠做品牌隔離 -- 網域、主機、帳號全分開</li>
+  <li>季節性 SEO 至少提前 6 個月佈局，賽事開始才做 = 來不及</li>
+  <li>UI/UX 直接影響排名：Core Web Vitals + engagement signals</li>
+</ul></div>
+
 <!-- Final Checklist -->
 <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.3rem;margin-top:2rem">
   <h3 style="margin-top:0;font-size:1rem">Action Checklist</h3>
@@ -752,14 +821,165 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 
 <div class="ach" id="ach"><h4>Achievement Unlocked</h4><p id="at"></p></div>
 
+<!-- CDN Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
 <script>
-function go(n){document.querySelectorAll('.day').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nav-btn').forEach(t=>t.classList.remove('on'));document.getElementById('d'+n).classList.add('on');document.querySelectorAll('.nav-btn')[n].classList.add('on');scrollTo({top:0,behavior:'smooth'});localStorage.setItem('sd',n)}
-function tog(el){el.parentElement.classList.toggle('o')}
-function ans(el,ok){const q=el.closest('.q');if(q.dataset.done)return;q.dataset.done=1;q.querySelectorAll('.opt').forEach(o=>o.classList.add('off'));el.classList.add(ok?'ok':'no');q.querySelector('.exp').style.display='block';show(ok?'Correct — Knowledge +1':'Check explanation')}
-function show(t){const a=document.getElementById('ach');document.getElementById('at').textContent=t;a.classList.add('show');setTimeout(()=>a.classList.remove('show'),2e3)}
-function saveCl(){const c=[...document.querySelectorAll('.cl input')];localStorage.setItem('sc',JSON.stringify(c.map(x=>x.checked)));if(c.every(x=>x.checked))show('All quests complete')}
-addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight;document.getElementById('pbar').style.width=h>0?(scrollY/h*100)+'%':'0%'});
-(()=>{try{const s=localStorage.getItem('sc');if(s){const d=JSON.parse(s);document.querySelectorAll('.cl input').forEach((c,i)=>{if(d[i])c.checked=!0})}const day=localStorage.getItem('sd');if(day)go(+day)}catch(e){}})()
+/* ========== XP SYSTEM ========== */
+const XP_LEVELS=[0,50,120,200,300,420,560,720,900,1100];
+let xp=parseInt(localStorage.getItem('seo_xp'))||0;
+let openedAccs=JSON.parse(localStorage.getItem('seo_accs')||'[]');
+
+function getLevel(x){for(let i=XP_LEVELS.length-1;i>=0;i--)if(x>=XP_LEVELS[i])return i+1;return 1}
+function updateXP(){
+  const lv=getLevel(xp);
+  const cur=XP_LEVELS[lv-1]||0;
+  const next=XP_LEVELS[lv]||XP_LEVELS[XP_LEVELS.length-1]+200;
+  const pct=(xp-cur)/(next-cur);
+  const circ=113.1;
+  document.getElementById('xpLv').textContent=lv;
+  document.getElementById('xpRing').style.strokeDashoffset=circ-(circ*pct);
+  document.getElementById('xpVal').textContent=xp+' / '+next+' XP';
+  localStorage.setItem('seo_xp',xp);
+}
+function addXP(amount,reason){
+  const oldLv=getLevel(xp);
+  xp+=amount;
+  const newLv=getLevel(xp);
+  updateXP();
+  // Float text
+  const f=document.getElementById('xpFloat');
+  f.textContent='+'+amount+' XP';
+  f.classList.remove('pop');
+  void f.offsetWidth;
+  f.classList.add('pop');
+  // Level up
+  if(newLv>oldLv&&typeof confetti==='function'){
+    confetti({particleCount:120,spread:80,origin:{y:.3},colors:['#c9a84c','#dfc06a','#4a7fd9','#7ba8f0']});
+    show('LEVEL UP -- Lv.'+newLv+'!');
+  }
+}
+
+/* ========== CORE FUNCTIONS ========== */
+function go(n){
+  document.querySelectorAll('.day').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(t=>t.classList.remove('on'));
+  document.getElementById('d'+n).classList.add('on');
+  document.querySelectorAll('.nav-btn')[n].classList.add('on');
+  scrollTo({top:0,behavior:'smooth'});
+  localStorage.setItem('sd',n);
+  // Re-init scroll reveals for new day
+  setTimeout(initScrollReveal,100);
+  setTimeout(initTilt,200);
+}
+
+function tog(el){
+  const acc=el.parentElement;
+  const wasOpen=acc.classList.contains('o');
+  acc.classList.toggle('o');
+  if(!wasOpen){
+    const id=el.querySelector('h3')?.textContent||'';
+    if(!openedAccs.includes(id)){
+      openedAccs.push(id);
+      localStorage.setItem('seo_accs',JSON.stringify(openedAccs));
+      addXP(10);
+    }
+  }
+}
+
+function ans(el,ok){
+  const q=el.closest('.q');
+  if(q.dataset.done)return;
+  q.dataset.done=1;
+  q.querySelectorAll('.opt').forEach(o=>o.classList.add('off'));
+  el.classList.add(ok?'ok':'no');
+  q.querySelector('.exp').style.display='block';
+  if(ok){
+    addXP(25);
+    show('Correct -- Knowledge +1');
+    // Small confetti burst
+    if(typeof confetti==='function'){
+      const rect=el.getBoundingClientRect();
+      confetti({particleCount:30,spread:50,origin:{x:rect.left/innerWidth+.1,y:rect.top/innerHeight},colors:['#2d9d5e','#6bc992','#c9a84c']});
+    }
+  }else{
+    show('Check the explanation below');
+  }
+}
+
+function show(t){
+  const a=document.getElementById('ach');
+  document.getElementById('at').textContent=t;
+  a.classList.remove('show');
+  void a.offsetWidth;
+  a.classList.add('show');
+  setTimeout(()=>a.classList.remove('show'),2200);
+}
+
+function saveCl(){
+  const c=[...document.querySelectorAll('.cl input')];
+  localStorage.setItem('sc',JSON.stringify(c.map(x=>x.checked)));
+  if(c.every(x=>x.checked)){
+    show('All quests complete -- Master level!');
+    if(typeof confetti==='function')confetti({particleCount:150,spread:100,origin:{y:.5},colors:['#c9a84c','#dfc06a','#fff']});
+  }
+}
+
+/* ========== SCROLL PROGRESS ========== */
+addEventListener('scroll',()=>{
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('pbar').style.width=h>0?(scrollY/h*100)+'%':'0%';
+});
+
+/* ========== GSAP SCROLL REVEAL ========== */
+function initScrollReveal(){
+  if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined')return;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.getAll().forEach(t=>t.kill());
+  // Animate cards, skills, stats, phase cards, compare items
+  const els=document.querySelectorAll('.day.on .acc,.day.on .sk,.day.on .fc,.day.on .cmp,.day.on .st,.day.on .ph,.day.on .ic,.day.on .takeaway');
+  els.forEach((el,i)=>{
+    gsap.fromTo(el,{opacity:0,y:25},{opacity:1,y:0,duration:.5,delay:i*.04,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%',toggleActions:'play none none none'}});
+  });
+  // Animate stat numbers (count up)
+  document.querySelectorAll('.day.on .st .n').forEach(el=>{
+    const val=el.textContent;
+    if(/^\d+/.test(val)){
+      const num=parseInt(val);
+      const suffix=val.replace(/^\d+/,'');
+      ScrollTrigger.create({trigger:el,start:'top 90%',onEnter:()=>{
+        gsap.fromTo(el,{textContent:0},{textContent:num,duration:1,ease:'power1.out',snap:{textContent:1},onUpdate:function(){el.textContent=Math.round(gsap.getProperty(el,'textContent'))+suffix}});
+      },once:true});
+    }
+  });
+}
+
+/* ========== VANILLA TILT ========== */
+function initTilt(){
+  if(typeof VanillaTilt==='undefined')return;
+  if(window.innerWidth<768)return; // No tilt on mobile
+  document.querySelectorAll('.day.on .sk,.day.on .fc,.day.on .cmp,.day.on .ph').forEach(el=>{
+    if(el._tilt)return;
+    el._tilt=true;
+    VanillaTilt.init(el,{max:6,speed:400,glare:true,'max-glare':.08,scale:1.015});
+  });
+}
+
+/* ========== INIT ========== */
+(()=>{
+  try{
+    const s=localStorage.getItem('sc');
+    if(s){const d=JSON.parse(s);document.querySelectorAll('.cl input').forEach((c,i)=>{if(d[i])c.checked=!0})}
+    const day=localStorage.getItem('sd');
+    if(day)go(+day);
+    updateXP();
+    setTimeout(initScrollReveal,300);
+    setTimeout(initTilt,500);
+  }catch(e){}
+})();
 </script>
 </body>
 </html>
