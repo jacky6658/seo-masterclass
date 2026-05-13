@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SEO 天賦樹 — 打造你的專屬 Build</title>
+<title>SEO Talent Tree</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#06060c;--card:#0f1018;--card2:#14151f;
   --gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);--gold-line:rgba(201,168,76,.15);
   --text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;
-  --blue:#4a7fd9;--blue2:#7ba8f0;--blue-bg:rgba(74,127,217,.07);--blue-line:rgba(74,127,217,.2);
-  --red:#b83a2e;--red2:#e05a4e;--red-bg:rgba(184,58,46,.07);--red-line:rgba(184,58,46,.2);
-  --purple:#7856b8;--purple2:#a889e0;--purple-bg:rgba(120,86,184,.07);--purple-line:rgba(120,86,184,.2);
+  --blue:#4a7fd9;--blue2:#7ba8f0;--blue-bg:rgba(74,127,217,.07);
+  --red:#b83a2e;--red2:#e05a4e;--red-bg:rgba(184,58,46,.07);
+  --purple:#7856b8;--purple2:#a889e0;--purple-bg:rgba(120,86,184,.07);
   --green:#2d9d5e;--green2:#6bc992;
   --border:rgba(255,255,255,.05);
   --r:8px;--r-lg:14px;--tr:.22s ease;
@@ -20,148 +20,150 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
-body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px;min-height:100vh;background:linear-gradient(180deg,#06060c,#0a0c14,#06060c)}
-h1,h2,h3{font-family:var(--head);color:var(--gold);font-weight:700}
-h1{font-size:clamp(1.4rem,3vw,2.2rem);text-align:center;margin-bottom:.5rem}
-h2{font-size:1.15rem;margin:2rem 0 .8rem;text-align:center}
-h4{color:var(--text-h);font-weight:600;font-size:.9rem;margin:.5rem 0 .3rem}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px;min-height:100vh;overflow-x:hidden}
+h1{font-family:var(--head);color:var(--gold);font-size:clamp(1.3rem,3vw,2rem);text-align:center;margin-bottom:.3rem}
+h2{font-family:var(--head);color:var(--gold);font-size:1.05rem;text-align:center;margin:1.5rem 0 .8rem}
+h3{font-family:var(--head);font-size:.9rem}
+h4{color:var(--text-h);font-weight:600;font-size:.85rem;margin:.5rem 0 .3rem}
 a{color:var(--gold);text-decoration:none}
 ::selection{background:rgba(201,168,76,.25);color:#fff}
-::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
 
-.wrap{max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.wrap{max-width:1000px;margin:0 auto;padding:1rem .8rem 3rem}
 
-/* Hero */
-.hero{text-align:center;padding:2.5rem 1rem 2rem;margin-bottom:1.5rem;border-radius:var(--r-lg);border:1px solid var(--border);background:linear-gradient(135deg,rgba(201,168,76,.04),rgba(74,127,217,.03),rgba(184,58,46,.03))}
-.hero p{color:var(--text2);font-size:.88rem;max-width:500px;margin:.3rem auto 0}
-.hero .sub{color:var(--gold);font-style:italic;font-size:.9rem;font-family:var(--head)}
+/* ========== HERO ========== */
+.hero{text-align:center;padding:2rem 1rem 1.5rem;margin-bottom:1rem;border-radius:var(--r-lg);border:1px solid var(--border);background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,.04),transparent 60%)}
+.hero p{color:var(--text2);font-size:.85rem;max-width:460px;margin:.2rem auto 0}
+.hero .sub{color:var(--gold);font-family:var(--head);font-size:.88rem;font-style:italic}
 
-/* Points Counter */
-.pts{display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
-.pt{text-align:center;padding:.8rem 1.2rem;background:var(--card);border-radius:var(--r);border:1px solid var(--border);min-width:100px}
-.pt .pn{font-size:1.8rem;font-weight:900;font-family:var(--head)}
-.pt .pl{font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
-.pt.pt-w .pn{color:var(--blue2)}
-.pt.pt-g .pn{color:var(--purple2)}
-.pt.pt-b .pn{color:var(--red2)}
-.pt.pt-r .pn{color:var(--gold)}
+/* ========== POINTS HUD ========== */
+.hud{display:flex;justify-content:center;gap:.6rem;margin:1rem 0;flex-wrap:wrap;position:sticky;top:0;z-index:100;background:rgba(6,6,12,.92);backdrop-filter:blur(12px);padding:.6rem .5rem;border-radius:0 0 var(--r) var(--r);border-bottom:1px solid var(--border)}
+.hud-item{text-align:center;min-width:55px}
+.hud-item .hv{font-size:1.3rem;font-weight:900;font-family:var(--head);line-height:1}
+.hud-item .hl{font-size:.58rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05em}
+.hud-item.hw .hv{color:var(--blue2)}
+.hud-item.hg .hv{color:var(--purple2)}
+.hud-item.hb .hv{color:var(--red2)}
+.hud-item.hr .hv{color:var(--gold)}
+.hud-reset{padding:.25rem .7rem;background:none;border:1px solid var(--border);color:var(--text2);border-radius:4px;cursor:pointer;font-size:.68rem;font-family:var(--body);transition:var(--tr);align-self:center}
+.hud-reset:hover{border-color:var(--gold-line);color:var(--gold)}
 
-/* Reset Button */
-.reset-btn{display:block;margin:1rem auto;padding:.4rem 1.2rem;background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:5px;cursor:pointer;font-family:var(--body);font-size:.78rem;transition:var(--tr)}
-.reset-btn:hover{border-color:var(--gold-line);color:var(--gold)}
+/* ========== SVG TALENT TREE ========== */
+.tree-wrap{position:relative;width:100%;overflow-x:auto;padding:1rem 0}
+.tree-svg{display:block;margin:0 auto}
 
-/* Talent Columns */
-.trees{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.5rem 0}
+/* Talent node circles */
+.tnode{cursor:pointer;transition:all .3s ease}
+.tnode circle.node-bg{fill:var(--card);stroke:rgba(255,255,255,.1);stroke-width:2;transition:all .3s}
+.tnode:hover circle.node-bg{stroke:rgba(255,255,255,.25)}
+.tnode.active circle.node-bg{stroke-width:3}
+.tnode.active.tw circle.node-bg{fill:rgba(74,127,217,.15);stroke:var(--blue2)}
+.tnode.active.tg circle.node-bg{fill:rgba(120,86,184,.15);stroke:var(--purple2)}
+.tnode.active.tb circle.node-bg{fill:rgba(184,58,46,.15);stroke:var(--red2)}
 
-.tree{border-radius:var(--r-lg);padding:1rem .8rem;border:1px solid var(--border)}
-.tree.t-w{background:linear-gradient(180deg,rgba(74,127,217,.04),var(--card) 30%);border-color:rgba(74,127,217,.1)}
-.tree.t-g{background:linear-gradient(180deg,rgba(120,86,184,.04),var(--card) 30%);border-color:rgba(120,86,184,.1)}
-.tree.t-b{background:linear-gradient(180deg,rgba(184,58,46,.04),var(--card) 30%);border-color:rgba(184,58,46,.1)}
+/* Glow effect */
+.tnode.active .node-glow{opacity:1}
+.node-glow{opacity:0;transition:opacity .5s}
 
-.tree-head{text-align:center;margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
-.tree-head h3{font-size:.92rem;margin:0}
-.tree.t-w .tree-head h3{color:var(--blue2)}
-.tree.t-g .tree-head h3{color:var(--purple2)}
-.tree.t-b .tree-head h3{color:var(--red2)}
-.tree-head small{font-size:.68rem;color:var(--text2)}
+/* Node label */
+.tnode text.node-label{fill:var(--text2);font-family:var(--mono);font-size:11px;text-anchor:middle;pointer-events:none;transition:fill .3s}
+.tnode.active text.node-label{fill:#fff}
+.tnode text.node-name{fill:var(--text);font-family:var(--body);font-size:10px;text-anchor:middle;pointer-events:none}
+.tnode.active.tw text.node-name{fill:var(--blue2)}
+.tnode.active.tg text.node-name{fill:var(--purple2)}
+.tnode.active.tb text.node-name{fill:var(--red2)}
 
-/* Talent Node */
-.tn{display:flex;align-items:center;gap:.6rem;padding:.55rem .5rem;margin:.3rem 0;border-radius:var(--r);border:1px solid var(--border);cursor:pointer;transition:var(--tr);user-select:none;-webkit-user-select:none}
-.tn:hover{background:rgba(255,255,255,.02)}
-.tn.active{border-color:var(--gold-line);background:var(--gold-dim)}
-.tree.t-w .tn.active{border-color:var(--blue-line);background:var(--blue-bg)}
-.tree.t-g .tn.active{border-color:var(--purple-line);background:var(--purple-bg)}
-.tree.t-b .tn.active{border-color:var(--red-line);background:var(--red-bg)}
+/* Connection lines */
+.conn{stroke:rgba(255,255,255,.06);stroke-width:1.5;fill:none;transition:stroke .3s}
+.conn.active{stroke-width:2}
+.conn.active.cw{stroke:rgba(74,127,217,.3)}
+.conn.active.cg{stroke:rgba(120,86,184,.3)}
+.conn.active.cb{stroke:rgba(184,58,46,.3)}
 
-.tn-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.72rem;font-family:var(--mono);flex-shrink:0;border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--text2);transition:var(--tr)}
-.tn.active .tn-icon{color:#fff}
-.tree.t-w .tn.active .tn-icon{background:var(--blue);border-color:var(--blue)}
-.tree.t-g .tn.active .tn-icon{background:var(--purple);border-color:var(--purple)}
-.tree.t-b .tn.active .tn-icon{background:var(--red);border-color:var(--red)}
+/* Faction labels */
+.faction-label{font-family:var(--head);font-size:13px;text-anchor:middle;letter-spacing:.1em}
 
-.tn-info{flex:1;min-width:0}
-.tn-info b{display:block;font-size:.78rem;color:var(--text-h);line-height:1.2}
-.tn-info span{display:block;font-size:.66rem;color:var(--text2);line-height:1.3;margin-top:.1rem}
+/* ========== TOOLTIP ========== */
+.tip{position:fixed;z-index:200;background:var(--card2);border:1px solid var(--gold-line);border-radius:var(--r);padding:.7rem .9rem;max-width:260px;pointer-events:none;opacity:0;transition:opacity .2s;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.tip.show{opacity:1}
+.tip h4{color:var(--gold);margin:0 0 .25rem;font-size:.8rem}
+.tip p{font-size:.72rem;color:var(--text);margin:0;line-height:1.4}
+.tip .tip-tag{font-family:var(--mono);font-size:.62rem;color:var(--text2);margin-top:.3rem;display:block}
 
-/* Connector lines between nodes */
-.tn-connect{width:1px;height:8px;background:var(--border);margin:0 auto;display:block}
+/* ========== BUILD RESULT ========== */
+.build{margin:1.5rem 0;border-radius:var(--r-lg);border:1px solid var(--gold-line);overflow:hidden;background:var(--card)}
+.build-head{padding:.8rem 1rem;background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.build-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:900;font-family:var(--head);background:var(--gold-dim);color:var(--gold);border:2px solid var(--gold-line);flex-shrink:0}
+.build-title{flex:1;min-width:150px}
+.build-title h3{margin:0;font-size:.95rem;color:var(--gold)}
+.build-title small{color:var(--text2);font-size:.72rem}
+.build-body{padding:1rem}
 
-/* Build Result */
-.build{margin:2rem 0;border-radius:var(--r-lg);border:1px solid var(--gold-line);overflow:hidden;transition:var(--tr)}
-.build-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem}
-.build-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;font-family:var(--head);background:var(--gold-dim);color:var(--gold);border:2px solid var(--gold-line);flex-shrink:0}
-.build-title{flex:1}
-.build-title h3{margin:0;font-size:1.05rem;color:var(--gold)}
-.build-title small{color:var(--text2);font-size:.75rem}
-.build-body{padding:1.2rem}
-.build-body p{font-size:.87rem;margin:.3rem 0}
+/* Meters */
+.meters{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:.5rem 0}
+.meter-card{text-align:center;padding:.6rem;background:rgba(255,255,255,.015);border-radius:var(--r);border:1px solid var(--border)}
+.meter-card .mc-label{font-size:.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:.04em}
+.meter-ring{width:60px;height:60px;margin:.3rem auto}
+.meter-ring svg{width:60px;height:60px;transform:rotate(-90deg)}
+.meter-ring circle{fill:none;stroke-width:4}
+.meter-ring .mr-bg{stroke:rgba(255,255,255,.04)}
+.meter-ring .mr-fg{stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.meter-ring .mr-val{font-family:var(--head);font-size:.8rem;font-weight:700}
 
-.build-strat{margin-top:1rem}
-.build-strat h4{color:var(--gold);font-size:.85rem;margin-bottom:.5rem}
-.strat-item{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;font-size:.82rem}
-.strat-item .si{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem}
+/* Strategy items */
+.strats{margin:.8rem 0}
+.strat{display:flex;gap:.4rem;padding:.3rem 0;font-size:.8rem;align-items:flex-start}
+.strat-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.4rem}
 
-.build-meter{margin-top:1rem}
-.bm{margin:.4rem 0}
-.bm-top{display:flex;justify-content:space-between;font-size:.72rem;margin-bottom:.15rem}
-.bm-bar{height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
-.bm-fill{height:100%;border-radius:3px;transition:width .5s ease}
-.bm-fill.bf-w{background:var(--blue2)}.bm-fill.bf-g{background:var(--purple2)}.bm-fill.bf-b{background:var(--red2)}
-.bm-fill.bf-safe{background:var(--green2)}.bm-fill.bf-speed{background:var(--gold2)}.bm-fill.bf-risk{background:var(--red2)}
-
-/* Preset Builds */
-.presets{margin:2rem 0}
-.presets h2{margin-bottom:1rem}
-.preset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem}
-.preset{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.8rem;cursor:pointer;transition:var(--tr);text-align:center}
-.preset:hover{border-color:var(--gold-line);transform:translateY(-2px)}
-.preset h4{color:var(--gold);margin:0 0 .2rem;font-size:.82rem}
-.preset .pp{font-family:var(--mono);font-size:.72rem;color:var(--text2)}
-.preset small{font-size:.68rem;color:var(--text2);display:block;margin-top:.25rem}
-
-/* ========== PROMPT MODAL ========== */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;justify-content:center;align-items:center;padding:1rem}
-.modal-overlay.show{display:flex}
-.modal{background:var(--card2);border:1px solid var(--gold-line);border-radius:var(--r-lg);max-width:600px;width:100%;max-height:85vh;overflow-y:auto;padding:0}
-.modal-head{padding:.8rem 1.2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.modal-head h3{margin:0;font-size:.95rem;color:var(--gold)}
-.modal-close{background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.2rem;padding:.2rem .5rem;transition:var(--tr)}
-.modal-close:hover{color:var(--text-h)}
-.modal-body{padding:1.2rem}
-.modal-body p{font-size:.85rem;margin:.3rem 0;color:var(--text2)}
-
-.prompt-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.9rem;margin:.8rem 0;font-family:var(--mono);font-size:.78rem;line-height:1.6;color:var(--text-h);white-space:pre-wrap;word-break:break-word;position:relative;max-height:300px;overflow-y:auto}
-.copy-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .8rem;background:var(--gold-dim);border:1px solid var(--gold-line);border-radius:5px;color:var(--gold);cursor:pointer;font-family:var(--body);font-size:.75rem;transition:var(--tr);margin-top:.5rem}
+/* Combo prompt */
+.combo{margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--border)}
+.combo h4{color:var(--gold);font-size:.82rem;margin-bottom:.4rem}
+.prompt-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.7rem;font-family:var(--mono);font-size:.72rem;line-height:1.55;color:var(--text-h);white-space:pre-wrap;word-break:break-word;max-height:250px;overflow-y:auto}
+.copy-btn{display:inline-block;padding:.3rem .7rem;background:var(--gold-dim);border:1px solid var(--gold-line);border-radius:4px;color:var(--gold);cursor:pointer;font-family:var(--body);font-size:.7rem;transition:var(--tr);margin-top:.4rem}
 .copy-btn:hover{background:rgba(201,168,76,.15)}
 .copy-btn.copied{color:var(--green2);border-color:rgba(45,157,94,.3)}
 
-/* ========== COMBINED PROMPT ========== */
-.combo-prompt{margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
-.combo-prompt h4{color:var(--gold);font-size:.88rem;margin-bottom:.5rem}
+/* Presets */
+.presets{margin:1.5rem 0}
+.preset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem}
+.preset{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.6rem;cursor:pointer;transition:var(--tr);text-align:center}
+.preset:hover{border-color:var(--gold-line);transform:translateY(-2px)}
+.preset h4{color:var(--gold);margin:0 0 .15rem;font-size:.78rem;font-family:var(--head)}
+.preset .pp{font-family:var(--mono);font-size:.65rem;color:var(--text2)}
+.preset small{font-size:.62rem;color:var(--text2)}
 
-footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;border-top:1px solid var(--border)}
+/* Mermaid diagram */
+.diagram{margin:1.5rem 0;background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:1rem;overflow-x:auto}
+.diagram h4{text-align:center;color:var(--gold);margin-bottom:.8rem;font-size:.85rem}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;justify-content:center;align-items:center;padding:1rem}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card2);border:1px solid var(--gold-line);border-radius:var(--r-lg);max-width:560px;width:100%;max-height:80vh;overflow-y:auto}
+.modal-head{padding:.7rem 1rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{margin:0;font-size:.88rem;color:var(--gold)}
+.modal-close{background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.1rem;padding:.2rem .4rem}
+.modal-body{padding:1rem}
+.modal-body>p{font-size:.8rem;color:var(--text2);margin:.2rem 0 .6rem}
+
+footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;border-top:1px solid var(--border)}
 
 @media(max-width:768px){
-  .trees{grid-template-columns:1fr}
-  .pts{gap:.8rem}
-  .pt{min-width:70px;padding:.6rem .8rem}
-  .pt .pn{font-size:1.4rem}
-  .preset-grid{grid-template-columns:1fr 1fr}
+  .tree-svg{width:100%;height:auto}
+  .meters{grid-template-columns:repeat(3,1fr)}
+  .preset-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:480px){
-  .wrap{padding:1rem .6rem 2rem}
-  .hero{padding:1.8rem .8rem 1.5rem}
-  h1{font-size:1.2rem}
-  .pts{gap:.5rem}
-  .pt{min-width:60px;padding:.5rem .6rem}
-  .pt .pn{font-size:1.2rem}
-  .tn{padding:.45rem .4rem;gap:.45rem}
-  .tn-icon{width:28px;height:28px;font-size:.65rem}
-  .tn-info b{font-size:.72rem}
-  .tn-info span{font-size:.62rem}
-  .build-head{flex-direction:column;text-align:center;gap:.5rem}
-  .build-icon{width:44px;height:44px;font-size:1.1rem}
-  .preset-grid{grid-template-columns:1fr}
+  .wrap{padding:.8rem .5rem 2rem}
+  .hero{padding:1.5rem .8rem 1.2rem}
+  .hud{gap:.35rem;padding:.4rem .3rem}
+  .hud-item{min-width:42px}
+  .hud-item .hv{font-size:1rem}
+  .meters{grid-template-columns:1fr 1fr 1fr}
+  .meter-ring{width:50px;height:50px}
+  .meter-ring svg{width:50px;height:50px}
+  .preset-grid{grid-template-columns:1fr 1fr}
+  .build-head{flex-direction:column;text-align:center;gap:.4rem}
 }
 </style>
 </head>
@@ -170,100 +172,245 @@ footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;b
 
 <div class="hero">
   <h1>SEO Talent Tree</h1>
-  <p class="sub">打造你的專屬 Build</p>
-  <p>你有 10 點天賦點數。分配到白帽、灰帽、黑帽技能中，看看你的最佳戰鬥策略是什麼。</p>
+  <p class="sub">Choose Your Path</p>
+  <p>10 點天賦，三大陣營。點亮技能，產出你的專屬 AI 戰略 Prompt。</p>
 </div>
 
-<!-- Points Display -->
-<div class="pts">
-  <div class="pt pt-r"><div class="pn" id="ptRemain">10</div><div class="pl">剩餘點數</div></div>
-  <div class="pt pt-w"><div class="pn" id="ptW">0</div><div class="pl">White</div></div>
-  <div class="pt pt-g"><div class="pn" id="ptG">0</div><div class="pl">Grey</div></div>
-  <div class="pt pt-b"><div class="pn" id="ptB">0</div><div class="pl">Black</div></div>
-</div>
-<button class="reset-btn" onclick="resetAll()">Reset All Points</button>
-
-<!-- Three Talent Trees -->
-<div class="trees">
-
-<!-- WHITE HAT TREE -->
-<div class="tree t-w">
-  <div class="tree-head"><h3>Alliance / White</h3><small>穩定 / 長期 / 合規</small></div>
-  <div class="tn" data-f="w" data-id="w1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>Technical SEO</b><span>robots / sitemap / canonical / HTTPS</span></div></div>
-  <div class="tn" data-f="w" data-id="w2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>Core Web Vitals</b><span>LCP / INP / CLS 優化</span></div></div>
-  <div class="tn" data-f="w" data-id="w3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>Content Strategy</b><span>Topic Cluster / E-E-A-T / 搜尋意圖</span></div></div>
-  <div class="tn" data-f="w" data-id="w4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Natural Link Building</b><span>Linkable Asset / Guest Post / Digital PR</span></div></div>
-  <div class="tn" data-f="w" data-id="w5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>Schema Mastery</b><span>JSON-LD / Rich Results / AEO 優化</span></div></div>
-  <div class="tn" data-f="w" data-id="w6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Advanced White</b><span>Log Analysis / Content Pruning / A/B Test</span></div></div>
-  <div class="tn" data-f="w" data-id="w7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Brand Authority</b><span>Entity SEO / Knowledge Panel / 品牌搜尋</span></div></div>
+<!-- HUD -->
+<div class="hud">
+  <div class="hud-item hr"><div class="hv" id="ptR">10</div><div class="hl">Remain</div></div>
+  <div class="hud-item hw"><div class="hv" id="ptW">0</div><div class="hl">White</div></div>
+  <div class="hud-item hg"><div class="hv" id="ptG">0</div><div class="hl">Grey</div></div>
+  <div class="hud-item hb"><div class="hv" id="ptB">0</div><div class="hl">Black</div></div>
+  <button class="hud-reset" onclick="resetAll()">Reset</button>
 </div>
 
-<!-- GREY HAT TREE -->
-<div class="tree t-g">
-  <div class="tree-head"><h3>Neutral / Grey</h3><small>風險管理 / 加速 / 邊界</small></div>
-  <div class="tn" data-f="g" data-id="g1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>Niche Edit</b><span>在真實文章中購買連結位</span></div></div>
-  <div class="tn" data-f="g" data-id="g2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>AI Content Pipeline</b><span>AI 生成 + 人工審核精修</span></div></div>
-  <div class="tn" data-f="g" data-id="g3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>301 Redirect Stack</b><span>過期高 DA 域名收購傳權重</span></div></div>
-  <div class="tn" data-f="g" data-id="g4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Programmatic SEO</b><span>資料庫 + 模板批量生成頁面</span></div></div>
-  <div class="tn" data-f="g" data-id="g5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>Social Engineering</b><span>多帳號社群推廣 / 口碑操控</span></div></div>
-  <div class="tn" data-f="g" data-id="g6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Parasite SEO</b><span>借高權重平台排名（Medium/GitHub）</span></div></div>
-  <div class="tn" data-f="g" data-id="g7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Seasonal Blitz</b><span>季節性事件快攻（世界盃/選舉）</span></div></div>
+<!-- SVG TALENT TREE -->
+<div class="tree-wrap">
+<svg class="tree-svg" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background grid dots -->
+  <pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+    <circle cx="15" cy="15" r=".5" fill="rgba(255,255,255,.03)"/>
+  </pattern>
+  <rect width="900" height="620" fill="url(#dots)"/>
+
+  <!-- Faction zones -->
+  <rect x="20" y="60" width="270" height="540" rx="14" fill="rgba(74,127,217,.02)" stroke="rgba(74,127,217,.08)" stroke-width="1"/>
+  <rect x="315" y="60" width="270" height="540" rx="14" fill="rgba(120,86,184,.02)" stroke="rgba(120,86,184,.08)" stroke-width="1"/>
+  <rect x="610" y="60" width="270" height="540" rx="14" fill="rgba(184,58,46,.02)" stroke="rgba(184,58,46,.08)" stroke-width="1"/>
+
+  <!-- Faction titles -->
+  <text x="155" y="45" class="faction-label" fill="#7ba8f0">ALLIANCE / WHITE</text>
+  <text x="450" y="45" class="faction-label" fill="#a889e0">NEUTRAL / GREY</text>
+  <text x="745" y="45" class="faction-label" fill="#e05a4e">HORDE / BLACK</text>
+
+  <!-- Connection lines WHITE -->
+  <line class="conn" id="lw12" x1="155" y1="140" x2="155" y2="180"/>
+  <line class="conn" id="lw23" x1="155" y1="220" x2="155" y2="260"/>
+  <line class="conn" id="lw34" x1="155" y1="300" x2="155" y2="340"/>
+  <line class="conn" id="lw45" x1="155" y1="380" x2="155" y2="420"/>
+  <line class="conn" id="lw56" x1="155" y1="460" x2="155" y2="500"/>
+  <line class="conn" id="lw67" x1="155" y1="540" x2="155" y2="570"/>
+
+  <!-- Connection lines GREY -->
+  <line class="conn" id="lg12" x1="450" y1="140" x2="450" y2="180"/>
+  <line class="conn" id="lg23" x1="450" y1="220" x2="450" y2="260"/>
+  <line class="conn" id="lg34" x1="450" y1="300" x2="450" y2="340"/>
+  <line class="conn" id="lg45" x1="450" y1="380" x2="450" y2="420"/>
+  <line class="conn" id="lg56" x1="450" y1="460" x2="450" y2="500"/>
+  <line class="conn" id="lg67" x1="450" y1="540" x2="450" y2="570"/>
+
+  <!-- Connection lines BLACK -->
+  <line class="conn" id="lb12" x1="745" y1="140" x2="745" y2="180"/>
+  <line class="conn" id="lb23" x1="745" y1="220" x2="745" y2="260"/>
+  <line class="conn" id="lb34" x1="745" y1="300" x2="745" y2="340"/>
+  <line class="conn" id="lb45" x1="745" y1="380" x2="745" y2="420"/>
+  <line class="conn" id="lb56" x1="745" y1="460" x2="745" y2="500"/>
+  <line class="conn" id="lb67" x1="745" y1="540" x2="745" y2="570"/>
+
+  <!-- Cross-faction lines (faint) -->
+  <line class="conn" x1="195" y1="200" x2="410" y2="200" stroke-dasharray="4 4" style="stroke:rgba(255,255,255,.03)"/>
+  <line class="conn" x1="490" y1="200" x2="705" y2="200" stroke-dasharray="4 4" style="stroke:rgba(255,255,255,.03)"/>
+
+  <!-- WHITE NODES -->
+  <g class="tnode tw" data-id="w1" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="120" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8" filter="url(#blur)"/>
+    <circle class="node-bg" cx="155" cy="120" r="24"/>
+    <text class="node-label" x="155" y="118" dy=".1em">T1</text>
+    <text class="node-name" x="155" y="155">Tech SEO</text>
+  </g>
+  <g class="tnode tw" data-id="w2" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="200" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="155" cy="200" r="24"/>
+    <text class="node-label" x="155" y="198" dy=".1em">T2</text>
+    <text class="node-name" x="155" y="235">CWV</text>
+  </g>
+  <g class="tnode tw" data-id="w3" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="280" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="155" cy="280" r="24"/>
+    <text class="node-label" x="155" y="278" dy=".1em">T3</text>
+    <text class="node-name" x="155" y="315">Content</text>
+  </g>
+  <g class="tnode tw" data-id="w4" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="360" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="155" cy="360" r="24"/>
+    <text class="node-label" x="155" y="358" dy=".1em">T4</text>
+    <text class="node-name" x="155" y="395">Links</text>
+  </g>
+  <g class="tnode tw" data-id="w5" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="440" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="155" cy="440" r="24"/>
+    <text class="node-label" x="155" y="438" dy=".1em">T5</text>
+    <text class="node-name" x="155" y="475">Schema</text>
+  </g>
+  <g class="tnode tw" data-id="w6" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="520" r="30" fill="none" stroke="rgba(74,127,217,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="155" cy="520" r="24"/>
+    <text class="node-label" x="155" y="518" dy=".1em">T6</text>
+    <text class="node-name" x="155" y="555">Advanced</text>
+  </g>
+  <g class="tnode tw" data-id="w7" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="155" cy="590" r="26" fill="none" stroke="rgba(74,127,217,.3)" stroke-width="10"/>
+    <circle class="node-bg" cx="155" cy="590" r="24" style="stroke-width:2.5"/>
+    <text class="node-label" x="155" y="588" dy=".1em" style="font-size:10px">ULT</text>
+    <text class="node-name" x="155" y="622" style="font-size:9px">Brand Authority</text>
+  </g>
+
+  <!-- GREY NODES -->
+  <g class="tnode tg" data-id="g1" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="120" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="120" r="24"/>
+    <text class="node-label" x="450" y="118" dy=".1em">T1</text>
+    <text class="node-name" x="450" y="155">Niche Edit</text>
+  </g>
+  <g class="tnode tg" data-id="g2" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="200" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="200" r="24"/>
+    <text class="node-label" x="450" y="198" dy=".1em">T2</text>
+    <text class="node-name" x="450" y="235">AI Pipeline</text>
+  </g>
+  <g class="tnode tg" data-id="g3" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="280" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="280" r="24"/>
+    <text class="node-label" x="450" y="278" dy=".1em">T3</text>
+    <text class="node-name" x="450" y="315">301 Stack</text>
+  </g>
+  <g class="tnode tg" data-id="g4" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="360" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="360" r="24"/>
+    <text class="node-label" x="450" y="358" dy=".1em">T4</text>
+    <text class="node-name" x="450" y="395">Programmatic</text>
+  </g>
+  <g class="tnode tg" data-id="g5" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="440" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="440" r="24"/>
+    <text class="node-label" x="450" y="438" dy=".1em">T5</text>
+    <text class="node-name" x="450" y="475">Social Eng.</text>
+  </g>
+  <g class="tnode tg" data-id="g6" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="520" r="30" fill="none" stroke="rgba(120,86,184,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="450" cy="520" r="24"/>
+    <text class="node-label" x="450" y="518" dy=".1em">T6</text>
+    <text class="node-name" x="450" y="555">Parasite</text>
+  </g>
+  <g class="tnode tg" data-id="g7" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="450" cy="590" r="26" fill="none" stroke="rgba(120,86,184,.3)" stroke-width="10"/>
+    <circle class="node-bg" cx="450" cy="590" r="24" style="stroke-width:2.5"/>
+    <text class="node-label" x="450" y="588" dy=".1em" style="font-size:10px">ULT</text>
+    <text class="node-name" x="450" y="622" style="font-size:9px">Seasonal Blitz</text>
+  </g>
+
+  <!-- BLACK NODES -->
+  <g class="tnode tb" data-id="b1" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="120" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="120" r="24"/>
+    <text class="node-label" x="745" y="118" dy=".1em">T1</text>
+    <text class="node-name" x="745" y="155">PBN Intel</text>
+  </g>
+  <g class="tnode tb" data-id="b2" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="200" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="200" r="24"/>
+    <text class="node-label" x="745" y="198" dy=".1em">T2</text>
+    <text class="node-name" x="745" y="235">Cloaking Def</text>
+  </g>
+  <g class="tnode tb" data-id="b3" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="280" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="280" r="24"/>
+    <text class="node-label" x="745" y="278" dy=".1em">T3</text>
+    <text class="node-name" x="745" y="315">Link Manip.</text>
+  </g>
+  <g class="tnode tb" data-id="b4" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="360" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="360" r="24"/>
+    <text class="node-label" x="745" y="358" dy=".1em">T4</text>
+    <text class="node-name" x="745" y="395">Spam Detect</text>
+  </g>
+  <g class="tnode tb" data-id="b5" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="440" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="440" r="24"/>
+    <text class="node-label" x="745" y="438" dy=".1em">T5</text>
+    <text class="node-name" x="745" y="475">SpamBrain</text>
+  </g>
+  <g class="tnode tb" data-id="b6" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="520" r="30" fill="none" stroke="rgba(184,58,46,.2)" stroke-width="8"/>
+    <circle class="node-bg" cx="745" cy="520" r="24"/>
+    <text class="node-label" x="745" y="518" dy=".1em">T6</text>
+    <text class="node-name" x="745" y="555">Recovery</text>
+  </g>
+  <g class="tnode tb" data-id="b7" onclick="toggle(this)" onmouseenter="showTip(event,this)" onmouseleave="hideTip()">
+    <circle class="node-glow" cx="745" cy="590" r="26" fill="none" stroke="rgba(184,58,46,.3)" stroke-width="10"/>
+    <circle class="node-bg" cx="745" cy="590" r="24" style="stroke-width:2.5"/>
+    <text class="node-label" x="745" y="588" dy=".1em" style="font-size:10px">ULT</text>
+    <text class="node-name" x="745" y="622" style="font-size:9px">Security</text>
+  </g>
+</svg>
 </div>
 
-<!-- BLACK HAT TREE -->
-<div class="tree t-b">
-  <div class="tree-head"><h3>Horde / Black</h3><small>高風險 / 短期 / 防禦知識</small></div>
-  <div class="tn" data-f="b" data-id="b1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>PBN Network</b><span>私人部落格網路（了解偵測方式）</span></div></div>
-  <div class="tn" data-f="b" data-id="b2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>Cloaking</b><span>偽裝術原理與反制方式</span></div></div>
-  <div class="tn" data-f="b" data-id="b3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>Link Manipulation</b><span>Link Farm / Negative SEO 防禦</span></div></div>
-  <div class="tn" data-f="b" data-id="b4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Content Spam</b><span>Doorway / Scraping / AI 垃圾偵測</span></div></div>
-  <div class="tn" data-f="b" data-id="b5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>SpamBrain Intel</b><span>深度理解 Google 反垃圾系統</span></div></div>
-  <div class="tn" data-f="b" data-id="b6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Penalty Recovery</b><span>懲罰辨識 / Disavow / 恢復 SOP</span></div></div>
-  <div class="tn" data-f="b" data-id="b7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Security Hardening</b><span>防駭 / 防注入 / 監控系統</span></div></div>
-</div>
+<!-- Tooltip -->
+<div class="tip" id="tip"><h4 id="tipTitle"></h4><p id="tipDesc"></p><span class="tip-tag" id="tipTag"></span></div>
 
-</div>
-
-<!-- Build Result -->
+<!-- BUILD RESULT -->
 <div class="build" id="buildResult">
   <div class="build-head">
     <div class="build-icon" id="buildIcon">?</div>
-    <div class="build-title"><h3 id="buildName">-- 選擇你的天賦 --</h3><small id="buildSpec">分配點數後顯示你的 Build</small></div>
+    <div class="build-title"><h3 id="buildName">-- Select Talents --</h3><small id="buildSpec">Point your skills to reveal your Build</small></div>
   </div>
   <div class="build-body">
-    <div class="build-meter">
-      <div class="bm"><div class="bm-top"><span>安全度</span><span id="bmSafe">-</span></div><div class="bm-bar"><div class="bm-fill bf-safe" id="bmSafeBar" style="width:0%"></div></div></div>
-      <div class="bm"><div class="bm-top"><span>見效速度</span><span id="bmSpeed">-</span></div><div class="bm-bar"><div class="bm-fill bf-speed" id="bmSpeedBar" style="width:0%"></div></div></div>
-      <div class="bm"><div class="bm-top"><span>風險等級</span><span id="bmRisk">-</span></div><div class="bm-bar"><div class="bm-fill bf-risk" id="bmRiskBar" style="width:0%"></div></div></div>
+    <div class="meters">
+      <div class="meter-card"><div class="mc-label">Safety</div><div class="meter-ring"><svg viewBox="0 0 60 60"><circle class="mr-bg" cx="30" cy="30" r="24"/><circle class="mr-fg" id="mrSafe" cx="30" cy="30" r="24" stroke="#6bc992" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><div class="mr-val" id="mvSafe" style="position:relative;top:-42px;text-align:center;color:var(--green2)">-</div></div></div>
+      <div class="meter-card"><div class="mc-label">Speed</div><div class="meter-ring"><svg viewBox="0 0 60 60"><circle class="mr-bg" cx="30" cy="30" r="24"/><circle class="mr-fg" id="mrSpeed" cx="30" cy="30" r="24" stroke="#dfc06a" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><div class="mr-val" id="mvSpeed" style="position:relative;top:-42px;text-align:center;color:var(--gold2)">-</div></div></div>
+      <div class="meter-card"><div class="mc-label">Risk</div><div class="meter-ring"><svg viewBox="0 0 60 60"><circle class="mr-bg" cx="30" cy="30" r="24"/><circle class="mr-fg" id="mrRisk" cx="30" cy="30" r="24" stroke="#e05a4e" stroke-dasharray="150.8" stroke-dashoffset="150.8"/></svg><div class="mr-val" id="mvRisk" style="position:relative;top:-42px;text-align:center;color:var(--red2)">-</div></div></div>
     </div>
-    <div class="build-strat" id="buildStrat"></div>
-    <div class="combo-prompt" id="comboPrompt" style="display:none">
-      <h4>AI Strategy Prompt -- 複製貼到 Claude / ChatGPT</h4>
-      <div class="prompt-box" id="comboPromptText"></div>
-      <button class="copy-btn" onclick="copyCombo(this)">Copy Full Strategy Prompt</button>
+    <div class="strats" id="buildStrat"></div>
+    <div class="combo" id="comboPrompt" style="display:none">
+      <h4>AI Strategy Prompt</h4>
+      <div class="prompt-box" id="comboText"></div>
+      <button class="copy-btn" onclick="copyCombo(this)">Copy Prompt</button>
     </div>
   </div>
 </div>
 
-<!-- Preset Builds -->
+<!-- PRESETS -->
 <div class="presets">
   <h2>Preset Builds</h2>
   <div class="preset-grid">
-    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1,0,0,0],[],[])"><h4>Holy Paladin</h4><div class="pp">7W / 0G / 0B</div><small>純白帽聖騎士。最穩但最慢。適合品牌站</small></div>
-    <div class="preset" onclick="loadPreset([1,1,1,1,1,0,0],[1,1,1],[])"><h4>Ranger</h4><div class="pp">5W / 3G / 0B</div><small>白帽為主 + 灰帽加速。最多人用的 Build</small></div>
-    <div class="preset" onclick="loadPreset([1,1,1,0,0,0,0],[1,1,1,1,0,0,0],[1,1,0,0,0,0,0])"><h4>Shadow Hunter</h4><div class="pp">3W / 4G / 2B</div><small>了解暗影的獵人。攻守兼備</small></div>
-    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1],[1,0,0,0,0,0,0],[1,0,0,0,0,1,0])"><h4>Sentinel</h4><div class="pp">7W / 1G / 2B</div><small>白帽大師 + 防禦知識。知己知彼</small></div>
-    <div class="preset" onclick="loadPreset([1,1,0,0,0,0,0],[1,1,1,1,1,1,0],[1,1,0,0,0,0,0])"><h4>Mercenary</h4><div class="pp">2W / 6G / 2B</div><small>灰帽傭兵。高風險高報酬。短期專案</small></div>
-    <div class="preset" onclick="loadPreset([1,0,0,0,0,0,0],[1,1,0,0,0,1,1],[1,1,1,1,1,0,0])"><h4>Warlock</h4><div class="pp">1W / 4G / 5B</div><small>暗影術士。玩火的人。只適合拋棄式站</small></div>
-    <div class="preset" onclick="loadPreset([1,1,1,1,1,0,0],[1,1,0,0,0,0,1],[0,0,0,0,0,1,0])"><h4>Event Striker</h4><div class="pp">5W / 3G / 1B</div><small>季節性攻擊手。世界盃/大事件專用</small></div>
-    <div class="preset" onclick="loadPreset([1,1,1,0,1,0,0],[1,1,1,1,0,0,0],[0,0,0,0,1,1,0])"><h4>Casino Ops</h4><div class="pp">4W / 4G / 2B</div><small>娛樂城 SEO 專用。品牌隔離 + 灰帽衝刺</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1],[],[])"><h4>Holy Paladin</h4><div class="pp">7W / 0G / 0B</div><small>Pure white. Safest.</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1],[1,1,1],[])"><h4>Ranger</h4><div class="pp">5W / 3G / 0B</div><small>Most popular build.</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1],[1,1,1,1],[1,1])"><h4>Shadow Hunter</h4><div class="pp">3W / 4G / 2B</div><small>Offense + defense.</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1],[1],[1,0,0,0,0,1])"><h4>Sentinel</h4><div class="pp">7W / 1G / 2B</div><small>White master + intel.</small></div>
+    <div class="preset" onclick="loadPreset([1,1],[1,1,1,1,1,1],[1,1])"><h4>Mercenary</h4><div class="pp">2W / 6G / 2B</div><small>Grey dominant.</small></div>
+    <div class="preset" onclick="loadPreset([1],[1,1,0,0,0,1,1],[1,1,1,1,1])"><h4>Warlock</h4><div class="pp">1W / 4G / 5B</div><small>High risk. Burn sites.</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1],[1,1,0,0,0,0,1],[0,0,0,0,0,1])"><h4>Event Striker</h4><div class="pp">5W / 3G / 1B</div><small>Seasonal specialist.</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,0,1],[1,1,1,1],[0,0,0,0,1,1])"><h4>Casino Ops</h4><div class="pp">4W / 4G / 2B</div><small>iGaming specialist.</small></div>
   </div>
 </div>
 
-<!-- Prompt Modal -->
+</div>
+
+<!-- MODAL -->
 <div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="modal">
-    <div class="modal-head"><h3 id="modalTitle">Skill Prompt</h3><button class="modal-close" onclick="closeModal()">x</button></div>
+    <div class="modal-head"><h3 id="modalTitle"></h3><button class="modal-close" onclick="closeModal()">x</button></div>
     <div class="modal-body">
       <p id="modalDesc"></p>
       <div class="prompt-box" id="modalPrompt"></div>
@@ -272,443 +419,175 @@ footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;b
   </div>
 </div>
 
-<footer>
-  <p><a href="seo-masterclass.html">Back to Masterclass</a> | <a href="skillbook-white.html">White</a> | <a href="skillbook-grey.html">Grey</a> | <a href="skillbook-black.html">Black</a></p>
-</footer>
-
-</div>
+<footer><a href="seo-masterclass.html">Masterclass</a> | <a href="skillbook-white.html">White</a> | <a href="skillbook-grey.html">Grey</a> | <a href="skillbook-black.html">Black</a></footer>
 
 <script>
-/* ========== SKILL PROMPTS ========== */
+const TIPS={
+w1:{t:'Technical SEO',d:'robots.txt / sitemap / canonical / HTTPS / URL structure / redirect',tag:'Foundation -- everything builds on this'},
+w2:{t:'Core Web Vitals',d:'LCP < 2.5s / INP < 200ms / CLS < 0.1 optimization',tag:'Speed = ranking signal'},
+w3:{t:'Content Strategy',d:'Topic Cluster / search intent / E-E-A-T / content calendar',tag:'Content is king, intent is queen'},
+w4:{t:'Natural Link Building',d:'Linkable assets / guest post / digital PR / broken link',tag:'Authority through reputation'},
+w5:{t:'Schema Mastery',d:'JSON-LD / FAQ / HowTo / Rich Results / AEO optimization',tag:'82.5% AI citations have Schema'},
+w6:{t:'Advanced White Hat',d:'PageRank flow / log analysis / content pruning / A/B test',tag:'Data-driven optimization'},
+w7:{t:'Brand Authority',d:'Entity SEO / Knowledge Panel / brand SERP control',tag:'ULTIMATE -- become a Google Entity'},
+g1:{t:'Niche Edit',d:'Buy links in real, high-quality existing articles',tag:'Risk: Medium / $50-500 per link'},
+g2:{t:'AI Content Pipeline',d:'AI draft + human review + unique value add',tag:'2026 most popular grey hat'},
+g3:{t:'301 Redirect Stack',d:'Acquire expired high-DA domains, redirect authority',tag:'Risk: Medium / topic relevance critical'},
+g4:{t:'Programmatic SEO',d:'Database + template = massive page generation',tag:'Doorway vs value -- thin line'},
+g5:{t:'Social Engineering',d:'Multi-account promotion / astroturfing / review manipulation',tag:'Risk: Low-Med / indirect effect'},
+g6:{t:'Parasite SEO',d:'Rank via high-DA platforms (Medium/GitHub)',tag:'Dying fast since 2025 crackdown'},
+g7:{t:'Seasonal Blitz',d:'Event-driven fast attack (World Cup/elections)',tag:'ULTIMATE -- timing is everything'},
+b1:{t:'PBN Intelligence',d:'Understand PBN architecture to detect competitor usage',tag:'Defense: identify competitor tactics'},
+b2:{t:'Cloaking Defense',d:'Detect if your site has been hacked with cloaking',tag:'Defense: Japanese keyword hack check'},
+b3:{t:'Link Manipulation',d:'Link farms / negative SEO defense / disavow strategy',tag:'Defense: protect your backlink profile'},
+b4:{t:'Content Spam Detection',d:'Doorway / scraping / AI spam pattern recognition',tag:'Defense: protect your content'},
+b5:{t:'SpamBrain Intel',d:'Deep understanding of Google anti-spam AI patterns',tag:'Defense: avoid false positives'},
+b6:{t:'Penalty Recovery',d:'Manual action SOP / reconsideration / rebuild strategy',tag:'Defense: bounce back from penalties'},
+b7:{t:'Security Hardening',d:'Anti-hack / 2FA / monitoring / backup / firewall',tag:'ULTIMATE -- fortress your site'}
+};
+
 const PROMPTS={
-w1:{name:'Technical SEO Audit',desc:'讓 AI 幫你做完整技術 SEO 健檢',prompt:`你是一位資深 SEO 技術顧問。請對我的網站進行完整的技術 SEO audit。
-
-我的網站：[貼上你的網址]
-
-請依序檢查並回報：
-1. robots.txt 是否正確設定（有沒有意外封鎖重要頁面）
-2. sitemap.xml 是否存在、格式正確、URL 數量
-3. 每個頁面是否有自參照 canonical 標籤
-4. URL 結構是否語意化、扁平化（3 層以內）
-5. HTTPS 是否正確（有沒有 mixed content）
-6. Mobile-friendly 檢查
-7. 有沒有 orphan pages（沒有內部連結指向的頁面）
-8. Redirect chain 檢查（有沒有連續 301）
-
-對每個問題給出：狀態（通過/警告/失敗）、具體問題描述、修復步驟。`},
-
-w2:{name:'Core Web Vitals 優化',desc:'讓 AI 分析你的頁面速度並給優化建議',prompt:`你是 Web Performance 專家。請幫我優化網站的 Core Web Vitals。
-
-我的網站：[貼上你的網址]
-PageSpeed Insights 分數：[貼上你的分數]
-
-請針對三大指標各給 3 個最有效的優化建議：
-
-LCP（目標 < 2.5s）：
-- 分析最大內容元素是什麼
-- 圖片是否用了 WebP/AVIF
-- 是否有 preload 關鍵資源
-- CSS/JS 是否阻塞渲染
-
-INP（目標 < 200ms）：
-- 是否有長任務阻塞 main thread
-- 第三方腳本影響（GA、Ads）
-- Event handler 優化建議
-
-CLS（目標 < 0.1）：
-- 圖片是否有 width/height
-- 廣告是否預留空間
-- 字體載入策略
-
-每個建議附上具體程式碼修改。`},
-
-w3:{name:'Content Strategy 規劃',desc:'讓 AI 幫你建立 Topic Cluster 和內容日曆',prompt:`你是 SEO 內容策略師。請幫我規劃完整的內容策略。
-
-我的網站主題：[填入你的主題，例如「台股股利計算」]
-目前有的文章：[列出你現有的文章標題]
-目標受眾：[描述你的目標用戶]
-
-請產出：
-1. Topic Cluster 地圖：
-   - 1 個 Pillar Page 主題
-   - 8-10 個 Cluster 子主題
-   - 每個子主題的目標關鍵字和搜尋意圖（I/N/C/T）
-   - 子主題之間的內部連結關係
-
-2. Content Calendar（3 個月）：
-   - 每週 1-2 篇的發文排程
-   - 優先順序（先寫哪些、為什麼）
-   - 季節性內容時機
-
-3. 每篇文章的 E-E-A-T 強化建議：
-   - 如何展示 Experience
-   - 需要引用什麼數據來源`},
-
-w4:{name:'Natural Link Building',desc:'讓 AI 幫你找連結建設機會',prompt:`你是外部連結建設專家。請幫我制定自然連結建設策略。
-
-我的網站：[貼上你的網址]
-我的主題：[填入主題]
-目前外部連結數量：[填入數字]
-
-請產出：
-1. Linkable Asset 建議（3 個）：
-   - 我可以做什麼免費工具/資源讓別人想連結我？
-   - 什麼樣的原創數據報告在我的領域有連結潛力？
-
-2. Guest Post 機會清單：
-   - 列出 10 個我的主題相關、接受投稿的中文網站/部落格
-   - 每個站的投稿方式和建議主題
-
-3. Broken Link Building 機會：
-   - 怎麼找到我主題相關的壞連結
-   - outreach email 模板（中文）
-
-4. 社群推廣計畫：
-   - 哪些社群（Dcard/PTT/FB）最適合我的主題
-   - 每週推廣節奏和注意事項`},
-
-w5:{name:'Schema 結構化資料',desc:'讓 AI 直接幫你生成 JSON-LD 程式碼',prompt:`你是 Schema 結構化資料專家。請幫我的網頁生成完整的 JSON-LD Schema。
-
-我的頁面 URL：[貼上 URL]
-頁面類型：[工具頁/文章頁/FAQ頁/產品頁]
-頁面標題：[填入標題]
-頁面描述：[填入描述]
-
-請生成：
-1. 適合這個頁面的所有 Schema 類型（可以是多個巢狀 Schema）
-2. 完整的 JSON-LD 程式碼（可以直接貼到 <head> 裡）
-3. 如果是文章，加入 Article + FAQPage（從內容中提取 FAQ）
-4. 如果是工具，加入 WebApplication + HowTo
-5. 加入 BreadcrumbList
-6. 如果有適合語音搜尋的段落，加入 Speakable
-
-額外：幫我檢查這個 Schema 是否能觸發 Google Rich Results，以及 AEO 優化建議。`},
-
-w6:{name:'Advanced SEO Audit',desc:'進階 SEO 分析：PageRank 流動、Content Pruning、A/B Test',prompt:`你是進階 SEO 分析師。請對我的網站做深度分析。
-
-我的網站：[貼上你的網址]
-頁面數量：[填入數字]
-月流量：[填入數字]
-
-請分析：
-1. Internal Linking 健康度：
-   - 哪些頁面是 orphan pages？
-   - PageRank 是否集中在重要頁面？
-   - 有沒有連結過度集中或過度分散的問題？
-
-2. Content Pruning 建議：
-   - 哪些頁面流量為零且沒有外部連結？（建議刪除/合併）
-   - 哪些頁面主題重複？（建議合併）
-   - 整站的 Helpful Content signal 評估
-
-3. SEO A/B Test 建議：
-   - 找出 3 個 CTR 最低的頁面，建議新的 title tag
-   - Featured Snippet 搶奪機會分析
-
-4. Log File Analysis 指引：
-   - 教我怎麼看 Googlebot 爬取日誌
-   - 什麼信號代表 crawl budget 浪費`},
-
-w7:{name:'Brand Authority Building',desc:'建立品牌實體，讓 Google Knowledge Panel 認識你',prompt:`你是品牌 SEO 和 Entity SEO 專家。請幫我建立品牌在 Google 知識圖譜中的實體。
-
-我的品牌名：[填入]
-我的網站：[填入]
-我的主題領域：[填入]
-
-請產出：
-1. Entity SEO 行動計畫：
-   - 如何讓 Google 把我的品牌建立為一個 Entity
-   - 需要在哪些平台建立一致的品牌資訊（維基百科/Wikidata/Google Business Profile）
-   - Schema Organization markup 程式碼
-
-2. Knowledge Panel 取得策略：
-   - 需要什麼條件
-   - 分步驟執行計畫
-
-3. Brand SERP 優化：
-   - 搜尋我的品牌名時，SERP 應該長什麼樣
-   - 如何控制搜尋結果中的品牌呈現`},
-
-g1:{name:'Niche Edit 評估',desc:'讓 AI 幫你評估 Niche Edit 連結的品質和風險',prompt:`你是灰帽連結建設顧問。我正在考慮購買 Niche Edit 連結。
-
-請幫我建立一個評估框架：
-1. 判斷一個 Niche Edit 是否值得買的 checklist：
-   - DA/DR 最低門檻
-   - 真實流量判斷（怎麼分辨假流量）
-   - 主題相關性評分
-   - 連結 profile 健康度
-   - 價格合理範圍
-
-2. 安全的 anchor text 分配比例：
-   - Branded vs Exact Match vs Generic vs URL
-   - 每月建議數量（velocity control）
-
-3. 風險監控：
-   - 什麼信號代表該停手
-   - 如何追蹤連結是否被 Google 忽略或懲罰
-
-注意：請同時告訴我這個策略的風險等級和潛在後果。`},
-
-g2:{name:'AI Content Pipeline',desc:'建立 AI + 人審的內容量產流程',prompt:`你是 AI 內容策略師。請幫我建立一個 AI + 人工審核的內容產出 pipeline。
-
-我的主題：[填入]
-目標：每週產出 [X] 篇高品質文章
-
-請設計完整流程：
-1. 關鍵字研究 → 選題
-2. AI 生成文章大綱（給我大綱的 prompt 模板）
-3. AI 生成初稿（給我初稿的 prompt 模板，含 SEO 要求）
-4. 人工審核 12 項 checklist：
-   □ 事實查核（數據是否正確）
-   □ 獨特觀點（加入我的個人經驗/見解）
-   □ 數據更新（引用最新資料）
-   □ 內部連結（至少 3 個）
-   □ 外部連結（引用權威來源）
-   □ 圖片/表格（視覺化）
-   □ FAQ 段落（AEO 優化）
-   □ Schema 標記
-   □ Meta title/description
-   □ 開頭定義段落（GEO 優化）
-   □ 可讀性（段落長度、H2/H3 結構）
-   □ CTA（引導到工具/其他文章）
-5. 品質滑坡防護機制（怎麼確保量產不降質）`},
-
-g3:{name:'301 Redirect Strategy',desc:'過期域名收購與權重傳遞策略',prompt:`你是域名策略顧問。我想透過收購過期高 DA 域名做 301 redirect 傳遞權重。
-
-請幫我：
-1. 評估框架 — 什麼樣的過期域名值得買：
-   - DA/DR 最低門檻
-   - 主題相關性要求
-   - Backlink profile 健康度檢查
-   - 歷史內容檢查（Wayback Machine）
-   - 是否被 Google 懲罰過
-
-2. 301 redirect 設定最佳實踐：
-   - 整站 redirect vs 逐頁 redirect
-   - 如何保留最多權重
-   - Google 對不相關 redirect 的折扣機制
-
-3. 風險評估與退場策略
-
-注意：這是灰帽策略，請同時告訴我 Google 的立場和潛在風險。`},
-
-g4:{name:'Programmatic SEO',desc:'批量生成頁面的策略和模板設計',prompt:`你是 Programmatic SEO 專家。我想用資料庫 + 模板批量生成大量頁面。
-
-我的主題：[填入]
-資料來源：[填入，例如：股票列表、城市列表、產品列表]
-目標頁面數量：[填入]
-
-請幫我設計：
-1. 頁面模板結構（確保每頁有獨特價值，不是 doorway page）：
-   - 動態內容區塊
-   - 靜態共用區塊
-   - 每頁獨特的元素是什麼
-
-2. Internal Linking 策略：
-   - 批量頁面之間怎麼互連
-   - 怎麼連回主站 Pillar Page
-
-3. 品質控管：
-   - Google 判斷 programmatic vs doorway 的標準
-   - 如何確保不觸發 Helpful Content 降級
-   - 索引監控方法
-
-4. 技術實作建議（用什麼工具/框架生成）`},
-
-g5:{name:'Social Media Strategy',desc:'社群推廣策略與口碑建設',prompt:`你是社群行銷策略師。請幫我制定社群推廣計畫來為我的網站帶來流量和連結。
-
-我的網站：[填入]
-主題：[填入]
-目標平台：Dcard / PTT / Facebook 社團
-
-請產出：
-1. 每個平台的參與策略：
-   - 適合發什麼類型的內容
-   - 怎麼自然帶入我的網站連結
-   - 每週建議頻率
-
-2. 回覆模板（3 種情境）：
-   - 有人問我的主題相關問題時
-   - 有人分享相關經驗時
-   - 有人推薦競品工具時
-
-3. 第一個月的具體行動計畫（逐週）
-
-注意：以真實參與為主，不是灌水推廣。`},
-
-g6:{name:'Parasite SEO',desc:'借平台權重排名的策略分析',prompt:`你是 Parasite SEO 分析師。請幫我分析在高權重平台發佈內容借權重排名的策略。
-
-我的目標關鍵字：[填入]
-我想用的平台：Medium / LinkedIn / GitHub Pages / [其他]
-
-請分析：
-1. 每個平台的 SEO 優劣勢
-2. 2025-2026 年 Google 對 Parasite SEO 的打擊程度
-3. 如果要做，最安全的執行方式
-4. 預期壽命和退場時機
-5. 替代方案（用白帽方式達到類似效果）
-
-重要：請明確標示這個策略的風險等級。`},
-
-g7:{name:'Seasonal SEO Playbook',desc:'季節性事件的 SEO 攻勢時間表',prompt:`你是季節性 SEO 策略師。請幫我規劃一個季節性事件的完整 SEO 攻勢。
-
-事件名稱：[填入，例如：2026 世界盃 / 雙 11 / 報稅季]
-事件日期：[填入]
-我的網站主題：[填入]
-和這個事件的關聯：[填入]
-
-請產出時間軸攻略：
-T-6 個月：Evergreen 頁面建立計畫（URL 不含年份）
-T-3 個月：內容擴展 + Topic Cluster 建構
-T-1 個月：外連衝刺 + 社群預熱
-事件期間：即時內容更新流程（AI + 人審快速產出）
-事件結束：頁面轉型為回顧型內容，保留 URL 權重
-
-每個階段的具體行動 + 預算分配建議。`},
-
-b1:{name:'PBN Detection',desc:'辨識競爭對手是否使用 PBN',prompt:`你是 SEO 反垃圾分析師。請教我如何辨識競爭對手是否在使用 PBN（私人部落格網路）。
-
-競爭對手網站：[填入]
-
-請教我檢查以下 footprint：
-1. 用 Ahrefs 看他的 backlink profile：
-   - 哪些特徵代表 PBN？（DA 範圍、流量、更新頻率）
-   - 連結來源站的共同模式
-2. Hosting footprint 檢查方法
-3. Content pattern 辨識（模板化、低品質）
-4. 如果確認對手用 PBN，我應該怎麼做（檢舉？忽略？加強自己？）
-
-這是防禦用途 — 了解是為了保護自己，不是為了使用。`},
-
-b2:{name:'Cloaking Defense',desc:'檢查你的網站是否被駭客注入 cloaking',prompt:`你是網站安全專家。請教我如何檢查我的網站是否被注入 cloaking（Japanese Keyword Hack 等）。
-
-我的網站：[填入]
-CMS：WordPress / 純 HTML / [其他]
-
-請給我完整的檢查步驟：
-1. Google 搜尋 site:[我的網域] 看有沒有異常頁面
-2. GSC 安全問題頁面檢查
-3. 伺服器檔案檢查（哪些檔案最常被注入）
-4. .htaccess 是否被竄改
-5. WordPress 插件安全檢查清單
-6. 如果發現被入侵的清除 SOP
-7. 預防措施（安全插件、2FA、更新策略）`},
-
-b3:{name:'Negative SEO Defense',desc:'防禦對手的有毒連結攻擊',prompt:`你是 Negative SEO 防禦專家。請幫我建立 Negative SEO 防禦系統。
-
-我的網站：[填入]
-
-請設計：
-1. 監控系統：
-   - 每週/月 backlink 檢查 SOP
-   - 什麼樣的新連結是可疑的
-   - 推薦的監控工具設定
-
-2. 應對流程：
-   - 發現大量有毒連結時的 step-by-step
-   - Google Disavow Tool 使用指南
-   - Disavow 檔案格式和最佳實踐
-
-3. 預防措施：
-   - 如何降低被 Negative SEO 影響的風險
-   - 保持自身連結 profile 乾淨的重要性`},
-
-b4:{name:'Content Protection',desc:'防止內容被抄襲的監控和處理',prompt:`你是智慧財產權保護顧問。請幫我建立內容被抄襲的監控和處理系統。
-
-我的網站：[填入]
-
-請設計：
-1. 監控方法：
-   - 怎麼定期檢查內容是否被抄襲
-   - 推薦的工具（Copyscape、Google Alert 設定）
-   - 自動化監控方案
-
-2. 發現抄襲時的 SOP：
-   - 證據保留（截圖、Wayback Machine）
-   - 友善通知模板（中文 email）
-   - DMCA Takedown 提交步驟（Google、Hosting Provider）
-   - 法律途徑（什麼程度需要找律師）
-
-3. 預防措施：
-   - 原創內容的時間戳記方法
-   - RSS feed 防盜設定`},
-
-b5:{name:'SpamBrain Analysis',desc:'深度理解 Google 反垃圾系統以避免誤觸',prompt:`你是 Google Search Quality 分析師。請幫我理解 SpamBrain 的偵測邏輯，確保我的白帽/灰帽操作不會誤觸。
-
-我的網站：[填入]
-我目前的 SEO 策略：[描述你在做的事]
-
-請分析：
-1. SpamBrain 主要偵測的 pattern 有哪些？
-2. 我目前的策略有沒有可能被誤判的風險？
-3. 安全邊界在哪裡？（例如每月建多少條外連是安全的）
-4. 2026 年 SpamBrain 的最新變化
-5. 如果被誤判，怎麼提交 reconsideration`},
-
-b6:{name:'Penalty Recovery SOP',desc:'被懲罰時的完整恢復流程',prompt:`你是 Google Penalty Recovery 專家。請幫我建立被懲罰時的完整恢復 SOP。
-
-情境：[選擇]
-A) GSC 收到 Manual Action 通知
-B) 排名突然大幅下降但沒有通知（算法降級）
-C) 頁面從 Google 索引消失
-
-請對每種情境給出：
-1. 診斷步驟（確認問題類型）
-2. 修復行動清單（按優先順序）
-3. Reconsideration Request 撰寫指南（Manual Action 用）
-4. 預期恢復時間
-5. 恢復後的重建策略
-6. 什麼情況下應該放棄這個域名重新開始`},
-
-b7:{name:'Security Hardening',desc:'網站安全強化完整清單',prompt:`你是網站安全工程師。請幫我做完整的安全強化。
-
-我的網站：[填入]
-CMS：[填入]
-Hosting：[填入]
-
-請產出完整的安全清單：
-1. 帳號安全：強密碼政策、2FA 設定、Admin 帳號審計
-2. CMS 安全：核心/插件/主題更新策略、移除未使用插件
-3. 伺服器安全：SSL/TLS、HTTP Security Headers、防火牆
-4. 檔案安全：權限設定、.htaccess 保護、uploads 資料夾
-5. 監控：安全插件推薦、入侵偵測、備份策略
-6. 應急：被駭時的 SOP、備份還原步驟
-
-每項都給具體的設定步驟或程式碼。`}
+w1:{name:'Technical SEO Audit',desc:'Complete technical SEO health check prompt',prompt:'You are a senior SEO consultant. Audit my website for technical SEO issues.\n\nMy website: [YOUR URL]\n\nCheck:\n1. robots.txt -- any accidental blocks?\n2. sitemap.xml -- exists, valid, URL count\n3. Self-referencing canonical on every page\n4. URL structure -- semantic, flat (3 levels max)\n5. HTTPS -- mixed content issues?\n6. Mobile-friendly check\n7. Orphan pages (no internal links pointing to them)\n8. Redirect chains (consecutive 301s)\n\nFor each: Status (Pass/Warn/Fail) + specific issue + fix steps.'},
+w2:{name:'CWV Optimization',desc:'Core Web Vitals analysis and fix recommendations',prompt:'You are a web performance expert. Optimize my Core Web Vitals.\n\nMy website: [YOUR URL]\nPageSpeed score: [YOUR SCORE]\n\nFor each metric (LCP target <2.5s, INP target <200ms, CLS target <0.1):\n- Current bottleneck analysis\n- Top 3 most impactful fixes\n- Specific code changes needed\n- Third-party script impact (GA, Ads)'},
+w3:{name:'Content Strategy',desc:'Build Topic Cluster map and content calendar',prompt:'You are an SEO content strategist. Build my content strategy.\n\nMy topic: [YOUR TOPIC]\nExisting articles: [LIST TITLES]\nTarget audience: [DESCRIBE]\n\nProduce:\n1. Topic Cluster map: 1 Pillar + 8-10 Clusters with target keywords and search intent (I/N/C/T)\n2. 3-month content calendar (1-2 posts/week)\n3. E-E-A-T strengthening recommendations per article\n4. Internal linking plan between all pieces'},
+w4:{name:'Link Building Plan',desc:'Natural link acquisition strategy and outreach templates',prompt:'You are a link building expert. Create my natural link building strategy.\n\nMy website: [YOUR URL]\nMy topic: [YOUR TOPIC]\nCurrent backlinks: [NUMBER]\n\nProduce:\n1. 3 Linkable Asset ideas for my niche\n2. 10 guest post targets (Chinese language sites in my niche)\n3. Broken link building: how to find opportunities + outreach email template\n4. Community promotion plan (Dcard/PTT/FB) with weekly cadence'},
+w5:{name:'Schema Generator',desc:'Generate complete JSON-LD structured data for your page',prompt:'You are a Schema expert. Generate complete JSON-LD for my page.\n\nPage URL: [URL]\nPage type: [tool/article/FAQ/product]\nPage title: [TITLE]\nPage description: [DESC]\n\nGenerate:\n1. All applicable Schema types (can be nested/multiple)\n2. Complete JSON-LD code ready to paste in <head>\n3. BreadcrumbList\n4. Speakable sections if applicable\n5. Rich Results eligibility analysis\n6. AEO optimization suggestions'},
+w6:{name:'Advanced SEO Analysis',desc:'PageRank flow, content pruning, and A/B test plan',prompt:'You are an advanced SEO analyst. Deep-analyze my website.\n\nMy website: [YOUR URL]\nTotal pages: [NUMBER]\nMonthly traffic: [NUMBER]\n\nAnalyze:\n1. Internal linking health: orphan pages, PageRank concentration\n2. Content pruning: which pages to delete/merge/noindex\n3. SEO A/B test plan: 3 lowest-CTR pages with new title suggestions\n4. Featured Snippet opportunities'},
+w7:{name:'Brand Entity Building',desc:'Establish your brand in Google Knowledge Graph',prompt:'You are a brand SEO and Entity expert. Help me build my brand entity.\n\nBrand name: [NAME]\nWebsite: [URL]\nTopic area: [TOPIC]\n\nProduce:\n1. Entity SEO action plan (Wikipedia/Wikidata/GBP)\n2. Schema Organization markup code\n3. Knowledge Panel acquisition strategy\n4. Brand SERP optimization plan'},
+g1:{name:'Niche Edit Evaluation',desc:'Framework for evaluating link purchase quality and risk',prompt:'You are a grey hat link consultant. I am considering buying Niche Edit links.\n\nBuild me an evaluation framework:\n1. Quality checklist: DA/DR threshold, real traffic verification, topic relevance, link profile health\n2. Safe anchor text distribution ratios (branded vs exact match vs generic)\n3. Monthly velocity limits to avoid detection\n4. Risk monitoring signals (when to stop)\n\nIMPORTANT: Include risk level and potential consequences.'},
+g2:{name:'AI Content Pipeline',desc:'Build AI + human review content production system',prompt:'You are an AI content strategist. Build my AI + human review pipeline.\n\nMy topic: [TOPIC]\nTarget: [X] articles per week\n\nDesign complete flow:\n1. Keyword research -> topic selection\n2. AI outline generation (give me the prompt template)\n3. AI draft generation (give me the prompt template with SEO requirements)\n4. 12-item human review checklist\n5. Quality control to prevent review degradation at scale'},
+g3:{name:'301 Redirect Strategy',desc:'Expired domain acquisition and authority transfer',prompt:'You are a domain strategy consultant. I want to acquire expired high-DA domains for 301 redirect authority transfer.\n\nBuild me:\n1. Domain evaluation framework (DA threshold, relevance, backlink health, penalty check)\n2. 301 redirect best practices (whole-site vs per-page)\n3. Risk assessment and exit strategy\n\nNOTE: This is grey hat. Include Google\'s stance and potential risks.'},
+g4:{name:'Programmatic SEO',desc:'Database + template mass page generation strategy',prompt:'You are a Programmatic SEO expert. I want to generate pages at scale.\n\nMy topic: [TOPIC]\nData source: [e.g., stock list, city list, product list]\nTarget pages: [NUMBER]\n\nDesign:\n1. Page template (ensure unique value per page, not doorway)\n2. Internal linking strategy for bulk pages\n3. Quality control (Google doorway vs programmatic criteria)\n4. Index monitoring approach'},
+g5:{name:'Social Media Strategy',desc:'Community promotion and reputation building plan',prompt:'You are a social media strategist. Build my community promotion plan for SEO.\n\nMy website: [URL]\nTopic: [TOPIC]\nPlatforms: Dcard / PTT / Facebook groups\n\nProduce:\n1. Per-platform engagement strategy\n2. 3 reply templates (Q&A, experience sharing, competitor mentions)\n3. Month 1 weekly action plan\n\nFocus on genuine participation, not spam.'},
+g6:{name:'Parasite SEO Analysis',desc:'Platform-based ranking strategy risk assessment',prompt:'You are a Parasite SEO analyst. Analyze the strategy of publishing on high-DA platforms.\n\nMy target keywords: [KEYWORDS]\nPlatforms: Medium / LinkedIn / GitHub Pages\n\nAnalyze:\n1. Each platform SEO pros/cons\n2. 2025-2026 Google crackdown status\n3. Safest execution method if proceeding\n4. Expected lifespan and exit timing\n5. White hat alternatives\n\nClearly mark risk level.'},
+g7:{name:'Seasonal SEO Playbook',desc:'Event-driven SEO attack timeline',prompt:'You are a seasonal SEO strategist. Plan my event-driven SEO campaign.\n\nEvent: [e.g., 2026 World Cup / Black Friday / Tax Season]\nEvent date: [DATE]\nMy website topic: [TOPIC]\nConnection to event: [EXPLAIN]\n\nProduce timeline:\nT-6 months: Evergreen page setup (URL without year)\nT-3 months: Content expansion + Topic Cluster\nT-1 month: Link sprint + social pre-heat\nDuring event: Real-time content flow (AI + human review)\nPost-event: Convert to retrospective, preserve URL authority\n\nInclude specific actions + budget allocation per phase.'},
+b1:{name:'PBN Detection',desc:'Identify if competitors use PBN networks',prompt:'You are an SEO anti-spam analyst. Teach me to detect if competitors use PBN.\n\nCompetitor: [URL]\n\nTeach me to check:\n1. Ahrefs backlink profile red flags (DA range, traffic, update frequency)\n2. Hosting footprint detection\n3. Content pattern identification\n4. What to do if confirmed (report? ignore? strengthen own site?)\n\nThis is for defense only.'},
+b2:{name:'Cloaking Defense',desc:'Check if your site has been hacked with cloaking injection',prompt:'You are a web security expert. Help me check if my site has cloaking injection.\n\nMy website: [URL]\nCMS: [WordPress / HTML / Other]\n\nCheck steps:\n1. Google site:[domain] for suspicious pages\n2. GSC Security Issues page\n3. Server file check (common injection targets)\n4. .htaccess tampering\n5. WordPress plugin security audit\n6. Cleanup SOP if infected\n7. Prevention measures'},
+b3:{name:'Negative SEO Defense',desc:'Protect against toxic link attacks from competitors',prompt:'You are a Negative SEO defense expert. Build my protection system.\n\nMy website: [URL]\n\nDesign:\n1. Monitoring system: weekly/monthly backlink check SOP\n2. Suspicious link identification criteria\n3. Response process: step-by-step when toxic links found\n4. Google Disavow Tool usage guide + file format\n5. Prevention: how to reduce vulnerability'},
+b4:{name:'Content Protection',desc:'Monitor and handle content plagiarism',prompt:'You are an IP protection consultant. Build my content protection system.\n\nMy website: [URL]\n\nDesign:\n1. Monitoring: periodic plagiarism check methods + tools\n2. Discovery SOP: evidence preservation + friendly notice template + DMCA takedown steps\n3. Prevention: timestamp methods + RSS anti-theft'},
+b5:{name:'SpamBrain Analysis',desc:'Understand Google anti-spam AI to avoid false positives',prompt:'You are a Google Search Quality analyst. Help me understand SpamBrain detection.\n\nMy website: [URL]\nMy current strategy: [DESCRIBE]\n\nAnalyze:\n1. SpamBrain main detection patterns\n2. Could my current strategy trigger false positives?\n3. Where are the safety boundaries?\n4. 2026 SpamBrain latest changes\n5. Reconsideration process if falsely flagged'},
+b6:{name:'Penalty Recovery SOP',desc:'Complete recovery process for Google penalties',prompt:'You are a Google Penalty Recovery expert. Build my recovery SOP.\n\nScenario: [Choose]\nA) GSC Manual Action notification\nB) Sudden ranking drop with no notification (algorithmic)\nC) Pages disappeared from Google index\n\nFor each scenario:\n1. Diagnostic steps\n2. Fix action checklist (priority order)\n3. Reconsideration request writing guide\n4. Expected recovery timeline\n5. When to abandon domain and start fresh'},
+b7:{name:'Security Hardening',desc:'Complete website security checklist',prompt:'You are a web security engineer. Harden my website security.\n\nMy website: [URL]\nCMS: [CMS]\nHosting: [HOSTING]\n\nComplete checklist:\n1. Account: strong passwords, 2FA, admin audit\n2. CMS: core/plugin/theme update strategy\n3. Server: SSL/TLS, HTTP security headers, firewall\n4. Files: permissions, .htaccess protection, uploads folder\n5. Monitoring: security plugin, intrusion detection, backup strategy\n6. Emergency: hack response SOP, backup restore steps\n\nGive specific settings or code for each item.'}
 };
 
 const BUILDS={
-  '10-0-0':{name:'Holy Paladin',icon:'HP',spec:'純白帽聖騎士',safe:98,speed:25,risk:2,strats:['100% 合規，不碰任何灰色地帶','靠內容品質和自然連結成長','見效慢（6-12月）但一旦到位幾乎不可撼動','適合：長期品牌站、企業官網、YMYL 內容站']},
-  '7-3-0':{name:'Ranger',icon:'RG',spec:'遊俠 -- 白帽為主 + 灰帽加速',safe:78,speed:55,risk:22,strats:['白帽地基 + 灰帽加速連結建設','AI 內容 pipeline 搭配嚴格人工審核','Niche Edit 控制每月 3-5 條，anchor 多樣化','適合：中競爭利基市場、新站需要加速的前 6 個月']},
-  '5-5-0':{name:'Balanced Fighter',icon:'BF',spec:'平衡戰士 -- 白灰各半',safe:60,speed:65,risk:40,strats:['白帽技術基礎 + 灰帽規模化內容','Programmatic SEO + AI pipeline 雙管齊下','需要嚴格的品質監控避免 Helpful Content 降級','適合：高競爭市場、需要快速建立大量頁面的站']},
-  '3-4-3':{name:'Shadow Hunter',icon:'SH',spec:'暗影獵人 -- 攻守兼備',safe:48,speed:70,risk:52,strats:['理解黑帽是為了防禦 + 辨識競爭者手法','灰帽為主要攻擊手段，白帽做保底','定期 backlink audit 防禦 Negative SEO','適合：灰色產業的防禦型玩家']},
-  '7-1-2':{name:'Sentinel',icon:'SN',spec:'哨兵 -- 白帽大師 + 防禦知識',safe:88,speed:35,risk:12,strats:['白帽為核心，黑帽知識用於防禦','能辨識競爭者的 PBN 和 Cloaking','定期安全審計 + penalty recovery 能力','適合：安全意識高的品牌站管理者']},
-  '2-6-2':{name:'Mercenary',icon:'MC',spec:'傭兵 -- 灰帽主導',safe:38,speed:78,risk:62,strats:['灰帽為主要策略，白帽做最低限度保底','大量 Niche Edit + Programmatic + 社群操控','需要準備退場策略和備用網域','適合：短期專案、聯盟行銷、測試站']},
-  '1-4-5':{name:'Warlock',icon:'WL',spec:'術士 -- 暗影主導',safe:15,speed:90,risk:85,strats:['高風險高回報，只適合拋棄式網站','PBN + 灰帽連結 + 內容操控全開','預期壽命 3-6 個月，隨時準備燒掉重建','適合：完全不在乎長期的短線操作']},
-  '5-3-2':{name:'Event Striker',icon:'ES',spec:'事件攻擊手 -- 季節性快攻',safe:65,speed:72,risk:35,strats:['白帽長期基礎 + 事件期間灰帽加速','提前 6 個月建 Evergreen 頁面','事件期間 AI pipeline + 社群推廣 + Niche Edit 全開','事件結束後收回灰帽，保留白帽資產']},
-  '4-4-2':{name:'Casino Ops',icon:'CO',spec:'娛樂城作戰官',safe:42,speed:75,risk:58,strats:['Content Fortress 策略 -- 正規評測站引流','品牌隔離：灰色站和正規站完全分開','灰帽連結衝刺 + SpamBrain 偵測知識防禦','備用網域隨時待命，被燒就切換']}
+'10-0-0':{n:'Holy Paladin',i:'HP',s:'Pure White Knight',safe:98,speed:25,risk:2,st:['100% compliant, zero grey area','Content quality + natural links only','Slow start (6-12mo) but nearly unshakable once established','Best for: brand sites, corporate, YMYL']},
+'7-3-0':{n:'Ranger',i:'RG',s:'White base + Grey acceleration',safe:78,speed:55,risk:22,st:['White foundation + grey link building boost','AI content pipeline with strict human review','Niche Edit: 3-5/month, diversified anchors','Best for: competitive niches, new sites needing momentum']},
+'5-5-0':{n:'Balanced Fighter',i:'BF',s:'Equal white and grey',safe:60,speed:65,risk:40,st:['White tech base + grey scale content','Programmatic SEO + AI pipeline dual approach','Requires strict quality monitoring','Best for: high competition, need massive page volume']},
+'3-4-3':{n:'Shadow Hunter',i:'SH',s:'Knows both light and shadow',safe:48,speed:70,risk:52,st:['Grey as main attack, black for defense intel','Regular backlink audit against Negative SEO','Can identify competitor PBN and cloaking','Best for: grey industry defensive players']},
+'7-1-2':{n:'Sentinel',i:'SN',s:'White master + defense intel',safe:88,speed:35,risk:12,st:['White hat core, black hat knowledge for defense','Can detect competitor manipulation tactics','Regular security audits + penalty recovery ready','Best for: security-conscious brand managers']},
+'2-6-2':{n:'Mercenary',i:'MC',s:'Grey hat dominant',safe:38,speed:78,risk:62,st:['Grey hat primary strategy, white as minimum base','Heavy Niche Edit + Programmatic + social manipulation','Need exit strategy and backup domains ready','Best for: short-term projects, affiliate sites']},
+'1-4-5':{n:'Warlock',i:'WL',s:'Shadow dominant -- burn and rebuild',safe:15,speed:90,risk:85,st:['High risk, high reward. Disposable sites only.','PBN + grey links + content manipulation all-in','Expected lifespan: 3-6 months','Best for: pure short-term cash extraction']},
+'5-3-2':{n:'Event Striker',i:'ES',s:'Seasonal event specialist',safe:65,speed:72,risk:35,st:['White long-term base + event-period grey blitz','Pre-build evergreen pages 6 months ahead','AI pipeline + social push + Niche Edit during event','Post-event: retract grey, keep white assets']},
+'4-4-2':{n:'Casino Ops',i:'CO',s:'iGaming operations specialist',safe:42,speed:75,risk:58,st:['Content Fortress strategy -- legit review site funnel','Brand isolation: grey site fully separated from clean brands','Grey link sprint + SpamBrain defense knowledge','Backup domains on standby for rotation']}
 };
 
 let selected={};
 
 function toggle(el){
   const id=el.dataset.id;
-  const faction=el.dataset.f;
-  if(selected[id]){
+  const isActive=el.classList.contains('active');
+  if(isActive){
     delete selected[id];
     el.classList.remove('active');
   }else{
-    const total=Object.keys(selected).length;
-    if(total>=10)return;
-    selected[id]=faction;
+    if(Object.keys(selected).length>=10)return;
+    selected[id]=id[0];
     el.classList.add('active');
-    // Show prompt modal
-    if(PROMPTS[id])showPromptModal(id);
+    if(PROMPTS[id])showModal(id);
   }
+  updateConns();
   updateDisplay();
 }
 
-function showPromptModal(id){
+function updateConns(){
+  const factions={w:[],g:[],b:[]};
+  Object.keys(selected).forEach(id=>{factions[id[0]].push(parseInt(id[1]))});
+  ['w','g','b'].forEach(f=>{
+    const cls=f==='w'?'cw':f==='g'?'cg':'cb';
+    for(let i=1;i<=6;i++){
+      const line=document.getElementById('l'+f+i+(i+1));
+      if(line){
+        const both=factions[f].includes(i)&&factions[f].includes(i+1);
+        line.classList.toggle('active',both);
+        line.classList.toggle(cls,both);
+      }
+    }
+  });
+}
+
+function updateDisplay(){
+  let w=0,g=0,b=0;
+  Object.values(selected).forEach(f=>{if(f==='w')w++;if(f==='g')g++;if(f==='b')b++});
+  const total=w+g+b;
+  document.getElementById('ptR').textContent=10-total;
+  document.getElementById('ptW').textContent=w;
+  document.getElementById('ptG').textContent=g;
+  document.getElementById('ptB').textContent=b;
+
+  if(total===0){
+    document.getElementById('buildName').textContent='-- Select Talents --';
+    document.getElementById('buildSpec').textContent='Point your skills to reveal your Build';
+    document.getElementById('buildIcon').textContent='?';
+    setRing('mrSafe',0);setRing('mrSpeed',0);setRing('mrRisk',0);
+    document.getElementById('mvSafe').textContent='-';
+    document.getElementById('mvSpeed').textContent='-';
+    document.getElementById('mvRisk').textContent='-';
+    document.getElementById('buildStrat').innerHTML='';
+    document.getElementById('comboPrompt').style.display='none';
+    return;
+  }
+
+  let build,bestDist=999;
+  const key=w+'-'+g+'-'+b;
+  if(BUILDS[key])build=BUILDS[key];
+  else{for(const k in BUILDS){const[bw,bg,bb]=k.split('-').map(Number);const d=Math.abs(bw-w)+Math.abs(bg-g)+Math.abs(bb-b);if(d<bestDist){bestDist=d;build=BUILDS[k]}}}
+
+  document.getElementById('buildName').textContent=build.n;
+  document.getElementById('buildSpec').textContent=build.s+' ('+w+'W/'+g+'G/'+b+'B)';
+  document.getElementById('buildIcon').textContent=build.i;
+  setRing('mrSafe',build.safe);setRing('mrSpeed',build.speed);setRing('mrRisk',build.risk);
+  document.getElementById('mvSafe').textContent=build.safe+'%';
+  document.getElementById('mvSpeed').textContent=build.speed+'%';
+  document.getElementById('mvRisk').textContent=build.risk+'%';
+
+  let html='';
+  build.st.forEach(s=>{html+='<div class="strat"><div class="strat-dot"></div><span>'+s+'</span></div>'});
+  document.getElementById('buildStrat').innerHTML=html;
+
+  // Combo prompt
+  const ids=Object.keys(selected);
+  let combo='You are an SEO strategy consultant. I chose the '+build.n+' Build ('+w+'W/'+g+'G/'+b+'B).\n\nMy website: [YOUR URL]\nMy industry: [YOUR INDUSTRY]\n\nSelected skills:\n';
+  ids.forEach(id=>{const p=PROMPTS[id];if(p)combo+='- '+p.name+'\n'});
+  combo+='\nProduce:\n1. 3-month execution plan based on my Build\n2. Weekly action items per month\n3. Safety '+build.safe+'% / Speed '+build.speed+'% / Risk '+build.risk+'%\n4. Specific execution steps for each selected skill\n5. KPI tracking metrics (what to monitor monthly)\n6. Adjustment signals (when to change Build)\n';
+  if(g>0)combo+='7. Grey hat risk management checklist\n';
+  if(b>0)combo+='8. Black hat knowledge defensive application\n';
+  document.getElementById('comboText').textContent=combo;
+  document.getElementById('comboPrompt').style.display='block';
+
+  localStorage.setItem('seo_tt',JSON.stringify(selected));
+}
+
+function setRing(id,pct){
+  const circ=150.8;
+  document.getElementById(id).style.strokeDashoffset=circ-(circ*pct/100);
+}
+
+function showTip(e,el){
+  const id=el.dataset.id;
+  const t=TIPS[id];if(!t)return;
+  const tip=document.getElementById('tip');
+  document.getElementById('tipTitle').textContent=t.t;
+  document.getElementById('tipDesc').textContent=t.d;
+  document.getElementById('tipTag').textContent=t.tag;
+  tip.classList.add('show');
+  const rect=el.getBoundingClientRect();
+  tip.style.left=Math.min(rect.right+10,window.innerWidth-280)+'px';
+  tip.style.top=Math.max(rect.top-20,10)+'px';
+}
+function hideTip(){document.getElementById('tip').classList.remove('show')}
+
+function showModal(id){
   const p=PROMPTS[id];if(!p)return;
   document.getElementById('modalTitle').textContent=p.name;
   document.getElementById('modalDesc').textContent=p.desc;
@@ -716,126 +595,40 @@ function showPromptModal(id){
   document.getElementById('modal').classList.add('show');
 }
 function closeModal(){document.getElementById('modal').classList.remove('show')}
-function copyPrompt(btn){
-  const text=document.getElementById('modalPrompt').textContent;
-  navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Prompt';btn.classList.remove('copied')},1500)});
-}
-function copyCombo(btn){
-  const text=document.getElementById('comboPromptText').textContent;
-  navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Full Strategy Prompt';btn.classList.remove('copied')},1500)});
-}
-
-function updateDisplay(){
-  let w=0,g=0,b=0;
-  Object.values(selected).forEach(f=>{if(f==='w')w++;if(f==='g')g++;if(f==='b')b++});
-  const total=w+g+b;
-  document.getElementById('ptRemain').textContent=10-total;
-  document.getElementById('ptW').textContent=w;
-  document.getElementById('ptG').textContent=g;
-  document.getElementById('ptB').textContent=b;
-
-  // Find best matching build
-  const key=w+'-'+g+'-'+b;
-  let build=BUILDS[key];
-  if(!build){
-    // Find closest match
-    let bestDist=999,bestKey='';
-    for(const k in BUILDS){
-      const[bw,bg,bb]=k.split('-').map(Number);
-      const d=Math.abs(bw-w)+Math.abs(bg-g)+Math.abs(bb-b);
-      if(d<bestDist){bestDist=d;bestKey=k}
-    }
-    build=BUILDS[bestKey];
-  }
-
-  if(total===0){
-    document.getElementById('buildName').textContent='-- 選擇你的天賦 --';
-    document.getElementById('buildSpec').textContent='分配點數後顯示你的 Build';
-    document.getElementById('buildIcon').textContent='?';
-    document.getElementById('bmSafeBar').style.width='0%';
-    document.getElementById('bmSpeedBar').style.width='0%';
-    document.getElementById('bmRiskBar').style.width='0%';
-    document.getElementById('bmSafe').textContent='-';
-    document.getElementById('bmSpeed').textContent='-';
-    document.getElementById('bmRisk').textContent='-';
-    document.getElementById('buildStrat').innerHTML='';
-    return;
-  }
-
-  document.getElementById('buildName').textContent=build.name;
-  document.getElementById('buildSpec').textContent=build.spec+' ('+w+'W/'+g+'G/'+b+'B)';
-  document.getElementById('buildIcon').textContent=build.icon;
-  document.getElementById('bmSafeBar').style.width=build.safe+'%';
-  document.getElementById('bmSpeedBar').style.width=build.speed+'%';
-  document.getElementById('bmRiskBar').style.width=build.risk+'%';
-  document.getElementById('bmSafe').textContent=build.safe+'%';
-  document.getElementById('bmSpeed').textContent=build.speed+'%';
-  document.getElementById('bmRisk').textContent=build.risk+'%';
-
-  let html='<h4>Strategy Guide</h4>';
-  build.strats.forEach(s=>{html+='<div class="strat-item"><div class="si"></div><span>'+s+'</span></div>'});
-  document.getElementById('buildStrat').innerHTML=html;
-
-  // Generate combo prompt
-  const selIds=Object.keys(selected);
-  if(selIds.length>0){
-    let combo='你是一位 SEO 戰略顧問。我選擇了以下 SEO 技能組合（'+build.name+' Build: '+w+'W/'+g+'G/'+b+'B），請根據這個 Build 幫我制定完整的 SEO 執行策略。\n\n我的網站：[貼上你的網址]\n我的產業：[填入]\n\n';
-    combo+='== 我選擇的技能 ==\n';
-    selIds.forEach(id=>{
-      const p=PROMPTS[id];
-      if(p)combo+='- '+p.name+'\n';
-    });
-    combo+='\n== 請產出 ==\n';
-    combo+='1. 基於我的 Build ('+build.name+')，制定 3 個月執行計畫\n';
-    combo+='2. 每個月的具體行動項目（按週排列）\n';
-    combo+='3. 風險等級：安全度 '+build.safe+'% / 速度 '+build.speed+'% / 風險 '+build.risk+'%\n';
-    combo+='4. 針對我選的每個技能，給出具體執行步驟\n';
-    combo+='5. KPI 追蹤指標（每月應該看什麼數字）\n';
-    combo+='6. 退場/調整策略（什麼信號代表需要調整 Build）\n';
-    if(g>0)combo+='7. 灰帽技能的風險控管 checklist\n';
-    if(b>0)combo+='8. 黑帽知識的防禦應用方式\n';
-    document.getElementById('comboPromptText').textContent=combo;
-    document.getElementById('comboPrompt').style.display='block';
-  }else{
-    document.getElementById('comboPrompt').style.display='none';
-  }
-
-  localStorage.setItem('seo_talent',JSON.stringify(selected));
-}
+function copyPrompt(btn){navigator.clipboard.writeText(document.getElementById('modalPrompt').textContent).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Prompt';btn.classList.remove('copied')},1500)})}
+function copyCombo(btn){navigator.clipboard.writeText(document.getElementById('comboText').textContent).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Prompt';btn.classList.remove('copied')},1500)})}
 
 function resetAll(){
   selected={};
-  document.querySelectorAll('.tn').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.tnode').forEach(n=>n.classList.remove('active'));
+  document.querySelectorAll('.conn').forEach(c=>{c.classList.remove('active','cw','cg','cb')});
   updateDisplay();
-  localStorage.removeItem('seo_talent');
+  localStorage.removeItem('seo_tt');
 }
 
 function loadPreset(w,g,b){
   resetAll();
-  const wNodes=document.querySelectorAll('.tree.t-w .tn');
-  const gNodes=document.querySelectorAll('.tree.t-g .tn');
-  const bNodes=document.querySelectorAll('.tree.t-b .tn');
-  w.forEach((v,i)=>{if(v&&wNodes[i])toggle(wNodes[i])});
-  g.forEach((v,i)=>{if(v&&gNodes[i])toggle(gNodes[i])});
-  b.forEach((v,i)=>{if(v&&bNodes[i])toggle(bNodes[i])});
+  const wn=document.querySelectorAll('.tnode.tw');
+  const gn=document.querySelectorAll('.tnode.tg');
+  const bn=document.querySelectorAll('.tnode.tb');
+  w.forEach((v,i)=>{if(v&&wn[i]){selected[wn[i].dataset.id]='w';wn[i].classList.add('active')}});
+  g.forEach((v,i)=>{if(v&&gn[i]){selected[gn[i].dataset.id]='g';gn[i].classList.add('active')}});
+  b.forEach((v,i)=>{if(v&&bn[i]){selected[bn[i].dataset.id]='b';bn[i].classList.add('active')}});
+  updateConns();
+  updateDisplay();
 }
 
-// Load saved state
-(()=>{
-  try{
-    const saved=localStorage.getItem('seo_talent');
-    if(saved){
-      const data=JSON.parse(saved);
-      document.querySelectorAll('.tn').forEach(n=>{
-        if(data[n.dataset.id]){
-          selected[n.dataset.id]=data[n.dataset.id];
-          n.classList.add('active');
-        }
-      });
-      updateDisplay();
-    }
-  }catch(e){}
-})();
+// Restore
+(()=>{try{
+  const s=localStorage.getItem('seo_tt');
+  if(s){
+    const d=JSON.parse(s);
+    document.querySelectorAll('.tnode').forEach(n=>{
+      if(d[n.dataset.id]){selected[n.dataset.id]=d[n.dataset.id];n.classList.add('active')}
+    });
+    updateConns();updateDisplay();
+  }
+}catch(e){}})();
 </script>
 </body>
 </html>
