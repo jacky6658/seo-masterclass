@@ -119,6 +119,26 @@ a{color:var(--gold);text-decoration:none}
 .preset .pp{font-family:var(--mono);font-size:.72rem;color:var(--text2)}
 .preset small{font-size:.68rem;color:var(--text2);display:block;margin-top:.25rem}
 
+/* ========== PROMPT MODAL ========== */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:2000;justify-content:center;align-items:center;padding:1rem}
+.modal-overlay.show{display:flex}
+.modal{background:var(--card2);border:1px solid var(--gold-line);border-radius:var(--r-lg);max-width:600px;width:100%;max-height:85vh;overflow-y:auto;padding:0}
+.modal-head{padding:.8rem 1.2rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.modal-head h3{margin:0;font-size:.95rem;color:var(--gold)}
+.modal-close{background:none;border:none;color:var(--text2);cursor:pointer;font-size:1.2rem;padding:.2rem .5rem;transition:var(--tr)}
+.modal-close:hover{color:var(--text-h)}
+.modal-body{padding:1.2rem}
+.modal-body p{font-size:.85rem;margin:.3rem 0;color:var(--text2)}
+
+.prompt-box{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.9rem;margin:.8rem 0;font-family:var(--mono);font-size:.78rem;line-height:1.6;color:var(--text-h);white-space:pre-wrap;word-break:break-word;position:relative;max-height:300px;overflow-y:auto}
+.copy-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .8rem;background:var(--gold-dim);border:1px solid var(--gold-line);border-radius:5px;color:var(--gold);cursor:pointer;font-family:var(--body);font-size:.75rem;transition:var(--tr);margin-top:.5rem}
+.copy-btn:hover{background:rgba(201,168,76,.15)}
+.copy-btn.copied{color:var(--green2);border-color:rgba(45,157,94,.3)}
+
+/* ========== COMBINED PROMPT ========== */
+.combo-prompt{margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)}
+.combo-prompt h4{color:var(--gold);font-size:.88rem;margin-bottom:.5rem}
+
 footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;border-top:1px solid var(--border)}
 
 @media(max-width:768px){
@@ -217,6 +237,11 @@ footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;b
       <div class="bm"><div class="bm-top"><span>風險等級</span><span id="bmRisk">-</span></div><div class="bm-bar"><div class="bm-fill bf-risk" id="bmRiskBar" style="width:0%"></div></div></div>
     </div>
     <div class="build-strat" id="buildStrat"></div>
+    <div class="combo-prompt" id="comboPrompt" style="display:none">
+      <h4>AI Strategy Prompt -- 複製貼到 Claude / ChatGPT</h4>
+      <div class="prompt-box" id="comboPromptText"></div>
+      <button class="copy-btn" onclick="copyCombo(this)">Copy Full Strategy Prompt</button>
+    </div>
   </div>
 </div>
 
@@ -235,6 +260,18 @@ footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;b
   </div>
 </div>
 
+<!-- Prompt Modal -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-head"><h3 id="modalTitle">Skill Prompt</h3><button class="modal-close" onclick="closeModal()">x</button></div>
+    <div class="modal-body">
+      <p id="modalDesc"></p>
+      <div class="prompt-box" id="modalPrompt"></div>
+      <button class="copy-btn" onclick="copyPrompt(this)">Copy Prompt</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p><a href="seo-masterclass.html">Back to Masterclass</a> | <a href="skillbook-white.html">White</a> | <a href="skillbook-grey.html">Grey</a> | <a href="skillbook-black.html">Black</a></p>
 </footer>
@@ -242,6 +279,404 @@ footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;b
 </div>
 
 <script>
+/* ========== SKILL PROMPTS ========== */
+const PROMPTS={
+w1:{name:'Technical SEO Audit',desc:'讓 AI 幫你做完整技術 SEO 健檢',prompt:`你是一位資深 SEO 技術顧問。請對我的網站進行完整的技術 SEO audit。
+
+我的網站：[貼上你的網址]
+
+請依序檢查並回報：
+1. robots.txt 是否正確設定（有沒有意外封鎖重要頁面）
+2. sitemap.xml 是否存在、格式正確、URL 數量
+3. 每個頁面是否有自參照 canonical 標籤
+4. URL 結構是否語意化、扁平化（3 層以內）
+5. HTTPS 是否正確（有沒有 mixed content）
+6. Mobile-friendly 檢查
+7. 有沒有 orphan pages（沒有內部連結指向的頁面）
+8. Redirect chain 檢查（有沒有連續 301）
+
+對每個問題給出：狀態（通過/警告/失敗）、具體問題描述、修復步驟。`},
+
+w2:{name:'Core Web Vitals 優化',desc:'讓 AI 分析你的頁面速度並給優化建議',prompt:`你是 Web Performance 專家。請幫我優化網站的 Core Web Vitals。
+
+我的網站：[貼上你的網址]
+PageSpeed Insights 分數：[貼上你的分數]
+
+請針對三大指標各給 3 個最有效的優化建議：
+
+LCP（目標 < 2.5s）：
+- 分析最大內容元素是什麼
+- 圖片是否用了 WebP/AVIF
+- 是否有 preload 關鍵資源
+- CSS/JS 是否阻塞渲染
+
+INP（目標 < 200ms）：
+- 是否有長任務阻塞 main thread
+- 第三方腳本影響（GA、Ads）
+- Event handler 優化建議
+
+CLS（目標 < 0.1）：
+- 圖片是否有 width/height
+- 廣告是否預留空間
+- 字體載入策略
+
+每個建議附上具體程式碼修改。`},
+
+w3:{name:'Content Strategy 規劃',desc:'讓 AI 幫你建立 Topic Cluster 和內容日曆',prompt:`你是 SEO 內容策略師。請幫我規劃完整的內容策略。
+
+我的網站主題：[填入你的主題，例如「台股股利計算」]
+目前有的文章：[列出你現有的文章標題]
+目標受眾：[描述你的目標用戶]
+
+請產出：
+1. Topic Cluster 地圖：
+   - 1 個 Pillar Page 主題
+   - 8-10 個 Cluster 子主題
+   - 每個子主題的目標關鍵字和搜尋意圖（I/N/C/T）
+   - 子主題之間的內部連結關係
+
+2. Content Calendar（3 個月）：
+   - 每週 1-2 篇的發文排程
+   - 優先順序（先寫哪些、為什麼）
+   - 季節性內容時機
+
+3. 每篇文章的 E-E-A-T 強化建議：
+   - 如何展示 Experience
+   - 需要引用什麼數據來源`},
+
+w4:{name:'Natural Link Building',desc:'讓 AI 幫你找連結建設機會',prompt:`你是外部連結建設專家。請幫我制定自然連結建設策略。
+
+我的網站：[貼上你的網址]
+我的主題：[填入主題]
+目前外部連結數量：[填入數字]
+
+請產出：
+1. Linkable Asset 建議（3 個）：
+   - 我可以做什麼免費工具/資源讓別人想連結我？
+   - 什麼樣的原創數據報告在我的領域有連結潛力？
+
+2. Guest Post 機會清單：
+   - 列出 10 個我的主題相關、接受投稿的中文網站/部落格
+   - 每個站的投稿方式和建議主題
+
+3. Broken Link Building 機會：
+   - 怎麼找到我主題相關的壞連結
+   - outreach email 模板（中文）
+
+4. 社群推廣計畫：
+   - 哪些社群（Dcard/PTT/FB）最適合我的主題
+   - 每週推廣節奏和注意事項`},
+
+w5:{name:'Schema 結構化資料',desc:'讓 AI 直接幫你生成 JSON-LD 程式碼',prompt:`你是 Schema 結構化資料專家。請幫我的網頁生成完整的 JSON-LD Schema。
+
+我的頁面 URL：[貼上 URL]
+頁面類型：[工具頁/文章頁/FAQ頁/產品頁]
+頁面標題：[填入標題]
+頁面描述：[填入描述]
+
+請生成：
+1. 適合這個頁面的所有 Schema 類型（可以是多個巢狀 Schema）
+2. 完整的 JSON-LD 程式碼（可以直接貼到 <head> 裡）
+3. 如果是文章，加入 Article + FAQPage（從內容中提取 FAQ）
+4. 如果是工具，加入 WebApplication + HowTo
+5. 加入 BreadcrumbList
+6. 如果有適合語音搜尋的段落，加入 Speakable
+
+額外：幫我檢查這個 Schema 是否能觸發 Google Rich Results，以及 AEO 優化建議。`},
+
+w6:{name:'Advanced SEO Audit',desc:'進階 SEO 分析：PageRank 流動、Content Pruning、A/B Test',prompt:`你是進階 SEO 分析師。請對我的網站做深度分析。
+
+我的網站：[貼上你的網址]
+頁面數量：[填入數字]
+月流量：[填入數字]
+
+請分析：
+1. Internal Linking 健康度：
+   - 哪些頁面是 orphan pages？
+   - PageRank 是否集中在重要頁面？
+   - 有沒有連結過度集中或過度分散的問題？
+
+2. Content Pruning 建議：
+   - 哪些頁面流量為零且沒有外部連結？（建議刪除/合併）
+   - 哪些頁面主題重複？（建議合併）
+   - 整站的 Helpful Content signal 評估
+
+3. SEO A/B Test 建議：
+   - 找出 3 個 CTR 最低的頁面，建議新的 title tag
+   - Featured Snippet 搶奪機會分析
+
+4. Log File Analysis 指引：
+   - 教我怎麼看 Googlebot 爬取日誌
+   - 什麼信號代表 crawl budget 浪費`},
+
+w7:{name:'Brand Authority Building',desc:'建立品牌實體，讓 Google Knowledge Panel 認識你',prompt:`你是品牌 SEO 和 Entity SEO 專家。請幫我建立品牌在 Google 知識圖譜中的實體。
+
+我的品牌名：[填入]
+我的網站：[填入]
+我的主題領域：[填入]
+
+請產出：
+1. Entity SEO 行動計畫：
+   - 如何讓 Google 把我的品牌建立為一個 Entity
+   - 需要在哪些平台建立一致的品牌資訊（維基百科/Wikidata/Google Business Profile）
+   - Schema Organization markup 程式碼
+
+2. Knowledge Panel 取得策略：
+   - 需要什麼條件
+   - 分步驟執行計畫
+
+3. Brand SERP 優化：
+   - 搜尋我的品牌名時，SERP 應該長什麼樣
+   - 如何控制搜尋結果中的品牌呈現`},
+
+g1:{name:'Niche Edit 評估',desc:'讓 AI 幫你評估 Niche Edit 連結的品質和風險',prompt:`你是灰帽連結建設顧問。我正在考慮購買 Niche Edit 連結。
+
+請幫我建立一個評估框架：
+1. 判斷一個 Niche Edit 是否值得買的 checklist：
+   - DA/DR 最低門檻
+   - 真實流量判斷（怎麼分辨假流量）
+   - 主題相關性評分
+   - 連結 profile 健康度
+   - 價格合理範圍
+
+2. 安全的 anchor text 分配比例：
+   - Branded vs Exact Match vs Generic vs URL
+   - 每月建議數量（velocity control）
+
+3. 風險監控：
+   - 什麼信號代表該停手
+   - 如何追蹤連結是否被 Google 忽略或懲罰
+
+注意：請同時告訴我這個策略的風險等級和潛在後果。`},
+
+g2:{name:'AI Content Pipeline',desc:'建立 AI + 人審的內容量產流程',prompt:`你是 AI 內容策略師。請幫我建立一個 AI + 人工審核的內容產出 pipeline。
+
+我的主題：[填入]
+目標：每週產出 [X] 篇高品質文章
+
+請設計完整流程：
+1. 關鍵字研究 → 選題
+2. AI 生成文章大綱（給我大綱的 prompt 模板）
+3. AI 生成初稿（給我初稿的 prompt 模板，含 SEO 要求）
+4. 人工審核 12 項 checklist：
+   □ 事實查核（數據是否正確）
+   □ 獨特觀點（加入我的個人經驗/見解）
+   □ 數據更新（引用最新資料）
+   □ 內部連結（至少 3 個）
+   □ 外部連結（引用權威來源）
+   □ 圖片/表格（視覺化）
+   □ FAQ 段落（AEO 優化）
+   □ Schema 標記
+   □ Meta title/description
+   □ 開頭定義段落（GEO 優化）
+   □ 可讀性（段落長度、H2/H3 結構）
+   □ CTA（引導到工具/其他文章）
+5. 品質滑坡防護機制（怎麼確保量產不降質）`},
+
+g3:{name:'301 Redirect Strategy',desc:'過期域名收購與權重傳遞策略',prompt:`你是域名策略顧問。我想透過收購過期高 DA 域名做 301 redirect 傳遞權重。
+
+請幫我：
+1. 評估框架 — 什麼樣的過期域名值得買：
+   - DA/DR 最低門檻
+   - 主題相關性要求
+   - Backlink profile 健康度檢查
+   - 歷史內容檢查（Wayback Machine）
+   - 是否被 Google 懲罰過
+
+2. 301 redirect 設定最佳實踐：
+   - 整站 redirect vs 逐頁 redirect
+   - 如何保留最多權重
+   - Google 對不相關 redirect 的折扣機制
+
+3. 風險評估與退場策略
+
+注意：這是灰帽策略，請同時告訴我 Google 的立場和潛在風險。`},
+
+g4:{name:'Programmatic SEO',desc:'批量生成頁面的策略和模板設計',prompt:`你是 Programmatic SEO 專家。我想用資料庫 + 模板批量生成大量頁面。
+
+我的主題：[填入]
+資料來源：[填入，例如：股票列表、城市列表、產品列表]
+目標頁面數量：[填入]
+
+請幫我設計：
+1. 頁面模板結構（確保每頁有獨特價值，不是 doorway page）：
+   - 動態內容區塊
+   - 靜態共用區塊
+   - 每頁獨特的元素是什麼
+
+2. Internal Linking 策略：
+   - 批量頁面之間怎麼互連
+   - 怎麼連回主站 Pillar Page
+
+3. 品質控管：
+   - Google 判斷 programmatic vs doorway 的標準
+   - 如何確保不觸發 Helpful Content 降級
+   - 索引監控方法
+
+4. 技術實作建議（用什麼工具/框架生成）`},
+
+g5:{name:'Social Media Strategy',desc:'社群推廣策略與口碑建設',prompt:`你是社群行銷策略師。請幫我制定社群推廣計畫來為我的網站帶來流量和連結。
+
+我的網站：[填入]
+主題：[填入]
+目標平台：Dcard / PTT / Facebook 社團
+
+請產出：
+1. 每個平台的參與策略：
+   - 適合發什麼類型的內容
+   - 怎麼自然帶入我的網站連結
+   - 每週建議頻率
+
+2. 回覆模板（3 種情境）：
+   - 有人問我的主題相關問題時
+   - 有人分享相關經驗時
+   - 有人推薦競品工具時
+
+3. 第一個月的具體行動計畫（逐週）
+
+注意：以真實參與為主，不是灌水推廣。`},
+
+g6:{name:'Parasite SEO',desc:'借平台權重排名的策略分析',prompt:`你是 Parasite SEO 分析師。請幫我分析在高權重平台發佈內容借權重排名的策略。
+
+我的目標關鍵字：[填入]
+我想用的平台：Medium / LinkedIn / GitHub Pages / [其他]
+
+請分析：
+1. 每個平台的 SEO 優劣勢
+2. 2025-2026 年 Google 對 Parasite SEO 的打擊程度
+3. 如果要做，最安全的執行方式
+4. 預期壽命和退場時機
+5. 替代方案（用白帽方式達到類似效果）
+
+重要：請明確標示這個策略的風險等級。`},
+
+g7:{name:'Seasonal SEO Playbook',desc:'季節性事件的 SEO 攻勢時間表',prompt:`你是季節性 SEO 策略師。請幫我規劃一個季節性事件的完整 SEO 攻勢。
+
+事件名稱：[填入，例如：2026 世界盃 / 雙 11 / 報稅季]
+事件日期：[填入]
+我的網站主題：[填入]
+和這個事件的關聯：[填入]
+
+請產出時間軸攻略：
+T-6 個月：Evergreen 頁面建立計畫（URL 不含年份）
+T-3 個月：內容擴展 + Topic Cluster 建構
+T-1 個月：外連衝刺 + 社群預熱
+事件期間：即時內容更新流程（AI + 人審快速產出）
+事件結束：頁面轉型為回顧型內容，保留 URL 權重
+
+每個階段的具體行動 + 預算分配建議。`},
+
+b1:{name:'PBN Detection',desc:'辨識競爭對手是否使用 PBN',prompt:`你是 SEO 反垃圾分析師。請教我如何辨識競爭對手是否在使用 PBN（私人部落格網路）。
+
+競爭對手網站：[填入]
+
+請教我檢查以下 footprint：
+1. 用 Ahrefs 看他的 backlink profile：
+   - 哪些特徵代表 PBN？（DA 範圍、流量、更新頻率）
+   - 連結來源站的共同模式
+2. Hosting footprint 檢查方法
+3. Content pattern 辨識（模板化、低品質）
+4. 如果確認對手用 PBN，我應該怎麼做（檢舉？忽略？加強自己？）
+
+這是防禦用途 — 了解是為了保護自己，不是為了使用。`},
+
+b2:{name:'Cloaking Defense',desc:'檢查你的網站是否被駭客注入 cloaking',prompt:`你是網站安全專家。請教我如何檢查我的網站是否被注入 cloaking（Japanese Keyword Hack 等）。
+
+我的網站：[填入]
+CMS：WordPress / 純 HTML / [其他]
+
+請給我完整的檢查步驟：
+1. Google 搜尋 site:[我的網域] 看有沒有異常頁面
+2. GSC 安全問題頁面檢查
+3. 伺服器檔案檢查（哪些檔案最常被注入）
+4. .htaccess 是否被竄改
+5. WordPress 插件安全檢查清單
+6. 如果發現被入侵的清除 SOP
+7. 預防措施（安全插件、2FA、更新策略）`},
+
+b3:{name:'Negative SEO Defense',desc:'防禦對手的有毒連結攻擊',prompt:`你是 Negative SEO 防禦專家。請幫我建立 Negative SEO 防禦系統。
+
+我的網站：[填入]
+
+請設計：
+1. 監控系統：
+   - 每週/月 backlink 檢查 SOP
+   - 什麼樣的新連結是可疑的
+   - 推薦的監控工具設定
+
+2. 應對流程：
+   - 發現大量有毒連結時的 step-by-step
+   - Google Disavow Tool 使用指南
+   - Disavow 檔案格式和最佳實踐
+
+3. 預防措施：
+   - 如何降低被 Negative SEO 影響的風險
+   - 保持自身連結 profile 乾淨的重要性`},
+
+b4:{name:'Content Protection',desc:'防止內容被抄襲的監控和處理',prompt:`你是智慧財產權保護顧問。請幫我建立內容被抄襲的監控和處理系統。
+
+我的網站：[填入]
+
+請設計：
+1. 監控方法：
+   - 怎麼定期檢查內容是否被抄襲
+   - 推薦的工具（Copyscape、Google Alert 設定）
+   - 自動化監控方案
+
+2. 發現抄襲時的 SOP：
+   - 證據保留（截圖、Wayback Machine）
+   - 友善通知模板（中文 email）
+   - DMCA Takedown 提交步驟（Google、Hosting Provider）
+   - 法律途徑（什麼程度需要找律師）
+
+3. 預防措施：
+   - 原創內容的時間戳記方法
+   - RSS feed 防盜設定`},
+
+b5:{name:'SpamBrain Analysis',desc:'深度理解 Google 反垃圾系統以避免誤觸',prompt:`你是 Google Search Quality 分析師。請幫我理解 SpamBrain 的偵測邏輯，確保我的白帽/灰帽操作不會誤觸。
+
+我的網站：[填入]
+我目前的 SEO 策略：[描述你在做的事]
+
+請分析：
+1. SpamBrain 主要偵測的 pattern 有哪些？
+2. 我目前的策略有沒有可能被誤判的風險？
+3. 安全邊界在哪裡？（例如每月建多少條外連是安全的）
+4. 2026 年 SpamBrain 的最新變化
+5. 如果被誤判，怎麼提交 reconsideration`},
+
+b6:{name:'Penalty Recovery SOP',desc:'被懲罰時的完整恢復流程',prompt:`你是 Google Penalty Recovery 專家。請幫我建立被懲罰時的完整恢復 SOP。
+
+情境：[選擇]
+A) GSC 收到 Manual Action 通知
+B) 排名突然大幅下降但沒有通知（算法降級）
+C) 頁面從 Google 索引消失
+
+請對每種情境給出：
+1. 診斷步驟（確認問題類型）
+2. 修復行動清單（按優先順序）
+3. Reconsideration Request 撰寫指南（Manual Action 用）
+4. 預期恢復時間
+5. 恢復後的重建策略
+6. 什麼情況下應該放棄這個域名重新開始`},
+
+b7:{name:'Security Hardening',desc:'網站安全強化完整清單',prompt:`你是網站安全工程師。請幫我做完整的安全強化。
+
+我的網站：[填入]
+CMS：[填入]
+Hosting：[填入]
+
+請產出完整的安全清單：
+1. 帳號安全：強密碼政策、2FA 設定、Admin 帳號審計
+2. CMS 安全：核心/插件/主題更新策略、移除未使用插件
+3. 伺服器安全：SSL/TLS、HTTP Security Headers、防火牆
+4. 檔案安全：權限設定、.htaccess 保護、uploads 資料夾
+5. 監控：安全插件推薦、入侵偵測、備份策略
+6. 應急：被駭時的 SOP、備份還原步驟
+
+每項都給具體的設定步驟或程式碼。`}
+};
+
 const BUILDS={
   '10-0-0':{name:'Holy Paladin',icon:'HP',spec:'純白帽聖騎士',safe:98,speed:25,risk:2,strats:['100% 合規，不碰任何灰色地帶','靠內容品質和自然連結成長','見效慢（6-12月）但一旦到位幾乎不可撼動','適合：長期品牌站、企業官網、YMYL 內容站']},
   '7-3-0':{name:'Ranger',icon:'RG',spec:'遊俠 -- 白帽為主 + 灰帽加速',safe:78,speed:55,risk:22,strats:['白帽地基 + 灰帽加速連結建設','AI 內容 pipeline 搭配嚴格人工審核','Niche Edit 控制每月 3-5 條，anchor 多樣化','適合：中競爭利基市場、新站需要加速的前 6 個月']},
@@ -267,8 +702,27 @@ function toggle(el){
     if(total>=10)return;
     selected[id]=faction;
     el.classList.add('active');
+    // Show prompt modal
+    if(PROMPTS[id])showPromptModal(id);
   }
   updateDisplay();
+}
+
+function showPromptModal(id){
+  const p=PROMPTS[id];if(!p)return;
+  document.getElementById('modalTitle').textContent=p.name;
+  document.getElementById('modalDesc').textContent=p.desc;
+  document.getElementById('modalPrompt').textContent=p.prompt;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function copyPrompt(btn){
+  const text=document.getElementById('modalPrompt').textContent;
+  navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Prompt';btn.classList.remove('copied')},1500)});
+}
+function copyCombo(btn){
+  const text=document.getElementById('comboPromptText').textContent;
+  navigator.clipboard.writeText(text).then(()=>{btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy Full Strategy Prompt';btn.classList.remove('copied')},1500)});
 }
 
 function updateDisplay(){
@@ -321,6 +775,30 @@ function updateDisplay(){
   let html='<h4>Strategy Guide</h4>';
   build.strats.forEach(s=>{html+='<div class="strat-item"><div class="si"></div><span>'+s+'</span></div>'});
   document.getElementById('buildStrat').innerHTML=html;
+
+  // Generate combo prompt
+  const selIds=Object.keys(selected);
+  if(selIds.length>0){
+    let combo='你是一位 SEO 戰略顧問。我選擇了以下 SEO 技能組合（'+build.name+' Build: '+w+'W/'+g+'G/'+b+'B），請根據這個 Build 幫我制定完整的 SEO 執行策略。\n\n我的網站：[貼上你的網址]\n我的產業：[填入]\n\n';
+    combo+='== 我選擇的技能 ==\n';
+    selIds.forEach(id=>{
+      const p=PROMPTS[id];
+      if(p)combo+='- '+p.name+'\n';
+    });
+    combo+='\n== 請產出 ==\n';
+    combo+='1. 基於我的 Build ('+build.name+')，制定 3 個月執行計畫\n';
+    combo+='2. 每個月的具體行動項目（按週排列）\n';
+    combo+='3. 風險等級：安全度 '+build.safe+'% / 速度 '+build.speed+'% / 風險 '+build.risk+'%\n';
+    combo+='4. 針對我選的每個技能，給出具體執行步驟\n';
+    combo+='5. KPI 追蹤指標（每月應該看什麼數字）\n';
+    combo+='6. 退場/調整策略（什麼信號代表需要調整 Build）\n';
+    if(g>0)combo+='7. 灰帽技能的風險控管 checklist\n';
+    if(b>0)combo+='8. 黑帽知識的防禦應用方式\n';
+    document.getElementById('comboPromptText').textContent=combo;
+    document.getElementById('comboPrompt').style.display='block';
+  }else{
+    document.getElementById('comboPrompt').style.display='none';
+  }
 
   localStorage.setItem('seo_talent',JSON.stringify(selected));
 }
