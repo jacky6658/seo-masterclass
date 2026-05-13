@@ -48,6 +48,24 @@ a{color:var(--gold);text-decoration:none;transition:var(--tr)}a:hover{text-decor
 .cat{margin:2.5rem 0 .5rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
 .cat-desc{font-size:.78rem;color:var(--text2);margin-top:.2rem}
 
+/* ========== TOOL GUIDE (expandable) ========== */
+.tool-guide{display:none;margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border)}
+.tool.has-guide{cursor:pointer}
+.tool.open .tool-guide{display:block}
+.guide-toggle{font-size:.7rem;color:var(--gold);font-family:var(--mono);margin-top:.3rem;opacity:.7;transition:var(--tr)}
+.tool:hover .guide-toggle{opacity:1}
+.tool.open .guide-toggle{opacity:1}
+.guide-step{margin:.4rem 0;padding-left:.8rem;position:relative;font-size:.76rem;line-height:1.5}
+.guide-step::before{content:'';position:absolute;left:0;top:.45rem;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.guide-step b{color:var(--text-h)}
+.guide-img{font-size:.7rem;color:var(--text2);font-style:italic;margin:.3rem 0}
+.guide-tip{background:var(--gold-dim);border:1px solid var(--gold-line);border-radius:var(--r);padding:.5rem .7rem;margin:.4rem 0;font-size:.72rem}
+.guide-tip b{color:var(--gold)}
+.guide-numbers{display:flex;gap:.5rem;margin:.5rem 0;flex-wrap:wrap}
+.guide-num{text-align:center;padding:.4rem .6rem;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:var(--r);min-width:70px}
+.guide-num b{display:block;font-size:.9rem;color:var(--gold);font-family:var(--head)}
+.guide-num small{font-size:.6rem;color:var(--text2)}
+
 footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;border-top:1px solid var(--border);margin-top:2rem}
 
 @media(max-width:480px){
@@ -81,11 +99,25 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
 <div class="tools" id="toolGrid">
 
 <!-- AUTHORITY -->
-<div class="tool" data-cat="authority">
+<div class="tool has-guide" data-cat="authority" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">DR</div><span class="tool-name">Ahrefs 網站權重查詢</span></div>
   <div class="tool-desc">查你的網站「有多強」。DR 分數越高代表 Google 越信任你。也能看有多少網站連到你。不用註冊，輸入網址就能查。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 ahrefs.com/website-authority-checker</div>
+    <div class="guide-step"><b>Step 2：</b>在輸入框貼上你的網址（例如 dividend-calculator1.pages.dev），按 Check</div>
+    <div class="guide-step"><b>Step 3：</b>看三個關鍵數字：</div>
+    <div class="guide-numbers">
+      <div class="guide-num"><b>DR</b><small>Domain Rating<br>0-100 越高越強</small></div>
+      <div class="guide-num"><b>Backlinks</b><small>外部連結總數<br>越多越好</small></div>
+      <div class="guide-num"><b>Ref. Domains</b><small>連到你的網站數<br>比連結數更重要</small></div>
+    </div>
+    <div class="guide-step"><b>怎麼判斷好壞：</b>DR 0-10 = 新站（你現在）、10-30 = 有基礎、30-50 = 中等、50+ = 強站</div>
+    <div class="guide-step"><b>進階用法：</b>把競爭對手的網址也查一下，比較你和他的 DR 差距。差距越大 = 你要追的路越長</div>
+    <div class="guide-tip"><b>你的股利計算器現在：</b>DR 大概 0-5（新站正常）。目標是先到 DR 10+，方法就是累積外部連結。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
-  <a class="tool-link" href="https://ahrefs.com/website-authority-checker" target="_blank">ahrefs.com/website-authority-checker</a>
+  <a class="tool-link" href="https://ahrefs.com/website-authority-checker" target="_blank" onclick="event.stopPropagation()">ahrefs.com/website-authority-checker</a>
 </div>
 
 <div class="tool" data-cat="authority">
@@ -124,11 +156,26 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
 </div>
 
-<div class="tool" data-cat="backlink">
+<div class="tool has-guide" data-cat="backlink" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">DV</div><span class="tool-name">Google 否認連結工具</span></div>
   <div class="tool-desc">告訴 Google「這些連結不是我建的，請忽略」。被對手惡意灌有毒連結（Negative SEO）時的防禦武器。上傳一個文字檔就行。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>什麼時候需要用：</b>在 GSC 或 Ahrefs 發現大量來自色情站、賭博站、或你完全不認識的垃圾站的連結指向你</div>
+    <div class="guide-step"><b>Step 1：</b>先確認這些連結真的有害。不是所有奇怪的連結都需要否認 -- Google 通常會自動忽略</div>
+    <div class="guide-step"><b>Step 2：</b>建一個 .txt 文字檔，格式：</div>
+    <div class="guide-step" style="font-family:var(--mono);font-size:.7rem;background:rgba(255,255,255,.02);padding:.4rem .6rem;border-radius:4px">
+# 否認整個網域（推薦）<br>
+domain:spam-site.com<br>
+domain:toxic-links.net<br><br>
+# 或否認單一 URL<br>
+https://spam-site.com/bad-page
+    </div>
+    <div class="guide-step"><b>Step 3：</b>打開 GSC Disavow 工具，選你的網站，上傳 .txt 檔</div>
+    <div class="guide-tip"><b>注意：</b>不要隨便否認連結。只否認明確有害的。否認正常連結反而會傷害你的排名。不確定的就不要動。Google 大部分情況會自己處理。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span><span class="tag">defense</span></div>
-  <a class="tool-link" href="https://search.google.com/search-console/disavow-links" target="_blank">GSC Disavow Links</a>
+  <a class="tool-link" href="https://search.google.com/search-console/disavow-links" target="_blank" onclick="event.stopPropagation()">GSC Disavow Links</a>
 </div>
 
 <!-- KEYWORDS -->
@@ -139,25 +186,55 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
   <a class="tool-link" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank">Google Keyword Planner</a>
 </div>
 
-<div class="tool" data-cat="keyword">
+<div class="tool has-guide" data-cat="keyword" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-frm">UB</div><span class="tool-name">Ubersuggest 關鍵字建議</span></div>
   <div class="tool-desc">輸入一個詞，它會幫你延伸出一大堆相關的搜尋詞，還告訴你每個詞有多難排到第一頁。新手最友善的關鍵字工具。每天免費 3 次。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 neilpatel.com/ubersuggest，輸入關鍵字（例如「股利」），國家選「Taiwan」</div>
+    <div class="guide-step"><b>Step 2：</b>看三個關鍵數字：</div>
+    <div class="guide-numbers">
+      <div class="guide-num"><b>Volume</b><small>月搜尋量<br>越高 = 越多人搜</small></div>
+      <div class="guide-num"><b>SD</b><small>SEO 難度<br>0-100 越低越好打</small></div>
+      <div class="guide-num"><b>CPC</b><small>廣告單次點擊<br>越高 = 越值錢</small></div>
+    </div>
+    <div class="guide-step"><b>找機會：</b>Volume 高 + SD 低 = 最好的關鍵字（很多人搜但競爭少）。現實中很少見，SD 30 以下就算好打</div>
+    <div class="guide-step"><b>看「Keyword Ideas」：</b>延伸出的相關詞。找到好的就加入你的內容規劃</div>
+    <div class="guide-tip"><b>新手策略：</b>先挑 SD 30 以下、Volume 100 以上的長尾關鍵字。不要一開始就打大詞（SD 60+），打不贏的。</div>
+  </div>
   <div class="tool-tags"><span class="tag">freemium</span><span class="tag">keyword</span></div>
-  <a class="tool-link" href="https://neilpatel.com/ubersuggest/" target="_blank">neilpatel.com/ubersuggest</a>
+  <a class="tool-link" href="https://neilpatel.com/ubersuggest/" target="_blank" onclick="event.stopPropagation()">neilpatel.com/ubersuggest</a>
 </div>
 
-<div class="tool" data-cat="keyword">
+<div class="tool has-guide" data-cat="keyword" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">Google Trends 搜尋趨勢</span></div>
   <div class="tool-desc">看一個詞最近是變熱門還是退燒。可以比較兩個詞哪個更多人搜。做季節性 SEO（世界盃、報稅季）必用。完全免費。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 trends.google.com，輸入關鍵字（例如「股利計算」）</div>
+    <div class="guide-step"><b>Step 2：</b>看趨勢線。往上 = 越來越多人搜、往下 = 退燒。注意有沒有季節性波動（例如每年除息季特別高）</div>
+    <div class="guide-step"><b>Step 3：</b>用「比較」功能。例如比較「股利計算器」vs「殖利率計算器」，看哪個詞更熱門，優先做那個</div>
+    <div class="guide-step"><b>Step 4：</b>往下看「相關查詢」。標示「飆升」的關鍵字 = 近期突然變熱的新搜尋詞，搶先寫文章的好機會</div>
+    <div class="guide-tip"><b>季節性 SEO 用法：</b>看「世界盃」的趨勢，你會發現賽前 2 個月搜尋量開始爬升。在那之前 6 個月就要開始準備內容。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">keyword</span><span class="tag">trend</span></div>
-  <a class="tool-link" href="https://trends.google.com/" target="_blank">trends.google.com</a>
+  <a class="tool-link" href="https://trends.google.com/" target="_blank" onclick="event.stopPropagation()">trends.google.com</a>
 </div>
 
-<div class="tool" data-cat="keyword">
+<div class="tool has-guide" data-cat="keyword" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">AA</div><span class="tool-name">AnswerThePublic 問題挖掘</span></div>
   <div class="tool-desc">輸入「股利」，它會畫一張心智圖告訴你使用者都在問什麼問題（「股利怎麼算」「股利要繳稅嗎」）。找文章題目超好用。每天免費 3 次。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 answerthepublic.com，輸入關鍵字（例如「殖利率」），語言選「Chinese」或用英文詞</div>
+    <div class="guide-step"><b>Step 2：</b>它會產出一張放射狀心智圖，按分類顯示：</div>
+    <div class="guide-step"><b>Questions（問題）：</b>什麼/怎麼/為什麼/哪裡... 開頭的問題。每一個都是一篇文章的潛在題目</div>
+    <div class="guide-step"><b>Prepositions（介系詞）：</b>「殖利率 vs...」「殖利率 和...」之類的比較需求</div>
+    <div class="guide-step"><b>Alphabeticals（字母排列）：</b>按字母/注音延伸的所有搜尋詞</div>
+    <div class="guide-tip"><b>實戰用法：</b>從 Questions 裡挑 3-5 個最常見的問題，每個寫一篇文章。這就是你的 FAQ 和長尾關鍵字來源。比自己猜「使用者會搜什麼」準 10 倍。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE 3/day</span><span class="tag">keyword</span><span class="tag">content</span></div>
-  <a class="tool-link" href="https://answerthepublic.com/" target="_blank">answerthepublic.com</a>
+  <a class="tool-link" href="https://answerthepublic.com/" target="_blank" onclick="event.stopPropagation()">answerthepublic.com</a>
 </div>
 
 <div class="tool" data-cat="keyword">
@@ -168,11 +245,27 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
 </div>
 
 <!-- SITE AUDIT -->
-<div class="tool" data-cat="audit">
+<div class="tool has-guide" data-cat="audit" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">SC</div><span class="tool-name">Google Search Console 搜尋主控台</span></div>
   <div class="tool-desc">做 SEO 最重要的一個工具，沒有之一。Google 直接告訴你：你的網站被搜了幾次、排第幾、有沒有問題、哪些頁面被收錄。完全免費。你已經在用了。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>每週必看 - 成效報告：</b>左側「成效」。看 4 個數字：</div>
+    <div class="guide-numbers">
+      <div class="guide-num"><b>點擊</b><small>有多少人<br>真的點進來</small></div>
+      <div class="guide-num"><b>曝光</b><small>你出現在搜尋<br>結果的次數</small></div>
+      <div class="guide-num"><b>CTR</b><small>點擊率<br>越高越好</small></div>
+      <div class="guide-num"><b>排序</b><small>平均排名<br>越低越好</small></div>
+    </div>
+    <div class="guide-step"><b>看「查詢」tab：</b>哪些關鍵字帶來曝光？曝光高但點擊低的 = 改 title 的機會</div>
+    <div class="guide-step"><b>看「網頁」tab：</b>哪些頁面表現最好？哪些需要改善？</div>
+    <div class="guide-step"><b>每月必看 - 索引：</b>左側「網頁」。看有多少頁被收錄、多少沒被收錄、原因是什麼</div>
+    <div class="guide-step"><b>每月必看 - 連結：</b>左側「連結」。看外部連結數量有沒有成長</div>
+    <div class="guide-step"><b>隨時注意 - 安全：</b>左側「安全性與人工判決處罰」。如果這裡有通知 = 你被懲罰了，要立刻處理</div>
+    <div class="guide-tip"><b>你的使用頻率建議：</b>每週日花 5 分鐘看「成效」，每月看一次「索引」和「連結」。有異常才需要深入查。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span><span class="tag">official</span><span class="tag">rank</span></div>
-  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank" onclick="event.stopPropagation()">search.google.com/search-console</a>
 </div>
 
 <div class="tool" data-cat="audit">
@@ -182,11 +275,22 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
   <a class="tool-link" href="https://www.semrush.com/siteaudit/" target="_blank">semrush.com/siteaudit</a>
 </div>
 
-<div class="tool" data-cat="audit">
+<div class="tool has-guide" data-cat="audit" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">BK</div><span class="tool-name">Backlinko 單頁 SEO 檢查</span></div>
   <div class="tool-desc">貼一個網址進去，幾秒內告訴你這一頁的 SEO 哪裡好、哪裡有問題，還直接教你怎麼修。不用註冊，超方便。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 backlinko.com/tools/seo-checker，貼上你想檢查的頁面 URL</div>
+    <div class="guide-step"><b>Step 2：</b>幾秒後出報告，看每個項目的綠勾或紅叉：</div>
+    <div class="guide-step"><b>Title Tag：</b>有沒有、長度對不對（50-60 字元最佳）、有沒有包含目標關鍵字</div>
+    <div class="guide-step"><b>Meta Description：</b>有沒有、長度對不對（150-160 字元）</div>
+    <div class="guide-step"><b>H1 Tag：</b>有沒有、是不是唯一一個 H1</div>
+    <div class="guide-step"><b>Image Alt：</b>圖片有沒有 alt 文字描述</div>
+    <div class="guide-step"><b>Internal Links：</b>頁面有沒有連到其他頁面</div>
+    <div class="guide-tip"><b>最佳用法：</b>把你的每一頁都丟進去跑一次。有紅叉的項目就修。通常 5 分鐘就能修完一頁。優先修首頁和流量最高的頁面。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span></div>
-  <a class="tool-link" href="https://backlinko.com/tools/seo-checker" target="_blank">backlinko.com/tools/seo-checker</a>
+  <a class="tool-link" href="https://backlinko.com/tools/seo-checker" target="_blank" onclick="event.stopPropagation()">backlinko.com/tools/seo-checker</a>
 </div>
 
 <div class="tool" data-cat="audit">
@@ -197,11 +301,25 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
 </div>
 
 <!-- SPEED -->
-<div class="tool" data-cat="speed">
+<div class="tool has-guide" data-cat="speed" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">PS</div><span class="tool-name">PageSpeed Insights 速度測試</span></div>
   <div class="tool-desc">Google 官方的速度測試工具。它不只給你分數，還用真實用戶數據告訴你「你的頁面載入有多快」。Google 排名直接看這個數據。最權威的速度測試。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 pagespeed.web.dev，貼上你的網址，按 Analyze</div>
+    <div class="guide-step"><b>Step 2：</b>看最上方的「實際使用者體驗」（Field Data）-- 這才是 Google 排名用的數據。下面的「實驗室數據」是模擬的，僅供參考</div>
+    <div class="guide-step"><b>Step 3：</b>看三個核心指標：</div>
+    <div class="guide-numbers">
+      <div class="guide-num"><b>LCP</b><small>載入速度<br>綠色 = &lt; 2.5s</small></div>
+      <div class="guide-num"><b>INP</b><small>互動反應<br>綠色 = &lt; 200ms</small></div>
+      <div class="guide-num"><b>CLS</b><small>版面穩定<br>綠色 = &lt; 0.1</small></div>
+    </div>
+    <div class="guide-step"><b>三個都綠色 = 及格。</b>不需要追求滿分 100 -- 只要三個指標都在「Good」範圍，90 分和 100 分對排名沒有差別</div>
+    <div class="guide-step"><b>看「診斷」區塊：</b>往下滑，它會列出「機會」（可以改善的地方）和「診斷」（潛在問題），按影響大小排序，優先修最上面的</div>
+    <div class="guide-tip"><b>常見問題：</b>分數手機版比桌面版低很多是正常的。Google 用的是手機版數據，所以優先優化手機版。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">official</span></div>
-  <a class="tool-link" href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>
+  <a class="tool-link" href="https://pagespeed.web.dev/" target="_blank" onclick="event.stopPropagation()">pagespeed.web.dev</a>
 </div>
 
 <div class="tool" data-cat="speed">
@@ -226,11 +344,22 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
 </div>
 
 <!-- SCHEMA -->
-<div class="tool" data-cat="schema">
+<div class="tool has-guide" data-cat="schema" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-free">RR</div><span class="tool-name">Rich Results Test 結構化測試</span></div>
   <div class="tool-desc">Google 官方工具。貼你的網址進去，它會告訴你：你寫的 Schema 結構化資料有沒有用、能不能讓搜尋結果顯示 FAQ 展開、步驟教學、星星評分等特殊樣式。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 search.google.com/test/rich-results</div>
+    <div class="guide-step"><b>Step 2：</b>貼上你的網頁 URL（例如你的首頁），按「測試網址」</div>
+    <div class="guide-step"><b>Step 3：</b>等幾秒鐘，看結果：</div>
+    <div class="guide-step"><b>綠色勾 = 偵測到有效的結構化資料。</b>它會列出偵測到的類型（FAQPage、HowTo、WebApplication 等）。點每個類型可以看詳細欄位。</div>
+    <div class="guide-step"><b>黃色警告 = 非必要欄位缺少。</b>不影響功能但補上更好。</div>
+    <div class="guide-step"><b>紅色錯誤 = 必填欄位缺少或格式錯誤。</b>必須修。</div>
+    <div class="guide-step"><b>「預覽結果」按鈕：</b>點了可以看你的頁面在搜尋結果會長什麼樣（有沒有 FAQ 展開、步驟等）</div>
+    <div class="guide-tip"><b>你的股利計算器：</b>應該能偵測到 WebApplication + FAQPage + HowTo。如果三個都綠勾 = 你的 Schema 做得很好。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">official</span></div>
-  <a class="tool-link" href="https://search.google.com/test/rich-results" target="_blank">Rich Results Test</a>
+  <a class="tool-link" href="https://search.google.com/test/rich-results" target="_blank" onclick="event.stopPropagation()">Rich Results Test</a>
 </div>
 
 <div class="tool" data-cat="schema">
@@ -291,11 +420,21 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Performance > Search Appearance</a>
 </div>
 
-<div class="tool" data-cat="ai">
+<div class="tool has-guide" data-cat="ai" onclick="this.classList.toggle('open')">
   <div class="tool-top"><div class="tool-icon ti-frm">PP</div><span class="tool-name">Perplexity AI 搜尋測試</span></div>
   <div class="tool-desc">AI 搜尋引擎。在這裡搜你的品牌名或關鍵字，看 AI 回答時會不會提到或引用你的網站。這就是測試你的 GEO（生成引擎優化）效果的方式。</div>
+  <div class="guide-toggle">-- 點擊展開使用教學 --</div>
+  <div class="tool-guide">
+    <div class="guide-step"><b>Step 1：</b>打開 perplexity.ai</div>
+    <div class="guide-step"><b>Step 2：</b>搜尋你的目標關鍵字，例如「台灣股利計算工具推薦」或「殖利率怎麼算」</div>
+    <div class="guide-step"><b>Step 3：</b>看 AI 的回答。它會在回答後面標註引用來源。看你的網站有沒有出現在來源中</div>
+    <div class="guide-step"><b>有出現 = </b>你的 GEO 做得好，AI 認為你的內容是可靠來源</div>
+    <div class="guide-step"><b>沒出現 = </b>需要加強：內容更結構化、加 Schema、文章開頭加清晰定義段落、引用更多具體數據</div>
+    <div class="guide-step"><b>也試試：</b>直接搜你的品牌名「股利計算器」，看 Perplexity 知不知道你的存在</div>
+    <div class="guide-tip"><b>同時測 ChatGPT：</b>問 ChatGPT 同樣的問題，看它會不會推薦你。兩個平台都引用你 = GEO 成功。</div>
+  </div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">geo</span></div>
-  <a class="tool-link" href="https://www.perplexity.ai/" target="_blank">perplexity.ai</a>
+  <a class="tool-link" href="https://www.perplexity.ai/" target="_blank" onclick="event.stopPropagation()">perplexity.ai</a>
 </div>
 
 <div class="tool" data-cat="ai">
