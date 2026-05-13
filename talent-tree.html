@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SEO 天賦樹 — 打造你的專屬 Build</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#06060c;--card:#0f1018;--card2:#14151f;
+  --gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);--gold-line:rgba(201,168,76,.15);
+  --text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;
+  --blue:#4a7fd9;--blue2:#7ba8f0;--blue-bg:rgba(74,127,217,.07);--blue-line:rgba(74,127,217,.2);
+  --red:#b83a2e;--red2:#e05a4e;--red-bg:rgba(184,58,46,.07);--red-line:rgba(184,58,46,.2);
+  --purple:#7856b8;--purple2:#a889e0;--purple-bg:rgba(120,86,184,.07);--purple-line:rgba(120,86,184,.2);
+  --green:#2d9d5e;--green2:#6bc992;
+  --border:rgba(255,255,255,.05);
+  --r:8px;--r-lg:14px;--tr:.22s ease;
+  --mono:'JetBrains Mono',monospace;--body:'Noto Sans TC',system-ui,sans-serif;--head:'Cinzel','Noto Sans TC',serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px;min-height:100vh;background:linear-gradient(180deg,#06060c,#0a0c14,#06060c)}
+h1,h2,h3{font-family:var(--head);color:var(--gold);font-weight:700}
+h1{font-size:clamp(1.4rem,3vw,2.2rem);text-align:center;margin-bottom:.5rem}
+h2{font-size:1.15rem;margin:2rem 0 .8rem;text-align:center}
+h4{color:var(--text-h);font-weight:600;font-size:.9rem;margin:.5rem 0 .3rem}
+a{color:var(--gold);text-decoration:none}
+::selection{background:rgba(201,168,76,.25);color:#fff}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+
+.wrap{max-width:900px;margin:0 auto;padding:1.5rem 1rem 3rem}
+
+/* Hero */
+.hero{text-align:center;padding:2.5rem 1rem 2rem;margin-bottom:1.5rem;border-radius:var(--r-lg);border:1px solid var(--border);background:linear-gradient(135deg,rgba(201,168,76,.04),rgba(74,127,217,.03),rgba(184,58,46,.03))}
+.hero p{color:var(--text2);font-size:.88rem;max-width:500px;margin:.3rem auto 0}
+.hero .sub{color:var(--gold);font-style:italic;font-size:.9rem;font-family:var(--head)}
+
+/* Points Counter */
+.pts{display:flex;justify-content:center;gap:1.5rem;margin:1.5rem 0;flex-wrap:wrap}
+.pt{text-align:center;padding:.8rem 1.2rem;background:var(--card);border-radius:var(--r);border:1px solid var(--border);min-width:100px}
+.pt .pn{font-size:1.8rem;font-weight:900;font-family:var(--head)}
+.pt .pl{font-size:.68rem;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;margin-top:.15rem}
+.pt.pt-w .pn{color:var(--blue2)}
+.pt.pt-g .pn{color:var(--purple2)}
+.pt.pt-b .pn{color:var(--red2)}
+.pt.pt-r .pn{color:var(--gold)}
+
+/* Reset Button */
+.reset-btn{display:block;margin:1rem auto;padding:.4rem 1.2rem;background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:5px;cursor:pointer;font-family:var(--body);font-size:.78rem;transition:var(--tr)}
+.reset-btn:hover{border-color:var(--gold-line);color:var(--gold)}
+
+/* Talent Columns */
+.trees{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin:1.5rem 0}
+
+.tree{border-radius:var(--r-lg);padding:1rem .8rem;border:1px solid var(--border)}
+.tree.t-w{background:linear-gradient(180deg,rgba(74,127,217,.04),var(--card) 30%);border-color:rgba(74,127,217,.1)}
+.tree.t-g{background:linear-gradient(180deg,rgba(120,86,184,.04),var(--card) 30%);border-color:rgba(120,86,184,.1)}
+.tree.t-b{background:linear-gradient(180deg,rgba(184,58,46,.04),var(--card) 30%);border-color:rgba(184,58,46,.1)}
+
+.tree-head{text-align:center;margin-bottom:.8rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.tree-head h3{font-size:.92rem;margin:0}
+.tree.t-w .tree-head h3{color:var(--blue2)}
+.tree.t-g .tree-head h3{color:var(--purple2)}
+.tree.t-b .tree-head h3{color:var(--red2)}
+.tree-head small{font-size:.68rem;color:var(--text2)}
+
+/* Talent Node */
+.tn{display:flex;align-items:center;gap:.6rem;padding:.55rem .5rem;margin:.3rem 0;border-radius:var(--r);border:1px solid var(--border);cursor:pointer;transition:var(--tr);user-select:none;-webkit-user-select:none}
+.tn:hover{background:rgba(255,255,255,.02)}
+.tn.active{border-color:var(--gold-line);background:var(--gold-dim)}
+.tree.t-w .tn.active{border-color:var(--blue-line);background:var(--blue-bg)}
+.tree.t-g .tn.active{border-color:var(--purple-line);background:var(--purple-bg)}
+.tree.t-b .tn.active{border-color:var(--red-line);background:var(--red-bg)}
+
+.tn-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.72rem;font-family:var(--mono);flex-shrink:0;border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--text2);transition:var(--tr)}
+.tn.active .tn-icon{color:#fff}
+.tree.t-w .tn.active .tn-icon{background:var(--blue);border-color:var(--blue)}
+.tree.t-g .tn.active .tn-icon{background:var(--purple);border-color:var(--purple)}
+.tree.t-b .tn.active .tn-icon{background:var(--red);border-color:var(--red)}
+
+.tn-info{flex:1;min-width:0}
+.tn-info b{display:block;font-size:.78rem;color:var(--text-h);line-height:1.2}
+.tn-info span{display:block;font-size:.66rem;color:var(--text2);line-height:1.3;margin-top:.1rem}
+
+/* Connector lines between nodes */
+.tn-connect{width:1px;height:8px;background:var(--border);margin:0 auto;display:block}
+
+/* Build Result */
+.build{margin:2rem 0;border-radius:var(--r-lg);border:1px solid var(--gold-line);overflow:hidden;transition:var(--tr)}
+.build-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:1rem}
+.build-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;font-family:var(--head);background:var(--gold-dim);color:var(--gold);border:2px solid var(--gold-line);flex-shrink:0}
+.build-title{flex:1}
+.build-title h3{margin:0;font-size:1.05rem;color:var(--gold)}
+.build-title small{color:var(--text2);font-size:.75rem}
+.build-body{padding:1.2rem}
+.build-body p{font-size:.87rem;margin:.3rem 0}
+
+.build-strat{margin-top:1rem}
+.build-strat h4{color:var(--gold);font-size:.85rem;margin-bottom:.5rem}
+.strat-item{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0;font-size:.82rem}
+.strat-item .si{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:.45rem}
+
+.build-meter{margin-top:1rem}
+.bm{margin:.4rem 0}
+.bm-top{display:flex;justify-content:space-between;font-size:.72rem;margin-bottom:.15rem}
+.bm-bar{height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.bm-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.bm-fill.bf-w{background:var(--blue2)}.bm-fill.bf-g{background:var(--purple2)}.bm-fill.bf-b{background:var(--red2)}
+.bm-fill.bf-safe{background:var(--green2)}.bm-fill.bf-speed{background:var(--gold2)}.bm-fill.bf-risk{background:var(--red2)}
+
+/* Preset Builds */
+.presets{margin:2rem 0}
+.presets h2{margin-bottom:1rem}
+.preset-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.6rem}
+.preset{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.8rem;cursor:pointer;transition:var(--tr);text-align:center}
+.preset:hover{border-color:var(--gold-line);transform:translateY(-2px)}
+.preset h4{color:var(--gold);margin:0 0 .2rem;font-size:.82rem}
+.preset .pp{font-family:var(--mono);font-size:.72rem;color:var(--text2)}
+.preset small{font-size:.68rem;color:var(--text2);display:block;margin-top:.25rem}
+
+footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.74rem;border-top:1px solid var(--border)}
+
+@media(max-width:768px){
+  .trees{grid-template-columns:1fr}
+  .pts{gap:.8rem}
+  .pt{min-width:70px;padding:.6rem .8rem}
+  .pt .pn{font-size:1.4rem}
+  .preset-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .wrap{padding:1rem .6rem 2rem}
+  .hero{padding:1.8rem .8rem 1.5rem}
+  h1{font-size:1.2rem}
+  .pts{gap:.5rem}
+  .pt{min-width:60px;padding:.5rem .6rem}
+  .pt .pn{font-size:1.2rem}
+  .tn{padding:.45rem .4rem;gap:.45rem}
+  .tn-icon{width:28px;height:28px;font-size:.65rem}
+  .tn-info b{font-size:.72rem}
+  .tn-info span{font-size:.62rem}
+  .build-head{flex-direction:column;text-align:center;gap:.5rem}
+  .build-icon{width:44px;height:44px;font-size:1.1rem}
+  .preset-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>SEO Talent Tree</h1>
+  <p class="sub">打造你的專屬 Build</p>
+  <p>你有 10 點天賦點數。分配到白帽、灰帽、黑帽技能中，看看你的最佳戰鬥策略是什麼。</p>
+</div>
+
+<!-- Points Display -->
+<div class="pts">
+  <div class="pt pt-r"><div class="pn" id="ptRemain">10</div><div class="pl">剩餘點數</div></div>
+  <div class="pt pt-w"><div class="pn" id="ptW">0</div><div class="pl">White</div></div>
+  <div class="pt pt-g"><div class="pn" id="ptG">0</div><div class="pl">Grey</div></div>
+  <div class="pt pt-b"><div class="pn" id="ptB">0</div><div class="pl">Black</div></div>
+</div>
+<button class="reset-btn" onclick="resetAll()">Reset All Points</button>
+
+<!-- Three Talent Trees -->
+<div class="trees">
+
+<!-- WHITE HAT TREE -->
+<div class="tree t-w">
+  <div class="tree-head"><h3>Alliance / White</h3><small>穩定 / 長期 / 合規</small></div>
+  <div class="tn" data-f="w" data-id="w1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>Technical SEO</b><span>robots / sitemap / canonical / HTTPS</span></div></div>
+  <div class="tn" data-f="w" data-id="w2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>Core Web Vitals</b><span>LCP / INP / CLS 優化</span></div></div>
+  <div class="tn" data-f="w" data-id="w3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>Content Strategy</b><span>Topic Cluster / E-E-A-T / 搜尋意圖</span></div></div>
+  <div class="tn" data-f="w" data-id="w4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Natural Link Building</b><span>Linkable Asset / Guest Post / Digital PR</span></div></div>
+  <div class="tn" data-f="w" data-id="w5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>Schema Mastery</b><span>JSON-LD / Rich Results / AEO 優化</span></div></div>
+  <div class="tn" data-f="w" data-id="w6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Advanced White</b><span>Log Analysis / Content Pruning / A/B Test</span></div></div>
+  <div class="tn" data-f="w" data-id="w7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Brand Authority</b><span>Entity SEO / Knowledge Panel / 品牌搜尋</span></div></div>
+</div>
+
+<!-- GREY HAT TREE -->
+<div class="tree t-g">
+  <div class="tree-head"><h3>Neutral / Grey</h3><small>風險管理 / 加速 / 邊界</small></div>
+  <div class="tn" data-f="g" data-id="g1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>Niche Edit</b><span>在真實文章中購買連結位</span></div></div>
+  <div class="tn" data-f="g" data-id="g2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>AI Content Pipeline</b><span>AI 生成 + 人工審核精修</span></div></div>
+  <div class="tn" data-f="g" data-id="g3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>301 Redirect Stack</b><span>過期高 DA 域名收購傳權重</span></div></div>
+  <div class="tn" data-f="g" data-id="g4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Programmatic SEO</b><span>資料庫 + 模板批量生成頁面</span></div></div>
+  <div class="tn" data-f="g" data-id="g5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>Social Engineering</b><span>多帳號社群推廣 / 口碑操控</span></div></div>
+  <div class="tn" data-f="g" data-id="g6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Parasite SEO</b><span>借高權重平台排名（Medium/GitHub）</span></div></div>
+  <div class="tn" data-f="g" data-id="g7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Seasonal Blitz</b><span>季節性事件快攻（世界盃/選舉）</span></div></div>
+</div>
+
+<!-- BLACK HAT TREE -->
+<div class="tree t-b">
+  <div class="tree-head"><h3>Horde / Black</h3><small>高風險 / 短期 / 防禦知識</small></div>
+  <div class="tn" data-f="b" data-id="b1" onclick="toggle(this)"><div class="tn-icon">T1</div><div class="tn-info"><b>PBN Network</b><span>私人部落格網路（了解偵測方式）</span></div></div>
+  <div class="tn" data-f="b" data-id="b2" onclick="toggle(this)"><div class="tn-icon">T2</div><div class="tn-info"><b>Cloaking</b><span>偽裝術原理與反制方式</span></div></div>
+  <div class="tn" data-f="b" data-id="b3" onclick="toggle(this)"><div class="tn-icon">T3</div><div class="tn-info"><b>Link Manipulation</b><span>Link Farm / Negative SEO 防禦</span></div></div>
+  <div class="tn" data-f="b" data-id="b4" onclick="toggle(this)"><div class="tn-icon">T4</div><div class="tn-info"><b>Content Spam</b><span>Doorway / Scraping / AI 垃圾偵測</span></div></div>
+  <div class="tn" data-f="b" data-id="b5" onclick="toggle(this)"><div class="tn-icon">T5</div><div class="tn-info"><b>SpamBrain Intel</b><span>深度理解 Google 反垃圾系統</span></div></div>
+  <div class="tn" data-f="b" data-id="b6" onclick="toggle(this)"><div class="tn-icon">T6</div><div class="tn-info"><b>Penalty Recovery</b><span>懲罰辨識 / Disavow / 恢復 SOP</span></div></div>
+  <div class="tn" data-f="b" data-id="b7" onclick="toggle(this)"><div class="tn-icon">T7</div><div class="tn-info"><b>Security Hardening</b><span>防駭 / 防注入 / 監控系統</span></div></div>
+</div>
+
+</div>
+
+<!-- Build Result -->
+<div class="build" id="buildResult">
+  <div class="build-head">
+    <div class="build-icon" id="buildIcon">?</div>
+    <div class="build-title"><h3 id="buildName">-- 選擇你的天賦 --</h3><small id="buildSpec">分配點數後顯示你的 Build</small></div>
+  </div>
+  <div class="build-body">
+    <div class="build-meter">
+      <div class="bm"><div class="bm-top"><span>安全度</span><span id="bmSafe">-</span></div><div class="bm-bar"><div class="bm-fill bf-safe" id="bmSafeBar" style="width:0%"></div></div></div>
+      <div class="bm"><div class="bm-top"><span>見效速度</span><span id="bmSpeed">-</span></div><div class="bm-bar"><div class="bm-fill bf-speed" id="bmSpeedBar" style="width:0%"></div></div></div>
+      <div class="bm"><div class="bm-top"><span>風險等級</span><span id="bmRisk">-</span></div><div class="bm-bar"><div class="bm-fill bf-risk" id="bmRiskBar" style="width:0%"></div></div></div>
+    </div>
+    <div class="build-strat" id="buildStrat"></div>
+  </div>
+</div>
+
+<!-- Preset Builds -->
+<div class="presets">
+  <h2>Preset Builds</h2>
+  <div class="preset-grid">
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1,0,0,0],[],[])"><h4>Holy Paladin</h4><div class="pp">7W / 0G / 0B</div><small>純白帽聖騎士。最穩但最慢。適合品牌站</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,0,0],[1,1,1],[])"><h4>Ranger</h4><div class="pp">5W / 3G / 0B</div><small>白帽為主 + 灰帽加速。最多人用的 Build</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,0,0,0,0],[1,1,1,1,0,0,0],[1,1,0,0,0,0,0])"><h4>Shadow Hunter</h4><div class="pp">3W / 4G / 2B</div><small>了解暗影的獵人。攻守兼備</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,1,1],[1,0,0,0,0,0,0],[1,0,0,0,0,1,0])"><h4>Sentinel</h4><div class="pp">7W / 1G / 2B</div><small>白帽大師 + 防禦知識。知己知彼</small></div>
+    <div class="preset" onclick="loadPreset([1,1,0,0,0,0,0],[1,1,1,1,1,1,0],[1,1,0,0,0,0,0])"><h4>Mercenary</h4><div class="pp">2W / 6G / 2B</div><small>灰帽傭兵。高風險高報酬。短期專案</small></div>
+    <div class="preset" onclick="loadPreset([1,0,0,0,0,0,0],[1,1,0,0,0,1,1],[1,1,1,1,1,0,0])"><h4>Warlock</h4><div class="pp">1W / 4G / 5B</div><small>暗影術士。玩火的人。只適合拋棄式站</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,1,1,0,0],[1,1,0,0,0,0,1],[0,0,0,0,0,1,0])"><h4>Event Striker</h4><div class="pp">5W / 3G / 1B</div><small>季節性攻擊手。世界盃/大事件專用</small></div>
+    <div class="preset" onclick="loadPreset([1,1,1,0,1,0,0],[1,1,1,1,0,0,0],[0,0,0,0,1,1,0])"><h4>Casino Ops</h4><div class="pp">4W / 4G / 2B</div><small>娛樂城 SEO 專用。品牌隔離 + 灰帽衝刺</small></div>
+  </div>
+</div>
+
+<footer>
+  <p><a href="seo-masterclass.html">Back to Masterclass</a> | <a href="skillbook-white.html">White</a> | <a href="skillbook-grey.html">Grey</a> | <a href="skillbook-black.html">Black</a></p>
+</footer>
+
+</div>
+
+<script>
+const BUILDS={
+  '10-0-0':{name:'Holy Paladin',icon:'HP',spec:'純白帽聖騎士',safe:98,speed:25,risk:2,strats:['100% 合規，不碰任何灰色地帶','靠內容品質和自然連結成長','見效慢（6-12月）但一旦到位幾乎不可撼動','適合：長期品牌站、企業官網、YMYL 內容站']},
+  '7-3-0':{name:'Ranger',icon:'RG',spec:'遊俠 -- 白帽為主 + 灰帽加速',safe:78,speed:55,risk:22,strats:['白帽地基 + 灰帽加速連結建設','AI 內容 pipeline 搭配嚴格人工審核','Niche Edit 控制每月 3-5 條，anchor 多樣化','適合：中競爭利基市場、新站需要加速的前 6 個月']},
+  '5-5-0':{name:'Balanced Fighter',icon:'BF',spec:'平衡戰士 -- 白灰各半',safe:60,speed:65,risk:40,strats:['白帽技術基礎 + 灰帽規模化內容','Programmatic SEO + AI pipeline 雙管齊下','需要嚴格的品質監控避免 Helpful Content 降級','適合：高競爭市場、需要快速建立大量頁面的站']},
+  '3-4-3':{name:'Shadow Hunter',icon:'SH',spec:'暗影獵人 -- 攻守兼備',safe:48,speed:70,risk:52,strats:['理解黑帽是為了防禦 + 辨識競爭者手法','灰帽為主要攻擊手段，白帽做保底','定期 backlink audit 防禦 Negative SEO','適合：灰色產業的防禦型玩家']},
+  '7-1-2':{name:'Sentinel',icon:'SN',spec:'哨兵 -- 白帽大師 + 防禦知識',safe:88,speed:35,risk:12,strats:['白帽為核心，黑帽知識用於防禦','能辨識競爭者的 PBN 和 Cloaking','定期安全審計 + penalty recovery 能力','適合：安全意識高的品牌站管理者']},
+  '2-6-2':{name:'Mercenary',icon:'MC',spec:'傭兵 -- 灰帽主導',safe:38,speed:78,risk:62,strats:['灰帽為主要策略，白帽做最低限度保底','大量 Niche Edit + Programmatic + 社群操控','需要準備退場策略和備用網域','適合：短期專案、聯盟行銷、測試站']},
+  '1-4-5':{name:'Warlock',icon:'WL',spec:'術士 -- 暗影主導',safe:15,speed:90,risk:85,strats:['高風險高回報，只適合拋棄式網站','PBN + 灰帽連結 + 內容操控全開','預期壽命 3-6 個月，隨時準備燒掉重建','適合：完全不在乎長期的短線操作']},
+  '5-3-2':{name:'Event Striker',icon:'ES',spec:'事件攻擊手 -- 季節性快攻',safe:65,speed:72,risk:35,strats:['白帽長期基礎 + 事件期間灰帽加速','提前 6 個月建 Evergreen 頁面','事件期間 AI pipeline + 社群推廣 + Niche Edit 全開','事件結束後收回灰帽，保留白帽資產']},
+  '4-4-2':{name:'Casino Ops',icon:'CO',spec:'娛樂城作戰官',safe:42,speed:75,risk:58,strats:['Content Fortress 策略 -- 正規評測站引流','品牌隔離：灰色站和正規站完全分開','灰帽連結衝刺 + SpamBrain 偵測知識防禦','備用網域隨時待命，被燒就切換']}
+};
+
+let selected={};
+
+function toggle(el){
+  const id=el.dataset.id;
+  const faction=el.dataset.f;
+  if(selected[id]){
+    delete selected[id];
+    el.classList.remove('active');
+  }else{
+    const total=Object.keys(selected).length;
+    if(total>=10)return;
+    selected[id]=faction;
+    el.classList.add('active');
+  }
+  updateDisplay();
+}
+
+function updateDisplay(){
+  let w=0,g=0,b=0;
+  Object.values(selected).forEach(f=>{if(f==='w')w++;if(f==='g')g++;if(f==='b')b++});
+  const total=w+g+b;
+  document.getElementById('ptRemain').textContent=10-total;
+  document.getElementById('ptW').textContent=w;
+  document.getElementById('ptG').textContent=g;
+  document.getElementById('ptB').textContent=b;
+
+  // Find best matching build
+  const key=w+'-'+g+'-'+b;
+  let build=BUILDS[key];
+  if(!build){
+    // Find closest match
+    let bestDist=999,bestKey='';
+    for(const k in BUILDS){
+      const[bw,bg,bb]=k.split('-').map(Number);
+      const d=Math.abs(bw-w)+Math.abs(bg-g)+Math.abs(bb-b);
+      if(d<bestDist){bestDist=d;bestKey=k}
+    }
+    build=BUILDS[bestKey];
+  }
+
+  if(total===0){
+    document.getElementById('buildName').textContent='-- 選擇你的天賦 --';
+    document.getElementById('buildSpec').textContent='分配點數後顯示你的 Build';
+    document.getElementById('buildIcon').textContent='?';
+    document.getElementById('bmSafeBar').style.width='0%';
+    document.getElementById('bmSpeedBar').style.width='0%';
+    document.getElementById('bmRiskBar').style.width='0%';
+    document.getElementById('bmSafe').textContent='-';
+    document.getElementById('bmSpeed').textContent='-';
+    document.getElementById('bmRisk').textContent='-';
+    document.getElementById('buildStrat').innerHTML='';
+    return;
+  }
+
+  document.getElementById('buildName').textContent=build.name;
+  document.getElementById('buildSpec').textContent=build.spec+' ('+w+'W/'+g+'G/'+b+'B)';
+  document.getElementById('buildIcon').textContent=build.icon;
+  document.getElementById('bmSafeBar').style.width=build.safe+'%';
+  document.getElementById('bmSpeedBar').style.width=build.speed+'%';
+  document.getElementById('bmRiskBar').style.width=build.risk+'%';
+  document.getElementById('bmSafe').textContent=build.safe+'%';
+  document.getElementById('bmSpeed').textContent=build.speed+'%';
+  document.getElementById('bmRisk').textContent=build.risk+'%';
+
+  let html='<h4>Strategy Guide</h4>';
+  build.strats.forEach(s=>{html+='<div class="strat-item"><div class="si"></div><span>'+s+'</span></div>'});
+  document.getElementById('buildStrat').innerHTML=html;
+
+  localStorage.setItem('seo_talent',JSON.stringify(selected));
+}
+
+function resetAll(){
+  selected={};
+  document.querySelectorAll('.tn').forEach(n=>n.classList.remove('active'));
+  updateDisplay();
+  localStorage.removeItem('seo_talent');
+}
+
+function loadPreset(w,g,b){
+  resetAll();
+  const wNodes=document.querySelectorAll('.tree.t-w .tn');
+  const gNodes=document.querySelectorAll('.tree.t-g .tn');
+  const bNodes=document.querySelectorAll('.tree.t-b .tn');
+  w.forEach((v,i)=>{if(v&&wNodes[i])toggle(wNodes[i])});
+  g.forEach((v,i)=>{if(v&&gNodes[i])toggle(gNodes[i])});
+  b.forEach((v,i)=>{if(v&&bNodes[i])toggle(bNodes[i])});
+}
+
+// Load saved state
+(()=>{
+  try{
+    const saved=localStorage.getItem('seo_talent');
+    if(saved){
+      const data=JSON.parse(saved);
+      document.querySelectorAll('.tn').forEach(n=>{
+        if(data[n.dataset.id]){
+          selected[n.dataset.id]=data[n.dataset.id];
+          n.classList.add('active');
+        }
+      });
+      updateDisplay();
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
