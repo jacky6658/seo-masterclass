@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SEO Toolkit -- 免費工具箱</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06060c;--card:#0f1018;--card2:#14151f;--gold:#c9a84c;--gold2:#dfc06a;--gold-dim:rgba(201,168,76,.08);--gold-line:rgba(201,168,76,.15);--text:#b0b3bc;--text2:#5c5f6a;--text-h:#dddee3;--blue:#4a7fd9;--blue2:#7ba8f0;--red:#b83a2e;--green:#2d9d5e;--green2:#6bc992;--purple:#7856b8;--border:rgba(255,255,255,.05);--r:8px;--r-lg:14px;--tr:.22s ease;--mono:'JetBrains Mono',monospace;--body:'Noto Sans TC',system-ui,sans-serif;--head:'Cinzel','Noto Sans TC',serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.7;font-size:14.5px}
+h1{font-family:var(--head);color:var(--gold);font-size:clamp(1.3rem,3vw,2rem);text-align:center;margin-bottom:.3rem}
+h2{font-family:var(--head);color:var(--gold);font-size:1rem;margin:2rem 0 .8rem;display:flex;align-items:center;gap:.5rem}
+h2::before{content:'';width:3px;height:1em;background:var(--gold);border-radius:2px;flex-shrink:0}
+a{color:var(--gold);text-decoration:none;transition:var(--tr)}a:hover{text-decoration:underline}
+::selection{background:rgba(201,168,76,.25);color:#fff}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px}
+
+.wrap{max-width:820px;margin:0 auto;padding:1.5rem 1rem 3rem}
+.hero{text-align:center;padding:2rem 1rem 1.5rem;margin-bottom:1.5rem;border-radius:var(--r-lg);border:1px solid var(--border);background:radial-gradient(ellipse at 50% 30%,rgba(201,168,76,.03),transparent 60%)}
+.hero p{color:var(--text2);font-size:.85rem}
+
+/* Filter tabs */
+.filters{display:flex;gap:.3rem;flex-wrap:wrap;margin:1rem 0;justify-content:center}
+.ftab{padding:.3rem .7rem;border:1px solid var(--border);border-radius:4px;background:transparent;color:var(--text2);cursor:pointer;font-family:var(--body);font-size:.72rem;transition:var(--tr)}
+.ftab:hover{border-color:rgba(255,255,255,.12);color:var(--text-h)}
+.ftab.on{color:var(--gold);border-color:var(--gold-line);background:var(--gold-dim)}
+
+/* Tool cards */
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:.7rem;margin:1rem 0}
+.tool{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1rem;transition:var(--tr);display:flex;flex-direction:column;gap:.4rem}
+.tool:hover{border-color:rgba(255,255,255,.1);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.tool-top{display:flex;align-items:center;gap:.6rem}
+.tool-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.7rem;font-family:var(--mono);flex-shrink:0;border:1px solid var(--border)}
+.tool-icon.ti-free{background:rgba(45,157,94,.08);color:var(--green2);border-color:rgba(45,157,94,.15)}
+.tool-icon.ti-frm{background:rgba(74,127,217,.08);color:var(--blue2);border-color:rgba(74,127,217,.15)}
+.tool-icon.ti-paid{background:rgba(201,168,76,.08);color:var(--gold);border-color:var(--gold-line)}
+.tool-name{font-weight:600;font-size:.88rem;color:var(--text-h);flex:1}
+.tool-desc{font-size:.78rem;color:var(--text2);line-height:1.45;flex:1}
+.tool-tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:auto}
+.tag{font-family:var(--mono);font-size:.6rem;padding:.12rem .4rem;border-radius:3px;background:rgba(255,255,255,.03);color:var(--text2);border:1px solid var(--border)}
+.tag.t-g{color:var(--green2);border-color:rgba(45,157,94,.15)}
+.tool-link{display:inline-block;margin-top:.3rem;font-size:.75rem;font-family:var(--mono);color:var(--gold);opacity:.7;transition:var(--tr)}
+.tool-link:hover{opacity:1}
+
+/* Category divider */
+.cat{margin:2.5rem 0 .5rem;padding:.5rem 0;border-bottom:1px solid var(--border)}
+.cat-desc{font-size:.78rem;color:var(--text2);margin-top:.2rem}
+
+footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;border-top:1px solid var(--border);margin-top:2rem}
+
+@media(max-width:480px){
+  .wrap{padding:1rem .6rem 2rem}
+  .tools{grid-template-columns:1fr}
+  .tool{padding:.8rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="hero">
+  <h1>SEO Toolkit</h1>
+  <p>免費 + 免費版 SEO 工具整理。點連結直接使用。</p>
+</div>
+
+<div class="filters">
+  <button class="ftab on" onclick="filter('all',this)">All</button>
+  <button class="ftab" onclick="filter('authority',this)">Authority</button>
+  <button class="ftab" onclick="filter('backlink',this)">Backlinks</button>
+  <button class="ftab" onclick="filter('keyword',this)">Keywords</button>
+  <button class="ftab" onclick="filter('audit',this)">Site Audit</button>
+  <button class="ftab" onclick="filter('speed',this)">Speed</button>
+  <button class="ftab" onclick="filter('schema',this)">Schema</button>
+  <button class="ftab" onclick="filter('tech',this)">Technical</button>
+  <button class="ftab" onclick="filter('ai',this)">AI / AEO</button>
+  <button class="ftab" onclick="filter('rank',this)">Rank Track</button>
+</div>
+
+<div class="tools" id="toolGrid">
+
+<!-- AUTHORITY -->
+<div class="tool" data-cat="authority">
+  <div class="tool-top"><div class="tool-icon ti-free">DR</div><span class="tool-name">Ahrefs Website Authority Checker</span></div>
+  <div class="tool-desc">查 DR（Domain Rating）、外部連結數、referring domains。免費不用註冊。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
+  <a class="tool-link" href="https://ahrefs.com/website-authority-checker" target="_blank">ahrefs.com/website-authority-checker</a>
+</div>
+
+<div class="tool" data-cat="authority">
+  <div class="tool-top"><div class="tool-icon ti-free">AS</div><span class="tool-name">Semrush Authority Score</span></div>
+  <div class="tool-desc">查 Authority Score（0-100），基於連結、流量、垃圾信號。免費版可查。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
+  <a class="tool-link" href="https://www.semrush.com/free-tools/website-authority-checker/" target="_blank">semrush.com/website-authority-checker</a>
+</div>
+
+<div class="tool" data-cat="authority">
+  <div class="tool-top"><div class="tool-icon ti-free">DA</div><span class="tool-name">Moz Domain Authority</span></div>
+  <div class="tool-desc">業界最早的 DA 指標。免費版每月 10 次查詢。含 Spam Score。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE 10/mo</span><span class="tag">authority</span></div>
+  <a class="tool-link" href="https://moz.com/domain-analysis" target="_blank">moz.com/domain-analysis</a>
+</div>
+
+<div class="tool" data-cat="authority">
+  <div class="tool-top"><div class="tool-icon ti-free">TF</div><span class="tool-name">Majestic Trust Flow</span></div>
+  <div class="tool-desc">Trust Flow（品質）+ Citation Flow（數量）雙指標。免費基礎查詢。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
+  <a class="tool-link" href="https://majestic.com/" target="_blank">majestic.com</a>
+</div>
+
+<!-- BACKLINKS -->
+<div class="tool" data-cat="backlink">
+  <div class="tool-top"><div class="tool-icon ti-free">BL</div><span class="tool-name">Ahrefs Backlink Checker</span></div>
+  <div class="tool-desc">查外部連結、referring domains、anchor text 分佈。免費顯示 Top 100。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span></div>
+  <a class="tool-link" href="https://ahrefs.com/backlink-checker" target="_blank">ahrefs.com/backlink-checker</a>
+</div>
+
+<div class="tool" data-cat="backlink">
+  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">Google Search Console - Links</span></div>
+  <div class="tool-desc">官方數據。看外部連結、內部連結、最常連結的網站。100% 免費。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
+</div>
+
+<div class="tool" data-cat="backlink">
+  <div class="tool-top"><div class="tool-icon ti-free">DV</div><span class="tool-name">Google Disavow Tool</span></div>
+  <div class="tool-desc">否認有毒連結。Negative SEO 防禦必備。上傳 .txt 檔否認不想要的連結。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span><span class="tag">defense</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console/disavow-links" target="_blank">GSC Disavow Links</a>
+</div>
+
+<!-- KEYWORDS -->
+<div class="tool" data-cat="keyword">
+  <div class="tool-top"><div class="tool-icon ti-free">KP</div><span class="tool-name">Google Keyword Planner</span></div>
+  <div class="tool-desc">Google 官方關鍵字工具。搜尋量、競爭度、相關關鍵字。需要 Google Ads 帳號（免費）。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">keyword</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank">Google Keyword Planner</a>
+</div>
+
+<div class="tool" data-cat="keyword">
+  <div class="tool-top"><div class="tool-icon ti-frm">UB</div><span class="tool-name">Ubersuggest</span></div>
+  <div class="tool-desc">Neil Patel 的工具。關鍵字建議、搜尋量、SEO 難度、內容建議。免費版每日 3 次。</div>
+  <div class="tool-tags"><span class="tag">freemium</span><span class="tag">keyword</span></div>
+  <a class="tool-link" href="https://neilpatel.com/ubersuggest/" target="_blank">neilpatel.com/ubersuggest</a>
+</div>
+
+<div class="tool" data-cat="keyword">
+  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">Google Trends</span></div>
+  <div class="tool-desc">看關鍵字趨勢變化、比較多個關鍵字、發現季節性搜尋。完全免費。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">keyword</span><span class="tag">trend</span></div>
+  <a class="tool-link" href="https://trends.google.com/" target="_blank">trends.google.com</a>
+</div>
+
+<div class="tool" data-cat="keyword">
+  <div class="tool-top"><div class="tool-icon ti-free">AA</div><span class="tool-name">AnswerThePublic</span></div>
+  <div class="tool-desc">視覺化顯示使用者在搜什麼問題。找 long-tail 關鍵字和內容靈感。免費每日 3 次。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE 3/day</span><span class="tag">keyword</span><span class="tag">content</span></div>
+  <a class="tool-link" href="https://answerthepublic.com/" target="_blank">answerthepublic.com</a>
+</div>
+
+<div class="tool" data-cat="keyword">
+  <div class="tool-top"><div class="tool-icon ti-free">AK</div><span class="tool-name">AlsoAsked</span></div>
+  <div class="tool-desc">People Also Ask 資料視覺化。看使用者的延伸問題鏈。找 FAQ 和內容缺口。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE 3/day</span><span class="tag">keyword</span><span class="tag">PAA</span></div>
+  <a class="tool-link" href="https://alsoasked.com/" target="_blank">alsoasked.com</a>
+</div>
+
+<!-- SITE AUDIT -->
+<div class="tool" data-cat="audit">
+  <div class="tool-top"><div class="tool-icon ti-free">SC</div><span class="tool-name">Google Search Console</span></div>
+  <div class="tool-desc">最重要的免費 SEO 工具。索引狀態、搜尋成效、CWV、安全問題、Manual Actions。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span><span class="tag">official</span><span class="tag">rank</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
+</div>
+
+<div class="tool" data-cat="audit">
+  <div class="tool-top"><div class="tool-icon ti-frm">SM</div><span class="tool-name">Semrush Site Audit</span></div>
+  <div class="tool-desc">爬取你的網站找出 SEO 問題。免費版可審計 100 頁。技術問題、內容問題、連結問題。</div>
+  <div class="tool-tags"><span class="tag">freemium</span><span class="tag">audit</span></div>
+  <a class="tool-link" href="https://www.semrush.com/siteaudit/" target="_blank">semrush.com/siteaudit</a>
+</div>
+
+<div class="tool" data-cat="audit">
+  <div class="tool-top"><div class="tool-icon ti-free">BK</div><span class="tool-name">Backlinko SEO Checker</span></div>
+  <div class="tool-desc">輸入 URL 即時分析 on-page SEO。不用註冊。給出可執行的修復建議。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span></div>
+  <a class="tool-link" href="https://backlinko.com/tools/seo-checker" target="_blank">backlinko.com/tools/seo-checker</a>
+</div>
+
+<div class="tool" data-cat="audit">
+  <div class="tool-top"><div class="tool-icon ti-free">SO</div><span class="tool-name">SEOptimer</span></div>
+  <div class="tool-desc">全面 SEO audit 報告：SEO、效能、Social、安全。免費版可生成 PDF 報告。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span></div>
+  <a class="tool-link" href="https://www.seoptimer.com/" target="_blank">seoptimer.com</a>
+</div>
+
+<!-- SPEED -->
+<div class="tool" data-cat="speed">
+  <div class="tool-top"><div class="tool-icon ti-free">PS</div><span class="tool-name">PageSpeed Insights</span></div>
+  <div class="tool-desc">Google 官方。CWV（LCP/INP/CLS）真實用戶數據 + Lighthouse 模擬。SEO 排名用的就是這個數據。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>
+</div>
+
+<div class="tool" data-cat="speed">
+  <div class="tool-top"><div class="tool-icon ti-free">LH</div><span class="tool-name">Lighthouse (Chrome DevTools)</span></div>
+  <div class="tool-desc">Chrome 內建。F12 > Lighthouse tab。Performance + Accessibility + SEO 評分。本地即時測試。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">built-in</span></div>
+  <a class="tool-link" href="https://developer.chrome.com/docs/lighthouse/" target="_blank">Chrome DevTools > Lighthouse</a>
+</div>
+
+<div class="tool" data-cat="speed">
+  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">GTmetrix</span></div>
+  <div class="tool-desc">詳細的瀑布圖（Waterfall）分析。看每個資源的載入時間。可選測試地點。免費版每月限量。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span></div>
+  <a class="tool-link" href="https://gtmetrix.com/" target="_blank">gtmetrix.com</a>
+</div>
+
+<div class="tool" data-cat="speed">
+  <div class="tool-top"><div class="tool-icon ti-free">WV</div><span class="tool-name">Web Vitals Extension</span></div>
+  <div class="tool-desc">Chrome 擴充套件。瀏覽任何頁面時即時顯示 LCP / INP / CLS 數值。開發必裝。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">extension</span></div>
+  <a class="tool-link" href="https://chromewebstore.google.com/detail/web-vitals/ahfhijdlegdabablpippeagghigmibma" target="_blank">Chrome Web Store</a>
+</div>
+
+<!-- SCHEMA -->
+<div class="tool" data-cat="schema">
+  <div class="tool-top"><div class="tool-icon ti-free">RR</div><span class="tool-name">Rich Results Test</span></div>
+  <div class="tool-desc">Google 官方。測試你的 Schema 能不能觸發 Rich Results（FAQ 展開、星星評分等）。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/test/rich-results" target="_blank">Rich Results Test</a>
+</div>
+
+<div class="tool" data-cat="schema">
+  <div class="tool-top"><div class="tool-icon ti-free">SV</div><span class="tool-name">Schema Markup Validator</span></div>
+  <div class="tool-desc">schema.org 官方驗證工具。檢查 JSON-LD 語法是否正確。比 Rich Results Test 更細。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://validator.schema.org/" target="_blank">validator.schema.org</a>
+</div>
+
+<div class="tool" data-cat="schema">
+  <div class="tool-top"><div class="tool-icon ti-free">SB</div><span class="tool-name">Schema Builder Extension</span></div>
+  <div class="tool-desc">Chrome 擴充套件。視覺化建立 JSON-LD Schema，不用寫 code。支援 FAQ、HowTo、Article 等。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">extension</span></div>
+  <a class="tool-link" href="https://chromewebstore.google.com/detail/schema-builder-for-struct/klohjdodjjeocpbpadmkcndjoadijgjg" target="_blank">Chrome Web Store</a>
+</div>
+
+<!-- TECHNICAL -->
+<div class="tool" data-cat="tech">
+  <div class="tool-top"><div class="tool-icon ti-free">RT</div><span class="tool-name">robots.txt Tester (GSC)</span></div>
+  <div class="tool-desc">在 GSC 裡測試 robots.txt 規則。確認你沒有意外封鎖重要頁面。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Settings > robots.txt</a>
+</div>
+
+<div class="tool" data-cat="tech">
+  <div class="tool-top"><div class="tool-icon ti-free">SM</div><span class="tool-name">XML Sitemap Validator</span></div>
+  <div class="tool-desc">驗證 sitemap.xml 格式、檢查 404 URL、確認沒超過 50K 上限。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span></div>
+  <a class="tool-link" href="https://www.xml-sitemaps.com/validate-xml-sitemap.html" target="_blank">xml-sitemaps.com/validate</a>
+</div>
+
+<div class="tool" data-cat="tech">
+  <div class="tool-top"><div class="tool-icon ti-free">MF</div><span class="tool-name">Mobile-Friendly Test</span></div>
+  <div class="tool-desc">測試頁面是否 mobile-friendly。Google 用 mobile-first indexing，手機版決定排名。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/test/mobile-friendly" target="_blank">Google Mobile-Friendly Test</a>
+</div>
+
+<div class="tool" data-cat="tech">
+  <div class="tool-top"><div class="tool-icon ti-free">HD</div><span class="tool-name">Security Headers</span></div>
+  <div class="tool-desc">檢查 HTTP Security Headers（HSTS、CSP、X-Frame-Options 等）。網站安全評分。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">security</span></div>
+  <a class="tool-link" href="https://securityheaders.com/" target="_blank">securityheaders.com</a>
+</div>
+
+<div class="tool" data-cat="tech">
+  <div class="tool-top"><div class="tool-icon ti-free">CP</div><span class="tool-name">Copyscape</span></div>
+  <div class="tool-desc">檢查你的內容是否被抄襲。輸入 URL 看有沒有其他網站複製你的文章。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE basic</span><span class="tag">tech</span><span class="tag">content</span></div>
+  <a class="tool-link" href="https://www.copyscape.com/" target="_blank">copyscape.com</a>
+</div>
+
+<!-- AI / AEO -->
+<div class="tool" data-cat="ai">
+  <div class="tool-top"><div class="tool-icon ti-free">AO</div><span class="tool-name">Google AI Overview Tracker</span></div>
+  <div class="tool-desc">用 GSC 的成效報告篩選「AI Overview」搜尋外觀，看你的內容是否被 AI Overview 引用。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Performance > Search Appearance</a>
+</div>
+
+<div class="tool" data-cat="ai">
+  <div class="tool-top"><div class="tool-icon ti-frm">PP</div><span class="tool-name">Perplexity</span></div>
+  <div class="tool-desc">AI 搜尋引擎。搜你的品牌名或關鍵字，看 AI 會不會引用你的網站。GEO 測試用。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">geo</span></div>
+  <a class="tool-link" href="https://www.perplexity.ai/" target="_blank">perplexity.ai</a>
+</div>
+
+<div class="tool" data-cat="ai">
+  <div class="tool-top"><div class="tool-icon ti-free">CG</div><span class="tool-name">ChatGPT</span></div>
+  <div class="tool-desc">問 ChatGPT 你的主題相關問題，看它會不會推薦你的網站。GEO 基準測試。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">geo</span></div>
+  <a class="tool-link" href="https://chat.openai.com/" target="_blank">chat.openai.com</a>
+</div>
+
+<!-- RANK TRACKING -->
+<div class="tool" data-cat="rank">
+  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">GSC Performance Report</span></div>
+  <div class="tool-desc">最可靠的排名數據。看每個關鍵字的平均排名、曝光、點擊、CTR。免費。</div>
+  <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">rank</span><span class="tag">official</span></div>
+  <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Performance</a>
+</div>
+
+<div class="tool" data-cat="rank">
+  <div class="tool-top"><div class="tool-icon ti-free">SR</div><span class="tool-name">SERPWatcher (Mangools)</span></div>
+  <div class="tool-desc">追蹤關鍵字排名變化。免費版追蹤 10 個關鍵字。視覺化排名趨勢圖。</div>
+  <div class="tool-tags"><span class="tag">freemium</span><span class="tag">rank</span></div>
+  <a class="tool-link" href="https://mangools.com/serpwatcher" target="_blank">mangools.com/serpwatcher</a>
+</div>
+
+</div>
+
+</div>
+
+<footer><a href="seo-masterclass.html">Masterclass</a> | <a href="talent-tree.html">Talent Tree</a></footer>
+
+<script>
+function filter(cat,btn){
+  document.querySelectorAll('.ftab').forEach(f=>f.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.tool').forEach(t=>{
+    t.style.display=(cat==='all'||t.dataset.cat===cat)?'':'none';
+  });
+}
+</script>
+</body>
+</html>
