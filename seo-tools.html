@@ -66,256 +66,256 @@ footer{text-align:center;padding:1.5rem 1rem;color:var(--text2);font-size:.7rem;
 </div>
 
 <div class="filters">
-  <button class="ftab on" onclick="filter('all',this)">All</button>
-  <button class="ftab" onclick="filter('authority',this)">Authority</button>
-  <button class="ftab" onclick="filter('backlink',this)">Backlinks</button>
-  <button class="ftab" onclick="filter('keyword',this)">Keywords</button>
-  <button class="ftab" onclick="filter('audit',this)">Site Audit</button>
-  <button class="ftab" onclick="filter('speed',this)">Speed</button>
-  <button class="ftab" onclick="filter('schema',this)">Schema</button>
-  <button class="ftab" onclick="filter('tech',this)">Technical</button>
+  <button class="ftab on" onclick="filter('all',this)">全部工具</button>
+  <button class="ftab" onclick="filter('authority',this)">網站權重</button>
+  <button class="ftab" onclick="filter('backlink',this)">外部連結</button>
+  <button class="ftab" onclick="filter('keyword',this)">關鍵字研究</button>
+  <button class="ftab" onclick="filter('audit',this)">網站健檢</button>
+  <button class="ftab" onclick="filter('speed',this)">速度測試</button>
+  <button class="ftab" onclick="filter('schema',this)">結構化資料</button>
+  <button class="ftab" onclick="filter('tech',this)">技術檢查</button>
   <button class="ftab" onclick="filter('ai',this)">AI / AEO</button>
-  <button class="ftab" onclick="filter('rank',this)">Rank Track</button>
+  <button class="ftab" onclick="filter('rank',this)">排名追蹤</button>
 </div>
 
 <div class="tools" id="toolGrid">
 
 <!-- AUTHORITY -->
 <div class="tool" data-cat="authority">
-  <div class="tool-top"><div class="tool-icon ti-free">DR</div><span class="tool-name">Ahrefs Website Authority Checker</span></div>
-  <div class="tool-desc">查 DR（Domain Rating）、外部連結數、referring domains。免費不用註冊。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">DR</div><span class="tool-name">Ahrefs 網站權重查詢</span></div>
+  <div class="tool-desc">查你的網站「有多強」。DR 分數越高代表 Google 越信任你。也能看有多少網站連到你。不用註冊，輸入網址就能查。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
   <a class="tool-link" href="https://ahrefs.com/website-authority-checker" target="_blank">ahrefs.com/website-authority-checker</a>
 </div>
 
 <div class="tool" data-cat="authority">
-  <div class="tool-top"><div class="tool-icon ti-free">AS</div><span class="tool-name">Semrush Authority Score</span></div>
-  <div class="tool-desc">查 Authority Score（0-100），基於連結、流量、垃圾信號。免費版可查。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">AS</div><span class="tool-name">Semrush 權威分數查詢</span></div>
+  <div class="tool-desc">另一個查網站權重的工具。分數 0-100，綜合看連結品質、流量大小、有沒有垃圾行為。可以拿來和 Ahrefs 交叉比對。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
   <a class="tool-link" href="https://www.semrush.com/free-tools/website-authority-checker/" target="_blank">semrush.com/website-authority-checker</a>
 </div>
 
 <div class="tool" data-cat="authority">
-  <div class="tool-top"><div class="tool-icon ti-free">DA</div><span class="tool-name">Moz Domain Authority</span></div>
-  <div class="tool-desc">業界最早的 DA 指標。免費版每月 10 次查詢。含 Spam Score。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">DA</div><span class="tool-name">Moz 網域權威度</span></div>
+  <div class="tool-desc">最早發明「網站權重分數」的工具。DA 這個詞就是 Moz 發明的。還會告訴你網站的「垃圾分數」有多高。每月可免費查 10 次。</div>
   <div class="tool-tags"><span class="tag t-g">FREE 10/mo</span><span class="tag">authority</span></div>
   <a class="tool-link" href="https://moz.com/domain-analysis" target="_blank">moz.com/domain-analysis</a>
 </div>
 
 <div class="tool" data-cat="authority">
-  <div class="tool-top"><div class="tool-icon ti-free">TF</div><span class="tool-name">Majestic Trust Flow</span></div>
-  <div class="tool-desc">Trust Flow（品質）+ Citation Flow（數量）雙指標。免費基礎查詢。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">TF</div><span class="tool-name">Majestic 信任度查詢</span></div>
+  <div class="tool-desc">用兩個分數看連結品質：Trust Flow（連到你的網站可不可靠）和 Citation Flow（連結數量多不多）。TF 高 + CF 高 = 最好。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">authority</span></div>
   <a class="tool-link" href="https://majestic.com/" target="_blank">majestic.com</a>
 </div>
 
 <!-- BACKLINKS -->
 <div class="tool" data-cat="backlink">
-  <div class="tool-top"><div class="tool-icon ti-free">BL</div><span class="tool-name">Ahrefs Backlink Checker</span></div>
-  <div class="tool-desc">查外部連結、referring domains、anchor text 分佈。免費顯示 Top 100。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">BL</div><span class="tool-name">Ahrefs 外部連結查詢</span></div>
+  <div class="tool-desc">看「誰連結到你」。可以查到連結來源網站、連結文字（anchor text）是什麼。也能拿來查競爭對手的連結從哪來。免費看前 100 筆。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span></div>
   <a class="tool-link" href="https://ahrefs.com/backlink-checker" target="_blank">ahrefs.com/backlink-checker</a>
 </div>
 
 <div class="tool" data-cat="backlink">
-  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">Google Search Console - Links</span></div>
-  <div class="tool-desc">官方數據。看外部連結、內部連結、最常連結的網站。100% 免費。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">Google Search Console 連結報告</span></div>
+  <div class="tool-desc">Google 官方告訴你「我看到有這些網站連到你」。最可靠的連結數據來源。完全免費，你已經有在用了。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
 </div>
 
 <div class="tool" data-cat="backlink">
-  <div class="tool-top"><div class="tool-icon ti-free">DV</div><span class="tool-name">Google Disavow Tool</span></div>
-  <div class="tool-desc">否認有毒連結。Negative SEO 防禦必備。上傳 .txt 檔否認不想要的連結。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">DV</div><span class="tool-name">Google 否認連結工具</span></div>
+  <div class="tool-desc">告訴 Google「這些連結不是我建的，請忽略」。被對手惡意灌有毒連結（Negative SEO）時的防禦武器。上傳一個文字檔就行。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">backlink</span><span class="tag">defense</span></div>
   <a class="tool-link" href="https://search.google.com/search-console/disavow-links" target="_blank">GSC Disavow Links</a>
 </div>
 
 <!-- KEYWORDS -->
 <div class="tool" data-cat="keyword">
-  <div class="tool-top"><div class="tool-icon ti-free">KP</div><span class="tool-name">Google Keyword Planner</span></div>
-  <div class="tool-desc">Google 官方關鍵字工具。搜尋量、競爭度、相關關鍵字。需要 Google Ads 帳號（免費）。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">KP</div><span class="tool-name">Google 關鍵字規劃工具</span></div>
+  <div class="tool-desc">Google 自己的工具，告訴你「這個詞每月被搜幾次」、「競爭激不激烈」、「還有哪些相關的詞」。要開一個免費 Google Ads 帳號才能用。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">keyword</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://ads.google.com/home/tools/keyword-planner/" target="_blank">Google Keyword Planner</a>
 </div>
 
 <div class="tool" data-cat="keyword">
-  <div class="tool-top"><div class="tool-icon ti-frm">UB</div><span class="tool-name">Ubersuggest</span></div>
-  <div class="tool-desc">Neil Patel 的工具。關鍵字建議、搜尋量、SEO 難度、內容建議。免費版每日 3 次。</div>
+  <div class="tool-top"><div class="tool-icon ti-frm">UB</div><span class="tool-name">Ubersuggest 關鍵字建議</span></div>
+  <div class="tool-desc">輸入一個詞，它會幫你延伸出一大堆相關的搜尋詞，還告訴你每個詞有多難排到第一頁。新手最友善的關鍵字工具。每天免費 3 次。</div>
   <div class="tool-tags"><span class="tag">freemium</span><span class="tag">keyword</span></div>
   <a class="tool-link" href="https://neilpatel.com/ubersuggest/" target="_blank">neilpatel.com/ubersuggest</a>
 </div>
 
 <div class="tool" data-cat="keyword">
-  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">Google Trends</span></div>
-  <div class="tool-desc">看關鍵字趨勢變化、比較多個關鍵字、發現季節性搜尋。完全免費。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">Google Trends 搜尋趨勢</span></div>
+  <div class="tool-desc">看一個詞最近是變熱門還是退燒。可以比較兩個詞哪個更多人搜。做季節性 SEO（世界盃、報稅季）必用。完全免費。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">keyword</span><span class="tag">trend</span></div>
   <a class="tool-link" href="https://trends.google.com/" target="_blank">trends.google.com</a>
 </div>
 
 <div class="tool" data-cat="keyword">
-  <div class="tool-top"><div class="tool-icon ti-free">AA</div><span class="tool-name">AnswerThePublic</span></div>
-  <div class="tool-desc">視覺化顯示使用者在搜什麼問題。找 long-tail 關鍵字和內容靈感。免費每日 3 次。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">AA</div><span class="tool-name">AnswerThePublic 問題挖掘</span></div>
+  <div class="tool-desc">輸入「股利」，它會畫一張心智圖告訴你使用者都在問什麼問題（「股利怎麼算」「股利要繳稅嗎」）。找文章題目超好用。每天免費 3 次。</div>
   <div class="tool-tags"><span class="tag t-g">FREE 3/day</span><span class="tag">keyword</span><span class="tag">content</span></div>
   <a class="tool-link" href="https://answerthepublic.com/" target="_blank">answerthepublic.com</a>
 </div>
 
 <div class="tool" data-cat="keyword">
-  <div class="tool-top"><div class="tool-icon ti-free">AK</div><span class="tool-name">AlsoAsked</span></div>
-  <div class="tool-desc">People Also Ask 資料視覺化。看使用者的延伸問題鏈。找 FAQ 和內容缺口。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">AK</div><span class="tool-name">AlsoAsked 延伸問題</span></div>
+  <div class="tool-desc">把 Google 搜尋結果裡「其他人也問了」（People Also Ask）的問題全部抓出來，用樹狀圖顯示。一次看到使用者問完一個問題後還會接著問什麼。</div>
   <div class="tool-tags"><span class="tag t-g">FREE 3/day</span><span class="tag">keyword</span><span class="tag">PAA</span></div>
   <a class="tool-link" href="https://alsoasked.com/" target="_blank">alsoasked.com</a>
 </div>
 
 <!-- SITE AUDIT -->
 <div class="tool" data-cat="audit">
-  <div class="tool-top"><div class="tool-icon ti-free">SC</div><span class="tool-name">Google Search Console</span></div>
-  <div class="tool-desc">最重要的免費 SEO 工具。索引狀態、搜尋成效、CWV、安全問題、Manual Actions。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SC</div><span class="tool-name">Google Search Console 搜尋主控台</span></div>
+  <div class="tool-desc">做 SEO 最重要的一個工具，沒有之一。Google 直接告訴你：你的網站被搜了幾次、排第幾、有沒有問題、哪些頁面被收錄。完全免費。你已經在用了。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span><span class="tag">official</span><span class="tag">rank</span></div>
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>
 </div>
 
 <div class="tool" data-cat="audit">
-  <div class="tool-top"><div class="tool-icon ti-frm">SM</div><span class="tool-name">Semrush Site Audit</span></div>
-  <div class="tool-desc">爬取你的網站找出 SEO 問題。免費版可審計 100 頁。技術問題、內容問題、連結問題。</div>
+  <div class="tool-top"><div class="tool-icon ti-frm">SM</div><span class="tool-name">Semrush 網站健檢</span></div>
+  <div class="tool-desc">像醫生一樣掃描你的網站，找出所有 SEO 毛病：壞連結、缺少 title、重複內容、速度問題。免費版可以掃 100 頁，你的站夠用。</div>
   <div class="tool-tags"><span class="tag">freemium</span><span class="tag">audit</span></div>
   <a class="tool-link" href="https://www.semrush.com/siteaudit/" target="_blank">semrush.com/siteaudit</a>
 </div>
 
 <div class="tool" data-cat="audit">
-  <div class="tool-top"><div class="tool-icon ti-free">BK</div><span class="tool-name">Backlinko SEO Checker</span></div>
-  <div class="tool-desc">輸入 URL 即時分析 on-page SEO。不用註冊。給出可執行的修復建議。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">BK</div><span class="tool-name">Backlinko 單頁 SEO 檢查</span></div>
+  <div class="tool-desc">貼一個網址進去，幾秒內告訴你這一頁的 SEO 哪裡好、哪裡有問題，還直接教你怎麼修。不用註冊，超方便。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span></div>
   <a class="tool-link" href="https://backlinko.com/tools/seo-checker" target="_blank">backlinko.com/tools/seo-checker</a>
 </div>
 
 <div class="tool" data-cat="audit">
-  <div class="tool-top"><div class="tool-icon ti-free">SO</div><span class="tool-name">SEOptimer</span></div>
-  <div class="tool-desc">全面 SEO audit 報告：SEO、效能、Social、安全。免費版可生成 PDF 報告。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SO</div><span class="tool-name">SEOptimer 網站評分報告</span></div>
+  <div class="tool-desc">輸入網址，生成一份完整的 SEO 成績單（A-F 評分）。涵蓋 SEO、速度、安全、社群。還能免費下載 PDF 報告給老闆看。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">audit</span></div>
   <a class="tool-link" href="https://www.seoptimer.com/" target="_blank">seoptimer.com</a>
 </div>
 
 <!-- SPEED -->
 <div class="tool" data-cat="speed">
-  <div class="tool-top"><div class="tool-icon ti-free">PS</div><span class="tool-name">PageSpeed Insights</span></div>
-  <div class="tool-desc">Google 官方。CWV（LCP/INP/CLS）真實用戶數據 + Lighthouse 模擬。SEO 排名用的就是這個數據。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">PS</div><span class="tool-name">PageSpeed Insights 速度測試</span></div>
+  <div class="tool-desc">Google 官方的速度測試工具。它不只給你分數，還用真實用戶數據告訴你「你的頁面載入有多快」。Google 排名直接看這個數據。最權威的速度測試。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://pagespeed.web.dev/" target="_blank">pagespeed.web.dev</a>
 </div>
 
 <div class="tool" data-cat="speed">
-  <div class="tool-top"><div class="tool-icon ti-free">LH</div><span class="tool-name">Lighthouse (Chrome DevTools)</span></div>
-  <div class="tool-desc">Chrome 內建。F12 > Lighthouse tab。Performance + Accessibility + SEO 評分。本地即時測試。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">LH</div><span class="tool-name">Lighthouse 瀏覽器內建測試</span></div>
+  <div class="tool-desc">Chrome 瀏覽器內建的測試工具。按 F12 打開開發者工具，選 Lighthouse 分頁，一鍵跑速度 + 可及性 + SEO 評分。開發時隨時測，不用離開瀏覽器。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">built-in</span></div>
   <a class="tool-link" href="https://developer.chrome.com/docs/lighthouse/" target="_blank">Chrome DevTools > Lighthouse</a>
 </div>
 
 <div class="tool" data-cat="speed">
-  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">GTmetrix</span></div>
-  <div class="tool-desc">詳細的瀑布圖（Waterfall）分析。看每個資源的載入時間。可選測試地點。免費版每月限量。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">GT</div><span class="tool-name">GTmetrix 詳細速度分析</span></div>
+  <div class="tool-desc">比 PageSpeed 更詳細。會畫出「瀑布圖」讓你看到每個圖片、CSS、JS 各花了多少時間載入，一眼找到拖慢速度的元兇。可以選不同國家測試。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span></div>
   <a class="tool-link" href="https://gtmetrix.com/" target="_blank">gtmetrix.com</a>
 </div>
 
 <div class="tool" data-cat="speed">
-  <div class="tool-top"><div class="tool-icon ti-free">WV</div><span class="tool-name">Web Vitals Extension</span></div>
-  <div class="tool-desc">Chrome 擴充套件。瀏覽任何頁面時即時顯示 LCP / INP / CLS 數值。開發必裝。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">WV</div><span class="tool-name">Web Vitals 即時監測套件</span></div>
+  <div class="tool-desc">裝在 Chrome 上的小工具。瀏覽任何網頁時，右上角即時顯示這一頁的載入速度（LCP）、反應速度（INP）、版面穩定度（CLS）。開發 SEO 必裝。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">speed</span><span class="tag">extension</span></div>
   <a class="tool-link" href="https://chromewebstore.google.com/detail/web-vitals/ahfhijdlegdabablpippeagghigmibma" target="_blank">Chrome Web Store</a>
 </div>
 
 <!-- SCHEMA -->
 <div class="tool" data-cat="schema">
-  <div class="tool-top"><div class="tool-icon ti-free">RR</div><span class="tool-name">Rich Results Test</span></div>
-  <div class="tool-desc">Google 官方。測試你的 Schema 能不能觸發 Rich Results（FAQ 展開、星星評分等）。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">RR</div><span class="tool-name">Rich Results Test 結構化測試</span></div>
+  <div class="tool-desc">Google 官方工具。貼你的網址進去，它會告訴你：你寫的 Schema 結構化資料有沒有用、能不能讓搜尋結果顯示 FAQ 展開、步驟教學、星星評分等特殊樣式。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/test/rich-results" target="_blank">Rich Results Test</a>
 </div>
 
 <div class="tool" data-cat="schema">
-  <div class="tool-top"><div class="tool-icon ti-free">SV</div><span class="tool-name">Schema Markup Validator</span></div>
-  <div class="tool-desc">schema.org 官方驗證工具。檢查 JSON-LD 語法是否正確。比 Rich Results Test 更細。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SV</div><span class="tool-name">Schema 語法驗證器</span></div>
+  <div class="tool-desc">schema.org 官方出的驗證工具。比 Rich Results Test 更嚴格，會檢查你的 JSON-LD 程式碼有沒有寫錯、漏掉必填欄位。寫完 Schema 一定要來這裡驗證。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://validator.schema.org/" target="_blank">validator.schema.org</a>
 </div>
 
 <div class="tool" data-cat="schema">
-  <div class="tool-top"><div class="tool-icon ti-free">SB</div><span class="tool-name">Schema Builder Extension</span></div>
-  <div class="tool-desc">Chrome 擴充套件。視覺化建立 JSON-LD Schema，不用寫 code。支援 FAQ、HowTo、Article 等。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SB</div><span class="tool-name">Schema Builder 視覺化建構</span></div>
+  <div class="tool-desc">Chrome 套件。不會寫程式也能建 Schema -- 用視覺化介面點選就能產生 JSON-LD 程式碼。支援 FAQ、教學步驟、文章、產品等常用類型。產生後直接複製貼到網頁。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">schema</span><span class="tag">extension</span></div>
   <a class="tool-link" href="https://chromewebstore.google.com/detail/schema-builder-for-struct/klohjdodjjeocpbpadmkcndjoadijgjg" target="_blank">Chrome Web Store</a>
 </div>
 
 <!-- TECHNICAL -->
 <div class="tool" data-cat="tech">
-  <div class="tool-top"><div class="tool-icon ti-free">RT</div><span class="tool-name">robots.txt Tester (GSC)</span></div>
-  <div class="tool-desc">在 GSC 裡測試 robots.txt 規則。確認你沒有意外封鎖重要頁面。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">RT</div><span class="tool-name">robots.txt 規則測試</span></div>
+  <div class="tool-desc">在 GSC 裡面測試你的 robots.txt 設定。確認你沒有不小心把重要頁面封鎖掉（這個錯誤很常見，一行寫錯整站就消失）。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Settings > robots.txt</a>
 </div>
 
 <div class="tool" data-cat="tech">
-  <div class="tool-top"><div class="tool-icon ti-free">SM</div><span class="tool-name">XML Sitemap Validator</span></div>
-  <div class="tool-desc">驗證 sitemap.xml 格式、檢查 404 URL、確認沒超過 50K 上限。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SM</div><span class="tool-name">Sitemap 地圖驗證器</span></div>
+  <div class="tool-desc">檢查你的 sitemap.xml 有沒有寫錯、裡面的網址是不是都能打開（沒有 404）、有沒有超過 5 萬條上限。sitemap 是給 Google 爬蟲的地圖，地圖錯了爬蟲就迷路。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span></div>
   <a class="tool-link" href="https://www.xml-sitemaps.com/validate-xml-sitemap.html" target="_blank">xml-sitemaps.com/validate</a>
 </div>
 
 <div class="tool" data-cat="tech">
-  <div class="tool-top"><div class="tool-icon ti-free">MF</div><span class="tool-name">Mobile-Friendly Test</span></div>
-  <div class="tool-desc">測試頁面是否 mobile-friendly。Google 用 mobile-first indexing，手機版決定排名。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">MF</div><span class="tool-name">手機友善度測試</span></div>
+  <div class="tool-desc">測試你的網頁在手機上好不好用。Google 現在是「手機版優先」-- 手機版體驗差，桌面版排名也會被拖下去。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/test/mobile-friendly" target="_blank">Google Mobile-Friendly Test</a>
 </div>
 
 <div class="tool" data-cat="tech">
-  <div class="tool-top"><div class="tool-icon ti-free">HD</div><span class="tool-name">Security Headers</span></div>
-  <div class="tool-desc">檢查 HTTP Security Headers（HSTS、CSP、X-Frame-Options 等）。網站安全評分。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">HD</div><span class="tool-name">Security Headers 安全標頭檢查</span></div>
+  <div class="tool-desc">檢查你的網站有沒有設好安全防護。像是「有沒有鎖好門窗」（HSTS、CSP 等）。安全性也是 Google 考量的信任因素之一。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">tech</span><span class="tag">security</span></div>
   <a class="tool-link" href="https://securityheaders.com/" target="_blank">securityheaders.com</a>
 </div>
 
 <div class="tool" data-cat="tech">
-  <div class="tool-top"><div class="tool-icon ti-free">CP</div><span class="tool-name">Copyscape</span></div>
-  <div class="tool-desc">檢查你的內容是否被抄襲。輸入 URL 看有沒有其他網站複製你的文章。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">CP</div><span class="tool-name">Copyscape 抄襲偵測</span></div>
+  <div class="tool-desc">貼你的文章網址進去，看有沒有別的網站偷抄你的內容。如果被抄了，可以用 DMCA 向 Google 檢舉讓對方的頁面被移除。</div>
   <div class="tool-tags"><span class="tag t-g">FREE basic</span><span class="tag">tech</span><span class="tag">content</span></div>
   <a class="tool-link" href="https://www.copyscape.com/" target="_blank">copyscape.com</a>
 </div>
 
 <!-- AI / AEO -->
 <div class="tool" data-cat="ai">
-  <div class="tool-top"><div class="tool-icon ti-free">AO</div><span class="tool-name">Google AI Overview Tracker</span></div>
-  <div class="tool-desc">用 GSC 的成效報告篩選「AI Overview」搜尋外觀，看你的內容是否被 AI Overview 引用。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">AO</div><span class="tool-name">GSC AI Overview 追蹤</span></div>
+  <div class="tool-desc">在 GSC 成效報告裡篩選「搜尋外觀 > AI Overview」，看你的網站有沒有被 Google AI 摘要引用。被引用 = 你的內容被 AI 認為是可靠來源。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Performance > Search Appearance</a>
 </div>
 
 <div class="tool" data-cat="ai">
-  <div class="tool-top"><div class="tool-icon ti-frm">PP</div><span class="tool-name">Perplexity</span></div>
-  <div class="tool-desc">AI 搜尋引擎。搜你的品牌名或關鍵字，看 AI 會不會引用你的網站。GEO 測試用。</div>
+  <div class="tool-top"><div class="tool-icon ti-frm">PP</div><span class="tool-name">Perplexity AI 搜尋測試</span></div>
+  <div class="tool-desc">AI 搜尋引擎。在這裡搜你的品牌名或關鍵字，看 AI 回答時會不會提到或引用你的網站。這就是測試你的 GEO（生成引擎優化）效果的方式。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">geo</span></div>
   <a class="tool-link" href="https://www.perplexity.ai/" target="_blank">perplexity.ai</a>
 </div>
 
 <div class="tool" data-cat="ai">
-  <div class="tool-top"><div class="tool-icon ti-free">CG</div><span class="tool-name">ChatGPT</span></div>
-  <div class="tool-desc">問 ChatGPT 你的主題相關問題，看它會不會推薦你的網站。GEO 基準測試。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">CG</div><span class="tool-name">ChatGPT GEO 測試</span></div>
+  <div class="tool-desc">直接問 ChatGPT「台灣有什麼好用的股利計算器？」看它會不會推薦你的網站。如果會 = 你的 GEO 做得好。如果不會 = 需要加強品牌和內容的能見度。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">ai</span><span class="tag">geo</span></div>
   <a class="tool-link" href="https://chat.openai.com/" target="_blank">chat.openai.com</a>
 </div>
 
 <!-- RANK TRACKING -->
 <div class="tool" data-cat="rank">
-  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">GSC Performance Report</span></div>
-  <div class="tool-desc">最可靠的排名數據。看每個關鍵字的平均排名、曝光、點擊、CTR。免費。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">GSC</div><span class="tool-name">GSC 排名追蹤（成效報告）</span></div>
+  <div class="tool-desc">最可靠的排名數據，因為是 Google 自己告訴你的。看你的每個關鍵字排第幾名、被看到幾次、被點擊幾次。每週看一次，追蹤趨勢變化。</div>
   <div class="tool-tags"><span class="tag t-g">FREE</span><span class="tag">rank</span><span class="tag">official</span></div>
   <a class="tool-link" href="https://search.google.com/search-console" target="_blank">GSC > Performance</a>
 </div>
 
 <div class="tool" data-cat="rank">
-  <div class="tool-top"><div class="tool-icon ti-free">SR</div><span class="tool-name">SERPWatcher (Mangools)</span></div>
-  <div class="tool-desc">追蹤關鍵字排名變化。免費版追蹤 10 個關鍵字。視覺化排名趨勢圖。</div>
+  <div class="tool-top"><div class="tool-icon ti-free">SR</div><span class="tool-name">SERPWatcher 排名變化追蹤</span></div>
+  <div class="tool-desc">設定你想追蹤的關鍵字，它每天自動幫你查排名，畫成趨勢圖。一眼看出哪些詞在上升、哪些在下降。免費版可以追蹤 10 個關鍵字。</div>
   <div class="tool-tags"><span class="tag">freemium</span><span class="tag">rank</span></div>
   <a class="tool-link" href="https://mangools.com/serpwatcher" target="_blank">mangools.com/serpwatcher</a>
 </div>
