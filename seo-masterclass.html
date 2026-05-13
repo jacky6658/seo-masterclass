@@ -452,11 +452,57 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 .tilt-glow:hover{box-shadow:0 8px 30px rgba(201,168,76,.08)}
 
 /* ========== AMBIENT ORBS ========== */
-.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.035}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.035;transition:background 1.5s ease}
 .orb-1{width:400px;height:400px;background:var(--gold);top:-100px;left:-100px;animation:orbFloat 20s ease-in-out infinite}
 .orb-2{width:300px;height:300px;background:var(--blue);bottom:-50px;right:-50px;animation:orbFloat 25s ease-in-out infinite reverse}
 .orb-3{width:250px;height:250px;background:var(--red);top:50%;left:50%;animation:orbFloat 18s ease-in-out infinite 5s}
 @keyframes orbFloat{0%,100%{transform:translate(0,0)}25%{transform:translate(30px,-20px)}50%{transform:translate(-20px,30px)}75%{transform:translate(20px,20px)}}
+
+/* ========== PER-DAY THEMES ========== */
+body.theme-0{background:linear-gradient(180deg,#06060c 0%,#0a0c18 50%,#06060c 100%)}
+body.theme-0 .orb-1{background:var(--gold)}
+body.theme-0 .orb-2{background:var(--blue)}
+
+body.theme-1{background:linear-gradient(180deg,#060810 0%,#0a1025 40%,#06080f 100%)}
+body.theme-1 .orb-1{background:#3a6fd8}
+body.theme-1 .orb-2{background:#1a3a6a}
+body.theme-1 .orb-3{background:#5a8af0;opacity:.025}
+
+body.theme-2{background:linear-gradient(180deg,#0c0608 0%,#1a0a12 40%,#0a060a 100%)}
+body.theme-2 .orb-1{background:#8a3030}
+body.theme-2 .orb-2{background:#5a2060}
+body.theme-2 .orb-3{background:#a04848;opacity:.03}
+
+body.theme-3{background:linear-gradient(180deg,#060c0a 0%,#081a18 40%,#060c0c 100%)}
+body.theme-3 .orb-1{background:#2a8a6a}
+body.theme-3 .orb-2{background:#1a5a5a}
+body.theme-3 .orb-3{background:#40b0a0;opacity:.025}
+
+body.theme-4{background:linear-gradient(180deg,#0c0a06 0%,#1a1408 40%,#0c0a06 100%)}
+body.theme-4 .orb-1{background:#b89040}
+body.theme-4 .orb-2{background:#6a5020}
+body.theme-4 .orb-3{background:#d0a850;opacity:.025}
+
+/* ========== STORY CALLOUTS ========== */
+.story{position:relative;padding:1.2rem 1.3rem 1.2rem 1.3rem;margin:1.5rem 0;border-radius:var(--r-lg);font-size:.88rem;line-height:1.7;font-style:italic;color:var(--text)}
+.story::before{content:'';position:absolute;inset:0;border-radius:var(--r-lg);border:1px solid var(--border);background:linear-gradient(135deg,rgba(201,168,76,.04),rgba(201,168,76,.01))}
+.story *{position:relative}
+.story .quote-mark{font-family:var(--head);font-size:2rem;color:var(--gold);opacity:.4;line-height:1;display:block;margin-bottom:-.3rem}
+.story .source{display:block;margin-top:.5rem;font-style:normal;font-size:.75rem;color:var(--text2);text-align:right}
+
+/* ========== DID YOU KNOW ========== */
+.dyk{background:linear-gradient(135deg,rgba(74,127,217,.05),rgba(74,127,217,.02));border:1px solid rgba(74,127,217,.12);border-radius:var(--r);padding:.9rem 1.1rem;margin:1rem 0;font-size:.85rem}
+.dyk .dyk-tag{font-family:var(--mono);font-size:.65rem;font-weight:700;color:var(--blue2);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:.3rem}
+
+/* ========== CASE STUDY ========== */
+.case{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin:1.5rem 0}
+.case-head{padding:.7rem 1.1rem;background:rgba(201,168,76,.04);border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:.06em}
+.case-body{padding:1rem 1.1rem}
+.case-body p{font-size:.85rem}
+.case-num{display:flex;gap:1rem;margin:.8rem 0;flex-wrap:wrap}
+.case-num .cn{text-align:center;padding:.5rem .8rem;background:rgba(255,255,255,.02);border-radius:var(--r);border:1px solid var(--border);min-width:80px}
+.case-num .cn b{display:block;font-size:1.1rem;color:var(--gold);font-family:var(--head)}
+.case-num .cn small{font-size:.68rem;color:var(--text2)}
 
 /* ========== KEY TAKEAWAY ========== */
 .takeaway{background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));border:1px solid var(--gold-line);border-radius:var(--r-lg);padding:1.2rem 1.3rem;margin:2rem 0}
@@ -546,6 +592,8 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 <section class="day" id="d1">
 <div class="hero h-algo"><h1>Day 1 : Algorithm</h1><p>Google 演算法底層邏輯</p></div>
 
+<div class="story"><span class="quote-mark">"</span>Google 每天處理 85 億次搜尋。每一次搜尋背後，都有數百個演算法在 0.5 秒內決定你的命運 -- 排在第一頁，還是被埋在第十頁永遠沒人看到。理解這些演算法，就是理解這場戰爭的規則。<span class="source">-- 艾澤拉斯編年史 Vol.1</span></div>
+
 <div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>1.1 搜尋引擎運作原理</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
 
 <div class="flow">
@@ -622,7 +670,11 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 
 <!-- ====== DAY 2 ====== -->
 <section class="day" id="d2">
-<div class="hero h-fac"><h1>Day 2 : Factions</h1><p>白帽 / 灰帽 / 黑帽 — 技術全解與戰場判斷</p></div>
+<div class="hero h-fac"><h1>Day 2 : Factions</h1><p>白帽 / 灰帽 / 黑帽 -- 技術全解與戰場判斷</p></div>
+
+<div class="story"><span class="quote-mark">"</span>在艾澤拉斯，聯盟和部落各有信仰，但戰場上活得最久的，往往不是最強的那個，而是最了解對手的那個。學白帽不是因為它最快，而是因為它讓你在每一次演算法地震中都站得穩。學黑帽不是為了用它，而是為了在對手用它時一眼看穿。<span class="source">-- 艾澤拉斯編年史 Vol.2</span></div>
+
+<div class="dyk"><span class="dyk-tag">Did You Know</span>March 2026 Core Update 中，使用純白帽策略的網站平均排名波動僅 8%，而有灰/黑帽行為的網站平均波動達 45%。穩定是一種超能力。</div>
 
 <div class="acc"><div class="acc-h" onclick="tog(this)"><h3>2.1 聯盟 / 白帽 — 六大技能</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
 <div class="grid-auto">
@@ -680,7 +732,20 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 
 <!-- ====== DAY 3 ====== -->
 <section class="day" id="d3">
-<div class="hero h-ai"><h1>Day 3 : AI Era</h1><p>AEO / GEO / AI SEO — 征服新大陸</p></div>
+<div class="hero h-ai"><h1>Day 3 : AI Era</h1><p>AEO / GEO / AI SEO -- 征服新大陸</p></div>
+
+<div class="story"><span class="quote-mark">"</span>傳送門打開了。2026 年，55% 的 Google 搜尋結果頂端出現 AI 生成的摘要。ChatGPT 月活用戶 8.83 億。傳統搜尋量預計下降 25%。這不是未來 -- 這是現在。你的網站不只要讓 Google 找到，還要讓 AI 選你當引用來源。新大陸的規則完全不同。<span class="source">-- 艾澤拉斯編年史 Vol.3</span></div>
+
+<div class="case"><div class="case-head">Real Case -- AI Overview 的衝擊</div><div class="case-body">
+<p>一個健康資訊網站，原本靠「頭痛怎麼辦」排名第一，每月 12 萬次點擊。Google AI Overview 上線後：</p>
+<div class="case-num">
+  <div class="cn"><b>-58%</b><small>點擊率下降</small></div>
+  <div class="cn"><b>12 萬</b><small>月點擊（之前）</small></div>
+  <div class="cn"><b>5 萬</b><small>月點擊（之後）</small></div>
+  <div class="cn"><b>0</b><small>排名變化</small></div>
+</div>
+<p>排名沒變，但點擊腰斬。因為 AI Overview 直接在搜尋頁面回答了問題，使用者不需要點進去。這就是為什麼 AEO 比傳統 SEO 更重要 -- 你要成為 AI 引用的來源，而不只是排名第一。</p>
+</div></div>
 
 <div class="acc o"><div class="acc-h" onclick="tog(this)"><h3>3.1 AI 搜尋新戰場</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
 <div class="stats">
@@ -733,7 +798,20 @@ footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem
 
 <!-- ====== DAY 4 — ADVANCED ====== -->
 <section class="day" id="d4">
-<div class="hero h-adv"><h1>Day 4 : Advanced</h1><p>進階實戰 — 灰色產業 SEO / 季節性攻勢 / UI/UX 與排名 / AI 自動化</p></div>
+<div class="hero h-adv"><h1>Day 4 : Advanced</h1><p>進階實戰 -- 灰色產業 SEO / 季節性攻勢 / UI/UX 與排名 / AI 自動化</p></div>
+
+<div class="story"><span class="quote-mark">"</span>前三天你學的是基礎戰技。今天進入的是老兵才會談的話題 -- 灰色產業怎麼打、世界盃這種大事件怎麼搶流量、為什麼網站長得醜排名就上不去、怎麼用 AI 一個人幹一個團隊的活。這些不是課本上教的，是戰場上活下來的人傳的。<span class="source">-- 艾澤拉斯編年史 Vol.4</span></div>
+
+<div class="case"><div class="case-head">Real Case -- 娛樂城 SEO 實戰數據</div><div class="case-body">
+<p>一個使用 Content Fortress 策略（正規評測站引流）的案例，vs 使用 PBN 的競爭者：</p>
+<div class="case-num">
+  <div class="cn"><b>18 月</b><small>Content Fortress<br>穩定存活</small></div>
+  <div class="cn"><b>4 月</b><small>PBN 平均<br>存活時間</small></div>
+  <div class="cn"><b>3x</b><small>Content 長期<br>ROI 倍數</small></div>
+  <div class="cn"><b>30%</b><small>PBN 被抓後<br>恢復率</small></div>
+</div>
+<p>短期看 PBN 更快，長期看 Content Fortress 的 ROI 是 PBN 的 3 倍，因為不用不斷重建被燒掉的站。</p>
+</div></div>
 
 <!-- 4.1 Grey Industry SEO -->
 <div class="acc"><div class="acc-h" onclick="tog(this)"><h3>4.1 灰色產業 SEO — 娛樂城實戰</h3><span class="acc-t"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></div><div class="acc-b"><div class="acc-c">
@@ -1023,6 +1101,8 @@ function go(n){
   document.querySelectorAll('.nav-btn')[n].classList.add('on');
   scrollTo({top:0,behavior:'smooth'});
   localStorage.setItem('sd',n);
+  // Switch body theme
+  document.body.className='theme-'+n;
   // Re-init scroll reveals for new day
   setTimeout(initScrollReveal,100);
   setTimeout(initTilt,200);
@@ -1126,7 +1206,7 @@ function initTilt(){
     const s=localStorage.getItem('sc');
     if(s){const d=JSON.parse(s);document.querySelectorAll('.cl input').forEach((c,i)=>{if(d[i])c.checked=!0})}
     const day=localStorage.getItem('sd');
-    if(day)go(+day);
+    if(day)go(+day);else document.body.className='theme-0';
     updateXP();
     setTimeout(initScrollReveal,300);
     setTimeout(initTilt,500);
