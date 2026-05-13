@@ -264,27 +264,166 @@ tr:nth-child(even){background:var(--surface)}
 footer{text-align:center;padding:2.5rem 1rem;color:var(--text2);font-size:.76rem;border-top:1px solid var(--border);margin-top:2rem}
 
 /* ========== RESPONSIVE ========== */
+
+/* Tablet */
 @media(max-width:768px){
-  main{padding:3.8rem .9rem 2.5rem}
+  body{font-size:14px;line-height:1.75}
+  main{padding:3.5rem .8rem 2.5rem;max-width:100%}
   .grid-3{grid-template-columns:1fr}
-  .grid-auto{grid-template-columns:repeat(2,1fr)}
-  .grid-auto-sm{grid-template-columns:repeat(2,1fr)}
+  .grid-auto{grid-template-columns:1fr 1fr}
+  .grid-auto-sm{grid-template-columns:1fr 1fr}
   .ph-grid{grid-template-columns:1fr}
-  .hero{padding:2.8rem 1rem 2.2rem}
-  .flow-s{min-width:95px;max-width:130px;padding:.7rem .5rem}
+  .hero{padding:2.5rem 1rem 2rem;margin-bottom:1.8rem}
+  .hero h1{font-size:1.4rem}
+  .hero p{font-size:.85rem}
+  h2{font-size:1.1rem;margin:2rem 0 .8rem}
+  .flow-s{min-width:85px;max-width:120px;padding:.7rem .5rem}
+  .flow-s b{font-size:.78rem}
+  .flow-s span{font-size:.68rem}
+  .fc{padding:1.1rem .8rem}
+  .fc .fc-i{width:38px;height:38px;font-size:.85rem}
+  .fc h3{font-size:.88rem}
+  .fc p{font-size:.75rem}
+  .xp-wrap{top:48px;right:8px;padding:.4rem .6rem .4rem .4rem;gap:.4rem}
+  .xp-ring,.xp-ring svg{width:36px;height:36px}
+  .xp-ring .ring-bg,.xp-ring .ring-fg{r:14}
+  .xp-lv{font-size:.7rem}
+  .xp-info .xp-label{font-size:.6rem}
+  .xp-info .xp-val{font-size:.72rem}
 }
+
+/* Mobile */
 @media(max-width:480px){
-  .nav{gap:.25rem;padding:.35rem .3rem}
-  .nav-btn{padding:.3rem .55rem;font-size:.7rem}
-  .flow{flex-direction:column;align-items:center}
-  .flow-s{max-width:100%;width:100%}
-  .flow-a{transform:rotate(90deg);padding:.15rem 0}
-  .grid-auto,.grid-auto-sm,.stats,.grid-2{grid-template-columns:1fr 1fr}
+  body{font-size:13.5px}
+  main{padding:3.2rem .6rem 2rem}
+
+  /* Nav */
+  .nav{gap:.2rem;padding:.3rem .25rem}
+  .nav-btn{padding:.28rem .45rem;font-size:.65rem;border-radius:4px}
+
+  /* Hero */
+  .hero{padding:2rem .8rem 1.8rem;border-radius:10px}
+  .hero h1{font-size:1.2rem;margin-bottom:.4rem}
+  .hero .sub{font-size:.8rem}
+  .hero p{font-size:.78rem}
+
+  /* Typography */
+  h2{font-size:.95rem;margin:1.8rem 0 .7rem;gap:.4rem}
+  h2::before{width:2px;height:1em}
+  h3{font-size:.88rem}
+  h4{font-size:.88rem}
+  p{font-size:.85rem}
+  li{font-size:.83rem}
+
+  /* Flow diagram — vertical */
+  .flow{flex-direction:column;align-items:center;gap:0}
+  .flow-s{max-width:100%;width:100%;padding:.8rem}
+  .flow-s .fi{width:28px;height:28px;font-size:.72rem}
+  .flow-s b{font-size:.8rem}
+  .flow-a{transform:rotate(90deg);padding:.15rem 0;font-size:.8rem}
+
+  /* Grids — single column on small screens */
+  .grid-auto,.grid-auto-sm{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .grid-2{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
-  .acc-c{padding:.2rem .75rem 1rem}
+
+  /* Cards */
+  .sk{padding:.9rem}
+  .sk .si{width:32px;height:32px;font-size:.7rem;border-radius:6px}
+  .sk h4{font-size:.82rem}
+  .sk p{font-size:.74rem}
+  .fc{padding:1rem .8rem;border-radius:10px}
+  .fc .fc-i{width:36px;height:36px;font-size:.8rem}
+  .fc h3{font-size:.85rem}
+  .fc p{font-size:.72rem}
+  .cmp{padding:.8rem}
+  .cmp .ci{width:32px;height:32px;font-size:.7rem}
+  .cmp h4{font-size:.8rem}
+  .cmp p{font-size:.7rem}
+
+  /* Stats */
+  .st{padding:.8rem .4rem}
+  .st .n{font-size:1.3rem}
+  .st .l{font-size:.64rem}
+
+  /* Accordion */
+  .acc-h{padding:.7rem .8rem}
+  .acc-h h3{font-size:.85rem}
+  .acc-h .time{font-size:.62rem;padding:.1rem .35rem}
+  .acc-t{width:20px;height:20px}
+  .acc-t svg{width:10px;height:10px}
+  .acc-c{padding:.2rem .8rem 1rem}
+
+  /* Layers */
   .layers{max-width:100%}
-  table{min-width:400px}
-  .xp-wrap{display:none}
+  .ly{font-size:.78rem;padding:.6rem .6rem}
+  .ly small{font-size:.65rem}
+
+  /* Phase cards */
+  .ph img{height:100px}
+  .ph .pb{padding:.7rem}
+  .ph h4{font-size:.78rem}
+  .ph ul{font-size:.72rem}
+
+  /* Table */
+  table{min-width:340px;font-size:.72rem}
+  th,td{padding:.35rem .45rem}
+
+  /* Quiz */
+  .qz{padding:1rem}
+  .qz h3{font-size:.92rem}
+  .q>p{font-size:.82rem}
+  .opt{padding:.45rem .7rem;font-size:.8rem}
+  .exp{font-size:.75rem;padding:.5rem .7rem}
+
+  /* Gauge */
+  .ga-d i{width:7px;height:7px}
+  .ga small{font-size:.62rem}
+
+  /* XP — compact on mobile */
+  .xp-wrap{top:44px;right:6px;padding:.3rem .5rem .3rem .35rem;gap:.35rem;border-radius:8px}
+  .xp-ring,.xp-ring svg{width:30px;height:30px}
+  .xp-lv{font-size:.65rem}
+  .xp-info .xp-label{font-size:.55rem}
+  .xp-info .xp-val{font-size:.65rem}
+  .xp-float{font-size:.75rem;right:50px;top:55px}
+
+  /* Takeaway */
+  .takeaway{padding:.9rem 1rem}
+  .takeaway h4{font-size:.85rem}
+  .takeaway li{font-size:.8rem;padding-left:1rem}
+  .takeaway li::before{width:5px;height:5px;top:.55rem}
+
+  /* Info boxes */
+  .bx{padding:.7rem .9rem;font-size:.8rem}
+
+  /* Checklist */
+  .cl label{font-size:.8rem;gap:.45rem}
+  .cl input[type=checkbox]{width:14px;height:14px}
+
+  /* Orbs — smaller on mobile */
+  .orb-1{width:200px;height:200px}
+  .orb-2{width:150px;height:150px}
+  .orb-3{width:120px;height:120px}
+
+  /* Meter */
+  .mt-top{font-size:.72rem}
+  .mt-bar{height:5px}
+
+  /* Timeline */
+  .tl{margin-left:12px;padding-left:20px}
+  .tl-i h4{font-size:.8rem}
+  .tl-i p{font-size:.72rem}
+  .tl-i::before{width:7px;height:7px;left:-25px}
+  .tl-i.maj::before{width:9px;height:9px;left:-26px}
+
+  /* Footer */
+  footer{padding:1.5rem .8rem;font-size:.7rem}
+
+  /* Image card */
+  .ic img{height:120px}
+  .ic .ib{padding:.8rem}
 }
 
 /* ========== XP SYSTEM ========== */
